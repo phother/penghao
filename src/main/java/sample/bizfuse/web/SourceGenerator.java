@@ -33,8 +33,8 @@ public class SourceGenerator {
      */
     public static void main(final String[] args) throws ClassNotFoundException {
 
-        final String modelBasePackage = "sample.bizfuse.web.model.reimbursement";
-        final String[] models = new String[] {"CurrencyReimburse", "ReimburseDetail", "TrafficReimburse", "TravelReimburse" };
+        final String modelBasePackage = "sample.bizfuse.web.model.base";
+        final String[] models = new String[] {"Department" };
 
         final Output output = Output.file; // console 或 file
         boolean override = false; // 除非万不得已，默认不要覆盖本地文件

@@ -1,10 +1,6 @@
 package sample.bizfuse.web.model.authentication;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
@@ -15,6 +11,7 @@ import com.leadingsoft.bizfuse.common.jpa.model.AbstractAuditModel;
 
 import lombok.Getter;
 import lombok.Setter;
+import sample.bizfuse.web.model.base.Department;
 
 /**
  * 基本用户
@@ -92,6 +89,13 @@ public class User extends AbstractAuditModel {
      * 密码是否过期
      */
     private boolean credentialsExpired = false;
+
+    /**
+     * 部门
+     * @return
+     */
+    @ManyToOne
+    private Department department;
 
     @Override
     public String toString() {
