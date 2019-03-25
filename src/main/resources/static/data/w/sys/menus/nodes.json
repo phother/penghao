@@ -1,0 +1,41 @@
+{
+  "status": "success",
+  "data": [
+    {
+      "id": "-1",
+      "parent": "#",
+      "text": "菜单结构",
+      "sortNum": 0
+    },
+    {
+      "id": "1",
+      "parent": "-1",
+      "text": "系统管理",
+      "sortNum": 1
+    },
+    {
+      "id": "2",
+      "parent": "1",
+      "text": "菜单管理",
+      "sortNum": 1
+    },
+    {
+      "id": "3",
+      "parent": "1",
+      "text": "码表管理",
+      "sortNum": 2
+    },
+    {
+      "id": "4",
+      "parent": "1",
+      "text": "角色管理",
+      "sortNum": 3
+    },
+    {
+      "id": "5",
+      "parent": "1",
+      "text": "平台用户管理",
+      "sortNum": 1
+    }
+  ]
+}

@@ -1,0 +1,198 @@
+<!-- 绘图开始-->
+<div class="list-content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-horizontal">
+                <div class="row collapse in" id="condition" aria-expanded="true" style="margin-bottom: 10px">
+                    <div class="col-md-4 col-md-offset-8">
+                        <div class="row">
+                            <div class="col-md-4 col-md-offset-8">
+                                <div type="button" class="btn blue" ng-click="save()">
+                                    <i class="fa fa-check"></i>&nbsp;
+                                    <span>保存</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="Content-Left">
+                    <div class="startDom basic" id="start">
+                        <p>开始</p>
+                    </div>
+                    <div class="task basic" id="task">
+                        <p>任务</p>
+                    </div>
+                    <div class="end basic" id="end">
+                        <p>结束</p>
+                    </div>
+                    <div class="concurrentShunt basic" id="concurrentShunt">
+                        <p>并发分流</p>
+                    </div>
+                    <div class="selectiveShunt basic" id="selectiveShunt">
+                        <p>选择分流</p>
+                    </div>
+                    <div class="concurrentConvergence basic" id="concurrentConvergence">
+                        <p>并发汇合</p>
+                    </div>
+                    <div class="selectConfluence basic" id="selectConfluence">
+                        <p>选择汇合</p>
+                    </div>
+                    <div style="cursor: pointer;">
+                        <p class="fa fa-long-arrow-right" style="font-size: 54px" ng-click="connection()"></p>
+                    </div>
+                </div>
+                <!-- 绘图开始 -->
+                <div id="Content-Main">
+                    <div id="{{start.id}}"
+                         back-id="{{start.id}}"
+                         ng-repeat="start in startList"
+                         repeat-finish
+                         class='item startDom' category="start">
+                        <div class='ep'></div>
+                        <p ng-bind="start.name"></p>
+                    </div>
+                    <div id="{{task.id}}"
+                         back-id="{{task.id}}"
+                         ng-repeat="task in taskList"
+                         repeat-finish
+                         class='item task'
+                         ng-class="{taskPendingAudit:task.auditStatus != 'pass',taskPass:task.auditStatus == 'pass'}"
+                         category="task">
+                        <div class='ep'></div>
+                        <span ng-bind="task.details.task" ng-if="task.details.task"></span>
+                        <p ng-if="task.details.role">角色：{{task.details.role}}</p>
+                        <p ng-if="!task.details.task" ng-bind="task.name" style="margin-top: 10px"></p>
+                    </div>
+                    <div id="{{end.id}}"
+                         back-id="{{end.id}}"
+                         ng-repeat="end in endList"
+                         repeat-finish
+                         class='item end' category="end">
+                        <div class='ep'></div>
+                        <p ng-bind="end.name"></p>
+                    </div>
+                    <div id="{{concurrentShunt.id}}"
+                         back-id="{{concurrentShunt.id}}"
+                         ng-repeat="concurrentShunt in concurrentShuntList"
+                         repeat-finish
+                         class='item concurrentShunt' category="concurrentShunt">
+                        <div class='ep'></div>
+                        <p ng-bind="concurrentShunt.name"></p>
+                    </div>
+                    <div id="{{selectiveShunt.id}}"
+                         back-id="{{selectiveShunt.id}}"
+                         ng-repeat="selectiveShunt in selectiveShuntList"
+                         repeat-finish
+                         class='item selectiveShunt' category="selectiveShunt">
+                        <div class='ep'></div>
+                        <p ng-bind="selectiveShunt.name"></p>
+                    </div>
+                    <div id="{{concurrentConvergence.id}}"
+                         back-id="{{concurrentConvergence.id}}"
+                         ng-repeat="concurrentConvergence in concurrentConvergenceList"
+                         repeat-finish
+                         class='item concurrentConvergence' category="concurrentConvergence">
+                        <div class='ep'></div>
+                        <p ng-bind="concurrentConvergence.name"></p>
+                    </div>
+                    <div id="{{selectConfluence.id}}"
+                         back-id="{{selectConfluence.id}}"
+                         ng-repeat="selectConfluence in selectConfluenceList"
+                         repeat-finish
+                         class='item selectConfluence' category="selectConfluence">
+                        <div class='ep'></div>
+                        <p ng-bind="selectConfluence.name"></p>
+                    </div>
+                </div>
+                <div class="Clear"></div>
+                <!-- 绘图结束 -->
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 绘图结束 -->
+
+<!--编辑modal开始-->
+<script type="text/ng-template" id="edit.html">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" ng-click="btn_cancel()"><span
+                aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" ng-bind="title"></h4>
+    </div>
+    <div class="modal-body form-horizontal">
+        <div class="row">
+            <div class="col-md-3">
+                <ul class="nav nav-pills nav-stacked" role="tablist">
+                    <li class="active"><a href="/#basicSet" data-toggle="tab">基本设置</a></li>
+                    <li><a href="/#managers" data-toggle="tab">经办人</a></li>
+                    <li><a href="/#trigger" data-toggle="tab">触发器</a></li>
+                    <li><a href="/#processingTimeLimit" data-toggle="tab">办理时限</a></li>
+                    <li><a href="/#formField" data-toggle="tab">表单字段</a></li>
+                    <li>
+                </ul>
+            </div>
+            <div class="col-md-9 tab-content">
+                <div class="tab-pane active" id="basicSet">
+                    <div class="row">
+                        <div class="col-md-10">
+                            <div class="row">
+                                <div class="form-group">
+                                    <label class="control-label col-md-4">节点名称：</label>
+                                    <div class="col-md-8">
+                                        <input type="text" class="form-control" ng-model="editText.nodeName">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group">
+                                    <label class="control-label col-md-4">动作：</label>
+                                    <div class="col-md-8">
+                                        <input type="text" class="form-control" ng-model="editText.action">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group">
+                                    <label class="control-label col-md-4">角色：</label>
+                                    <div class="col-md-8">
+                                        <input type="text" class="form-control" ng-model="editText.role">
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane" id="managers">
+                    <div class="row">
+                        managers
+                    </div>
+                </div>
+                <div class="tab-pane" id="trigger">
+                    <div class="row">
+                        trigger
+                    </div>
+                </div>
+                <div class="tab-pane" id="processingTimeLimit">
+                    <div class="row">
+                        processingTimeLimit
+                    </div>
+                </div>
+                <div class="tab-pane" id="formField">
+                    <div class="row">
+                        formField
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn blue" data-dismiss="modal" ng-click="btn_ok()" aria-hidden="true">
+            <i class="fa fa-check" aria-hidden="true"></i>&nbsp;<span>确定</span>
+        </button>
+        <button type="button" class="btn" data-dismiss="modal" ng-click="btn_cancel()" aria-hidden="true">
+            <i class="fa fa-close" aria-hidden="true"></i>&nbsp;<span>取消</span>
+        </button>
+    </div>
+</script>
+<!--编辑modal结束-->

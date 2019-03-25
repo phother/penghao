@@ -1,0 +1,109 @@
+server: 
+    port: 8080
+    contextPath: 
+
+spring: 
+    profiles.active: "dev"
+    application:
+        name: BizfuseWebMVC
+    jackson:
+        serialization.write_dates_as_timestamps: true
+    datasource:
+        driver-class-name: com.mysql.jdbc.Driver
+        url: "jdbc:mysql://172.16.4.10:3306/webapp?createDatabaseIfNotExist=true&useUnicode=true&characterEncoding=utf-8&useSSL=false&autoReconnect=true"
+        username: "root"
+        password: "123456"
+        test-while-idle: true
+        max-wait-millis: 30000
+        validation-query: 'SELECT 1'
+        time-between-eviction-runs-millis: 20000
+        min-evictable-idle-time-millis: 28700
+    jpa:
+        database-platform: org.hibernate.dialect.MySQL5Dialect
+        database: mysql
+        show-sql: true
+        hibernate:
+            ddl-auto: update
+        properties:
+            hibernate.id.new_generator_mappings: true
+            hibernate.cache.use_second_level_cache: true
+            hibernate.cache.use_query_cache: false
+            hibernate.generate_statistics: true
+            hibernate.cache.region.factory_class: com.hazelcast.hibernate.HazelcastCacheRegionFactory
+            hibernate.cache.hazelcast.instance_name: monolithicApp
+            hibernate.cache.use_minimal_puts: true
+            hibernate.cache.hazelcast.use_lite_member: true
+    #设置国际化配置文件存放在classpath:/i18n目录下
+    messages.basename: i18n/messages
+
+bizfuse: 
+    web: 
+        async:
+            corePoolSize: 2
+            maxPoolSize: 50
+            queueCapacity: 10000
+#        cors: #By default CORS are not enabled. Uncomment to enable.
+#            allowed-origins: "*"
+#            allowed-methods: GET, PUT, POST, DELETE, OPTIONS
+#            allowed-headers: "*"
+#            exposed-headers:
+#            allow-credentials: true
+#            max-age: 1800
+        swagger:
+            title: BizfuseWebMVC API
+            description: BizfuseWebSample API documentation
+            version: 0.0.1
+            termsOfServiceUrl:
+            contactName:
+            contactUrl:
+            contactEmail:
+            license:
+            licenseUrl: 
+            pathPatterns: /management/.*,/api/.*,/w/.*
+        metrics: # DropWizard Metrics configuration, used by MetricsConfiguration
+            jmx.enabled: true
+            spark:
+                enabled: false
+                host: localhost
+                port: 9999
+            graphite:
+                enabled: false
+                host: localhost
+                port: 2003
+                prefix: microapp
+            logs: # Reports Dropwizard metrics in the logs
+                enabled: false
+                reportFrequency: 60 # in seconds
+        logging:
+            logstash: # Forward logs to logstash over a socket, used by LoggingConfiguration
+                enabled: false
+                host: localhost
+                port: 5000
+                queueSize: 512
+            spectator-metrics: # Reports Spectator Circuit Breaker metrics in the logs
+                enabled: false
+
+security.authentication.jwt.secret: # jwt
+
+cache:
+    hazelcast:
+        time-to-live-seconds: 3600
+        backup-count: 1
+
+# 本地LOG配置
+logging:
+    path: ./logs
+    level:
+        sample.bizfuse.web: INFO
+        org.springframework: INFO
+
+# 本地文件存储配置
+local.storage: 
+    # 临时文件目录
+    tmp: /opt/ftp/tmp
+    # ffmpeg 安装目录（若不需要视频处理，可忽略该配置）
+    normalization.tool.ffmpeg: /usr/local/bin/ffmpeg
+    # 临时文件清理间隔
+    tmp.clean.periodOfDays: 30
+    # 文件存储根目录
+    root: /opt/ftp/filestorage

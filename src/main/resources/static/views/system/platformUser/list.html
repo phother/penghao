@@ -1,0 +1,44 @@
+<script type="text/ng-template" id="operation.html">
+    <div class="text-center">
+        <button class="btn btn-common btn-xs" data-ng-click="onActionClick(row.id,'view')">查看</button>
+        <button class="btn btn-edit btn-xs" data-ng-click="onActionClick(row.id,'edit')">编辑</button>
+        <button class="btn btn-common btn-xs" data-ng-click="onActionClick(row.id,'passwordEdit')">密码修改</button>
+        <button class="btn btn-common btn-xs" data-ng-if="!row.disabled" data-ng-click="onActionClick(row,'discard')">
+            禁止
+        </button>
+        <button class="btn btn-common btn-xs" data-ng-if="row.disabled" data-ng-click="onActionClick(row,'enable')">启用
+        </button>
+    </div>
+</script>
+<div class="list-content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="pull-left">
+                <a class="btn btn-add miao" ng-click="create()">新建</a>
+            </div>
+            <div class="pull-right">
+                <form class="form-inline" role="form">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="请输入用户名称" enter-search="search"
+                               ng-model="condition.name"/>
+                    </div>
+                    <a href="javascript:;" class="btn btn-query" ng-click="search()">查询</a>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <ng-table
+                    columns="columns"
+                    sort="sort"
+                    order="order"
+                    pageable="pageable"
+                    rows="rows"
+                    notpageable="notpageable"
+                    selectable="selectable">
+            </ng-table>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: com.hazelcast:hazelcast-client:3.7-EA">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/hazelcast/hazelcast-client/3.7-EA/hazelcast-client-3.7-EA.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/com/hazelcast/hazelcast-client/3.7-EA/hazelcast-client-3.7-EA-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/hazelcast/hazelcast-client/3.7-EA/hazelcast-client-3.7-EA-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

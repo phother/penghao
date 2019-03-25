@@ -1,0 +1,26 @@
+{
+  "status": "success",
+  "data": [
+    {
+      "id": 1,
+      "name": "ROLE_ADMIN",
+      "description": "超级系统管理员"
+    },
+    {
+      "id": 2,
+      "name": "ROLE_ACCESS_MANAGER",
+      "description": "访问管理员"
+    }
+  ],
+  "pageable": {
+    "totalElements": 2,
+    "numberOfElements": 2,
+    "totalPages": 1,
+    "first": true,
+    "last": true,
+    "size": 10,
+    "number": 0,
+    "fromNumber": 1,
+    "toNumber": 2
+  }
+}

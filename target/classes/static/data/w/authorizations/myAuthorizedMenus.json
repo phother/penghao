@@ -1,0 +1,78 @@
+{
+  "status": "success",
+  "data": [
+    {
+      "title": "Dash",
+      "href": "#/dash.html",
+      "className": "fa fa-home",
+      "subMenus": []
+    },
+    {
+      "title": "table示例",
+      "href": "#/system/platformUser/list.html",
+      "className": "fa fa-table",
+      "subMenus": []
+    },
+    {
+      "title": "tree示例",
+      "href": "#/system/jsTreeDemo/list.html",
+      "className": "fa fa-pagelines",
+      "subMenus": []
+    },
+    {
+      "title": "图表示例",
+      "href": "#/system/echartsDemo/list.html",
+      "className": "fa fa-pie-chart",
+      "subMenus": []
+    },
+    {
+      "title": "UEditor示例",
+      "href": "#/system/ueditorDemo/list.html",
+      "className": "fa fa-file-text-o",
+      "subMenus": []
+    },
+    {
+      "title": "地图示例",
+      "href": "#/system/mapDemo/list.html",
+      "className": "fa fa-map-marker",
+      "subMenus": []
+    },
+    {
+      "title": "行程日期angular-ui",
+      "href": "#/system/angularFullCalendarDemo/list.html",
+      "className": "fa fa-calendar-o",
+      "subMenus": []
+    },
+    {
+      "title": "流程图示例",
+      "href": "#/system/jsPlumbDemo/list.html",
+      "className": "fa fa-arrow-right",
+      "subMenus": []
+    },
+    {
+      "title": "D3拓扑图示例",
+      "href": "#/system/D3Demo/list.html",
+      "className": "fa fa-angellist",
+      "subMenus": []
+    },
+    {
+      "title": "test",
+      "href": "#/root/test/list.html",
+      "className": "fa fa-test",
+      "subMenus": []
+    }
+  ,
+    {
+      "title": "角色",
+      "href": "#/root/roles/list.html",
+      "className": "fa fa-test",
+      "subMenus": []
+    },
+    {
+      "title": "菜单",
+      "href": "#/root/menu/list.html",
+      "className": "fa fa-test",
+      "subMenus": []
+    }
+  ]
+}

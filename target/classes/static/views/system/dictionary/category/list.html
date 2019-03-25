@@ -1,0 +1,40 @@
+<script type="text/ng-template" id="operation.html">
+    <a href="javascript:void(0)" class="btn btn-xs btn-common" data-ng-if="!row.discarded"
+       data-ng-click="onActionClick(row,'viewCodeType')">查看代码 </a>
+    <a href="javascript:void(0)" class="btn btn-xs btn-edit" data-ng-if="!row.discarded"
+       data-ng-click="onActionClick(row.id,'edit')">编辑 </a>
+    <a href="javascript:void(0)" class="btn btn-xs btn-delete" data-ng-if="!row.discarded"
+       data-ng-click="onActionClick(row,'discard')">废弃 </a>
+</script>
+<div class="list-content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="pull-left">
+                <button type="button" class="btn btn-add" ng-click="create()">
+                    <i class="fa fa-plus"></i>&nbsp;<span>新增 </span>
+                </button>
+            </div>
+            <div class="pull-right">
+                <form class="form-inline" role="form">
+                    <div class="form-group">
+                        <input type="text" enter-search="search" class="form-control form-control-inline"
+                               autocomplete="off" ng-model="condition.key"
+                               placeholder="码表类型"/>
+                    </div>
+                    <a class="btn btn-query" ng-click="search()">查询</a>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <ng-table
+                    columns="columns"
+                    sort="sort"
+                    order="order"
+                    pageable="pageable"
+                    rows="rows">
+            </ng-table>
+        </div>
+    </div>
+</div>

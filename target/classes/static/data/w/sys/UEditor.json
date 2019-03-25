@@ -1,0 +1,4 @@
+{
+  "status": "success",
+  "data": {"content" : "<h3>欢迎使用UEditor</h3><p>基于angularJS的富文本编辑器</p>"}
+}

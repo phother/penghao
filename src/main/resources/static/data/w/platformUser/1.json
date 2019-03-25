@@ -1,0 +1,15 @@
+{
+  "status": "success",
+  "data": {
+    "id":1,
+    "loginId":"name01",
+    "name":"name01",
+    "password":"123456",
+    "gender":"male",
+    "age":21,
+    "createdDate":1476416819165,
+    "roleIdsList":[1,2],
+    "roleNamesList ":["角色1","角色2"],
+    "enabled":true
+  }
+}

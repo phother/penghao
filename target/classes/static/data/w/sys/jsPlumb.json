@@ -1,0 +1,125 @@
+{
+  "status": "success",
+  "data": {
+    "router": [
+      {
+        "source": "1",
+        "target": "2",
+        "condition":{
+
+        }
+      },
+      {
+        "source": "2",
+        "target": "3",
+        "condition":{
+
+        }
+      },
+      {
+        "source": "3",
+        "target": "4",
+        "condition":{
+
+        }
+      },
+      {
+        "source": "4",
+        "target": "5",
+        "condition":{
+
+        }
+      },
+      {
+        "source": "5",
+        "target": "6",
+        "condition":{
+
+        }
+      }
+    ],
+    "task": [
+      {
+        "id": "1",
+        "name": "开始",
+        "type": "start",
+        "details":{
+          "task":"拟稿",
+          "role":"拟稿人"
+        },
+        "location": {
+          "left": "200px",
+          "top": "87px"
+        }
+      },
+      {
+        "id": "2",
+        "name": "任务",
+        "type": "task",
+        "auditStatus":"pass",
+        "details":{
+          "task":"审核",
+          "role":"组长"
+        },
+        "location": {
+          "left": "400px",
+          "top": "80px"
+        }
+      },
+      {
+        "id": "3",
+        "name": "任务",
+        "type": "task",
+        "auditStatus":"pass",
+        "details":{
+          "task":"审核",
+          "role":"部门长"
+        },
+        "location": {
+          "left": "600px",
+          "top": "80px"
+        }
+      },
+      {
+        "id": "4",
+        "name": "任务",
+        "type": "task",
+        "auditStatus":"pass",
+        "details":{
+          "task":"批示",
+          "role":"领导"
+        },
+        "location": {
+          "left": "600px",
+          "top": "220px"
+        }
+      },
+      {
+        "id": "5",
+        "name": "任务",
+        "type": "task",
+        "auditStatus":"",
+        "details":{
+          "task":"评审",
+          "role":"专家"
+        },
+        "location": {
+          "left": "400px",
+          "top": "220px"
+        }
+      },
+      {
+        "id": "6",
+        "name": "结束",
+        "type": "end",
+        "details":{
+
+        },
+        "location": {
+          "left": "200px",
+          "top": "226px"
+        }
+      }
+    ]
+  }
+}

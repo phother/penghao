@@ -1,0 +1,26 @@
+{
+  "status": "success",
+  "timestamp": 8,
+  "data": {
+    "ExpressCode":[
+      {
+        "key": "sf",
+        "value": "",
+        "text": "顺丰速递",
+        "parentKey": null,
+        "order": 1,
+        "description": "",
+        "children": []
+      },
+      {
+        "key": "yt",
+        "value": "",
+        "text": "圆通速递",
+        "parentKey": null,
+        "order": 2,
+        "description": "",
+        "children": []
+      }
+    ]
+  }
+}

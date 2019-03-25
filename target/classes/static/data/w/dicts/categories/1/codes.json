@@ -1,0 +1,49 @@
+{
+  "status": "success",
+  "data": [
+    {
+      "id": 1,
+      "categoryId": 1,
+      "key": "10031003",
+      "value": null,
+      "text": "未知",
+      "description": null,
+      "parentId": null,
+      "editable": true,
+      "discarded": false
+    },
+    {
+      "id": 2,
+      "categoryId": 1,
+      "key": "10031001",
+      "value": null,
+      "text": "男",
+      "description": null,
+      "parentId": null,
+      "editable": true,
+      "discarded": false
+    },
+    {
+      "id": 3,
+      "categoryId": 1,
+      "key": "10031002",
+      "value": null,
+      "text": "女",
+      "description": null,
+      "parentId": null,
+      "editable": true,
+      "discarded": false
+    }
+  ],
+  "pageable": {
+    "totalElements": 3,
+    "numberOfElements": 3,
+    "totalPages": 1,
+    "first": true,
+    "last": true,
+    "size": 10,
+    "number": 0,
+    "fromNumber": 1,
+    "toNumber": 3
+  }
+}

@@ -1,0 +1,185 @@
+/* here you can put your own css to customize and override the theme */
+/*-----------------------date picker fix start-----------------------*/
+[date-time-append] [date-picker-wrapper] [date-picker] {
+    margin-top: 0
+}
+
+[date-time-append] [date-picker] {
+    margin: 0;
+}
+
+[date-picker-wrapper] {
+    min-width: 195px;
+}
+
+.date-picker-date-time {
+    z-index: 10500;
+}
+
+/*------------------------date picker fix end----------------------*/
+/*---------------------------页面遮罩 start------------------------*/
+.cover {
+    position: fixed;
+    top: 50px;
+    right: 0;
+    bottom: 0;
+    left: 180px;
+    z-index: 10500;
+    filter: alpha(opacity=60);
+    display: none;
+    opacity: 0.5;
+    -moz-opacity: 0.5;
+}
+
+.page-header.navbar .page-logo .logo-default {
+     margin: 0;
+}
+
+.operation-column{
+    text-align: center;
+    width: auto;
+}
+
+/*---------------------------页面遮罩 end------------------------*/
+
+/*------------------------table css fix start----------------------*/
+table thead th {
+    vertical-align: middle;
+    text-align: center;
+}
+
+.table-summary {
+    padding: 10px 20px;
+    border: solid 1px #ccc;
+    border-bottom: 0;
+}
+
+.table-summary .bold {
+    margin-right: 10px;
+}
+
+/*------------------------table css fix end----------------------*/
+/*------------------------list page css start -------------------*/
+.list-content {
+    background-color: #FFFFFF;
+}
+
+.list-content .row {
+    margin-top: 10px;
+}
+/*------------------------list page css end -------------------*/
+
+/*------------------------form page css start -------------------*/
+.form-content {
+    background-color: #FFFFFF;
+}
+
+.form-content .row {
+    margin-top: 10px;
+}
+
+.form-content .portlet{
+     margin-bottom: 0;
+}
+
+.form-horizontal .form-body .row {
+    margin-top: 0;
+}
+
+.form-group .help-block p{
+    margin-bottom: 0;
+}
+/*------------------------form page css end -------------------*/
+
+/*重写fullcalendar样式开始*/
+.fc-button {
+    display: inline-block;
+    padding: 6px 12px;
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    box-shadow: none!important;
+    outline: 0!important;
+    font-size: 12px !important;
+    color: #ffffff;
+    background-color: #00a2ca;
+    border-color: #00a2ca;
+    line-height: 1.44;
+    height: 33px;
+    text-shadow:none!important;
+    margin-right: 1px!important;
+}
+.fc-state-down, .fc-state-active {
+    opacity: 0.65;
+}
+.fc-button:hover {
+    color: #ffffff;
+    background-color: #33b5d4;
+    border-color: #33b5d4;
+}
+.fc-grid .fc-day-number {
+    padding: 12px 12px 25px 12px;
+}
+.selectable {
+    display: inline-block;
+    width: 100px;
+    font-size: 12px;
+    height: 33px!important;
+}
+.fc-grid .fc-day-cnTerm{
+    color:#6ABA49;
+    font-size: 13px;
+}
+.fc-day-header {
+    color: #25992E;
+    font-size: 14px;
+    font-family: "Microsoft YaHei";
+}
+.fc-sun, .fc-sat {
+    color: #ED6D23;
+}
+
+.fc-grid .fc-sun .fc-day-number, .fc-grid .fc-sun .fc-day-cnDate,
+.fc-grid .fc-sat .fc-day-number, .fc-grid .fc-sat .fc-day-cnDate{
+    color:#ed6d23
+}
+/*重写fullcalendar样式结束*/
+
+/*d3样式重写开始*/
+.link {
+    stroke: green;
+    stroke-linejoin:bevel;
+    stroke-width: 2;
+}
+.link_error{
+    stroke:red;
+    stroke-linejoin:bevel;
+    stroke-width: 2;
+}
+.nodetext {
+    font: 12px sans-serif;
+    -webkit-user-select:none;
+    -moze-user-select:none;
+    stroke-linejoin:bevel;
+}
+
+#containerD3{
+    width:100%;
+    min-height:420px;
+    position:relative;
+}
+/*d3样式重写结束*/

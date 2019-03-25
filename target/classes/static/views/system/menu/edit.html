@@ -1,0 +1,169 @@
+<div class="form-content">
+    <div class="row">
+        <div class="col-md-12">
+            <button class="btn btn-back" ng-click="back()">返回</button>
+            <button class="btn btn-submit" ng-click="submit(form)">提交</button>
+            <button class="btn btn-reset" ng-click="reset()">重置</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="portlet box">
+                <div class="portlet-title">
+                    <div class="caption">
+                        菜单基本信息
+                    </div>
+                    <div class="tools">
+                        <a href="javascript:;" class="collapse" data-original-title="" title=""> </a>
+                        <a href="" class="fullscreen" data-original-title="" title=""> </a>
+                    </div>
+                </div>
+                <div class="portlet-body form">
+                    <form name="form" class="form-horizontal" novalidate>
+                        <div class="form-body">
+                            <div class="row">
+                                <div class="col-md-6"
+                                     ng-class="{ 'has-error' :(form.title.$touched || form.$submitted ) && form.title.$invalid}">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3">菜单标题<span
+                                                class="text-danger">*</span></label>
+                                        <div class="col-md-9">
+                                            <input type="text" name="title" class="form-control" placeholder="菜单标题"
+                                                   required maxlength="50" ng-maxlength="50" ng-model="model.title"/>
+                                            <div class="help-block" ng-show="form.$submitted || form.title.$touched"
+                                                 ng-messages="form.title.$error">
+                                                <p ng-message="required">菜单标题不能为空</p>
+                                                <p ng-message="maxlength">菜单标题长度不能超过50字符 </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6"
+                                     ng-class="{ 'has-error' :(form.key.$touched || form.$submitted ) && form.key.$invalid}">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3">菜单标识</label>
+                                        <div class="col-md-9">
+                                            <input type="text" name="key" class="form-control" placeholder="菜单标识"
+                                                   maxlength="50" ng-maxlength="50" ng-model="model.key"/>
+                                            <div class="help-block" ng-show="form.$submitted || form.key.$touched"
+                                                 ng-messages="form.key.$error">
+                                                <p ng-message="maxlength">菜单标识长度不能超过50字符 </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6"
+                                     ng-class="{ 'has-error' :(form.parentId.$dirty || form.$submitted ) && form.parentId.$invalid}">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3">父菜单<span
+                                                class="text-danger">*</span></label>
+                                        <div class="col-md-9">
+                                            <div class="input-group" style="text-align:left">
+                                                <input type="hidden" name="parentId" ng-model="model.parentId"
+                                                       required/>
+                                                <input type="text" class="form-control" name="parentTitle"
+                                                       ng-model="model.parentTitle" placeholder="父菜单" readonly
+                                                       disabled/>
+                                                <div class="input-group-btn">
+                                                    <button type="button" class="btn blue"
+                                                            ng-click="selectParentMenu()">
+                                                        选择
+                                                    </button>
+                                                </div>
+                                            </div>
+                                            <div class="help-block"
+                                                 ng-show="form.$submitted || form.parentId.$dirty"
+                                                 ng-messages="form.parentId.$error">
+                                                <p ng-message="required">父菜单不能为空</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6"
+                                     ng-class="{ 'has-error' :(form.href.$touched || form.$submitted ) && form.href.$invalid}">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3">跳转地址</label>
+                                        <div class="col-md-9">
+                                            <input type="text" name="href" class="form-control" placeholder="跳转地址"
+                                                   maxlength="300" ng-maxlength="300" ng-model="model.href"/>
+                                            <div class="help-block" ng-show="form.$submitted || form.href.$touched"
+                                                 ng-messages="form.href.$error">
+                                                <p ng-message="maxlength">跳转地址不能超过300字符</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6"
+                                     ng-class="{ 'has-error' :(form.className.$touched || form.$submitted ) && form.className.$invalid}">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3">菜单图标</label>
+                                        <div class="col-md-9">
+                                            <div class="input-group" style="text-align:left">
+                                                <input type="text" class="form-control" name="className"
+                                                       placeholder="菜单图标" maxlength="255" ng-maxlength="255"
+                                                       ng-model="model.className"/>
+                                                <div class="input-group-addon">
+                                                    <i ng-if="model.className" class="{{model.className}}"></i>
+                                                </div>
+                                            </div>
+                                            <div class="help-block" ng-show="form.$submitted || form.className.$touched"
+                                                 ng-messages="form.className.$error">
+                                                <p ng-message="maxlength">菜单图标不能超过255字符</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6"
+                                     ng-class="{ 'has-error' :(form.sortNum.$touched || form.$submitted ) && form.sortNum.$invalid}">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3">排序<span
+                                                class="text-danger">*</span></label>
+                                        <div class="col-md-9">
+                                            <input type="number" name="sortNum" class="form-control" required
+                                                   placeholder="排序" max="1000" min="0" step="1"
+                                                   ng-pattern="/^[0-9]\d*$/" ng-model="model.sortNum"/>
+                                            <div class="help-block" ng-show="form.$submitted || form.sortNum.$touched"
+                                                 ng-messages="form.sortNum.$error">
+                                                <p ng-message="required">排序不能为空</p>
+                                                <p ng-message="max">排序不能大于1000</p>
+                                                <p ng-message="min">排序不能小于0</p>
+                                                <p ng-message="pattern">排序只能为正整数</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/ng-template" id="menuTree.html">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" ng-click="btn_cancel()"><span
+                aria-hidden="true">&times;</span></button>
+        <h3 class="modal-title">请选择父菜单</h3>
+    </div>
+    <div class="modal-body">
+        <div style="max-height: 390px;overflow-y: auto;" js-tree="treeConfig" ng-model="treeData"
+             should-apply="applyModelChanges()" tree="treeInstance"
+             tree-events="ready:menuTreeLoadedReady;select_node:selectMenuNode;">
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn blue" data-dismiss="modal" ng-click="btn_ok()" aria-hidden="true">
+            <i class="fa fa-check" aria-hidden="true"></i>&nbsp;<span>确定 </span>
+        </button>
+        <button type="button" class="btn" data-dismiss="modal" ng-click="btn_cancel()" aria-hidden="true">
+            <i class="fa fa-close" aria-hidden="true"></i>&nbsp;<span>取消 </span>
+        </button>
+    </div>
+</script>

@@ -1,0 +1,38 @@
+{
+  "status": "success",
+  "data": [
+    {
+      "id": 2,
+      "title": "菜单管理",
+      "enabled": true,
+      "href": "#/system/menu/list.html",
+      "className": "",
+      "parentId": 1,
+      "parentTitle": "系统管理",
+      "sortNum": 1,
+      "type": "site"
+    },
+    {
+      "id": 3,
+      "title": "码表管理",
+      "enabled": true,
+      "href": "#/system/dictionary/category/list.html",
+      "className": "",
+      "parentId": 1,
+      "parentTitle": "系统管理",
+      "sortNum": 2,
+      "type": "site"
+    },
+    {
+      "id": 4,
+      "title": "角色管理",
+      "enabled": true,
+      "href": "#/system/role/list.html",
+      "className": "",
+      "parentId": 1,
+      "parentTitle": "系统管理",
+      "sortNum": 3,
+      "type": "site"
+    }
+  ]
+}

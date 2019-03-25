@@ -1,0 +1,28 @@
+{
+  "status": "success",
+  "data": [
+    {
+      "id":1,
+      "userName":"name01",
+      "nickName":"name01",
+      "password":"123456",
+      "gender":"male",
+      "age":21,
+      "createDate":1476416819165,
+      "roleIdsList":[1,2],
+      "roleNamesList":["角色1","角色2"],
+      "discard":true
+    }
+  ],
+  "pageable": {
+    "totalElements": 13,
+    "numberOfElements": 10,
+    "totalPages": 2,
+    "first": true,
+    "last": false,
+    "size": 10,
+    "number": 0,
+    "fromNumber": 1,
+    "toNumber": 10
+  }
+}

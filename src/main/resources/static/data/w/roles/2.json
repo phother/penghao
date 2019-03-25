@@ -1,0 +1,9 @@
+{
+  "status": "success",
+  "data":
+    {
+      "id": 2,
+      "name": "ROLE_ACCESS_MANAGER",
+      "description": "访问管理员"
+    }
+}

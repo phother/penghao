@@ -1,0 +1,49 @@
+<div class="form-content">
+    <div class="row">
+        <div class="col-md-12">
+            <button class="btn btn-back" ng-click="back()">返回</button>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="portlet box">
+                <div class="portlet-title">
+                    <div class="caption">
+                        角色基本信息
+                    </div>
+                    <div class="tools">
+                        <a href="javascript:;" class="collapse" data-original-title="" title=""> </a>
+                        <a href="" class="fullscreen" data-original-title="" title=""> </a>
+                    </div>
+                </div>
+                <div class="portlet-body form">
+                    <form name="form" class="form-horizontal" novalidate>
+                        <div class="form-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3">角色名称</label>
+                                        <div class="col-md-9">
+                                            <p class="form-control-static" ng-bind="model.name"></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3">角色描述</label>
+                                        <div class="col-md-9">
+                                            <p class="form-control-static" ng-bind="model.description"></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

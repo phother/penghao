@@ -1,0 +1,22 @@
+{
+  "status": "success",
+  "data": [
+    {
+      "id": 1,
+      "key": "MemberLevel",
+      "description": "会员级别",
+      "discarded": false
+    }
+  ],
+  "pageable": {
+    "totalElements": 13,
+    "numberOfElements": 10,
+    "totalPages": 2,
+    "first": true,
+    "last": false,
+    "size": 10,
+    "number": 0,
+    "fromNumber": 1,
+    "toNumber": 10
+  }
+}

@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: com.leadingsoft.bizfuse:bizfuse-base-dict:3.0-SNAPSHOT">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/leadingsoft/bizfuse/bizfuse-base-dict/3.0-SNAPSHOT/bizfuse-base-dict-3.0-20171219.061630-25.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/com/leadingsoft/bizfuse/bizfuse-base-dict/3.0-SNAPSHOT/bizfuse-base-dict-3.0-20171219.061630-25-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/leadingsoft/bizfuse/bizfuse-base-dict/3.0-SNAPSHOT/bizfuse-base-dict-3.0-20171219.061630-25-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

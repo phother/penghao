@@ -1,0 +1,188 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.leadingsoft.bizfuse</groupId>
+		<artifactId>bizfuse-parent</artifactId>
+		<version>3.0.0.0.RELEASE</version>
+	</parent>
+	<artifactId>webapp</artifactId>
+	<version>1.0.0.RELEASE</version>
+	<packaging>jar</packaging>
+	<name>bizfuse-web-app Sample</name>
+	<description>Bizfuse-web-app Samples</description>
+
+	<properties>
+		<!-- These remain empty unless the corresponding profile is active -->
+		<profile.swagger></profile.swagger>
+		<start-class>sample.bizfuse.web.BizfuseWebApplication</start-class>
+
+		<hazelcast-hibernate5.version>1.0</hazelcast-hibernate5.version>
+		<super-csv.version>2.4.0</super-csv.version>
+	</properties>
+
+	<dependencies>
+		<!-- bizfuse-web-common dependencies -->
+		<dependency>
+			<groupId>com.leadingsoft.bizfuse</groupId>
+			<artifactId>bizfuse-web-common</artifactId>
+			<exclusions>
+				<exclusion>
+					<groupId>com.hazelcast</groupId>
+					<artifactId>hazelcast-hibernate4</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<!-- bizfuse-model-common dependencies -->
+		<dependency>
+			<groupId>com.leadingsoft.bizfuse</groupId>
+			<artifactId>bizfuse-model-common</artifactId>
+		</dependency>
+
+		<!-- bizfuse-webauth-common dependencies -->
+		<dependency>
+			<groupId>com.leadingsoft.bizfuse</groupId>
+			<artifactId>bizfuse-webauth-common</artifactId>
+		</dependency>
+		
+		<!-- bizfuse-base-authority dependencies -->
+		<dependency>
+			<groupId>com.leadingsoft.bizfuse</groupId>
+			<artifactId>bizfuse-base-authority</artifactId>
+		</dependency>
+		
+		<!-- bizfuse-base-dict dependencies -->
+		<dependency>
+			<groupId>com.leadingsoft.bizfuse</groupId>
+			<artifactId>bizfuse-base-dict</artifactId>
+			<version>3.0-SNAPSHOT</version>
+		</dependency>
+		
+		<!-- bizfuse-quartz dependencies -->
+		<dependency>
+			<groupId>com.leadingsoft.bizfuse</groupId>
+			<artifactId>bizfuse-quartz</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+		</dependency>
+
+		<!-- Hazelcast cache dependencies -->
+		<dependency>
+			<groupId>com.hazelcast</groupId>
+			<artifactId>hazelcast</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.hazelcast</groupId>
+			<artifactId>hazelcast-hibernate5</artifactId>
+			<version>${hazelcast-hibernate5.version}</version>
+		</dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.datatype</groupId>
+            <artifactId>jackson-datatype-hibernate5</artifactId>
+        </dependency>
+		<dependency>
+			<groupId>com.hazelcast</groupId>
+			<artifactId>hazelcast-spring</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+			<optional>true</optional>
+		</dependency>
+
+		<!-- For CSV file import  -->
+        <dependency>
+			<groupId>net.sf.supercsv</groupId>
+			<artifactId>super-csv</artifactId>
+			<version>${super-csv.version}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>com.leadingsoft.bizfuse</groupId>
+			<artifactId>bizfuse-base-filestorage</artifactId>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+				<excludes>
+					<exclude>/excel/**</exclude>
+					<exclude>/static/**</exclude>
+				</excludes>
+			</resource>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>false</filtering>
+				<includes>
+					<include>/excel/**</include>
+					 <include>/static/**/**</include>
+				</includes>
+			</resource>
+		</resources>
+		<plugins>
+			<plugin>
+				<groupId>com.mysema.maven</groupId>
+				<artifactId>apt-maven-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<configuration>
+					<packagingExcludes>WEB-INF/lib/tomcat-*.jar</packagingExcludes>
+					<delimiters>
+						<delimit>#</delimit>
+					</delimiters>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+	<profiles>
+		<profile>
+			<id>swagger</id>
+			<properties>
+				<profile.swagger>,swagger</profile.swagger>
+			</properties>
+		</profile>
+		<profile>
+			<id>prod</id>
+			<properties>
+				<!-- log configuration -->
+				<logback.loglevel>INFO</logback.loglevel>
+				<!-- default Spring profiles -->
+				<spring.profiles.active>prod</spring.profiles.active>
+				<datasource.url>jdbc:mysql://172.16.4.10:3306/webapp?createDatabaseIfNotExist=true&amp;useUnicode=true&amp;characterEncoding=utf-8&amp;useSSL=true&amp;autoReconnect=true</datasource.url>
+				<datasource.driver>com.mysql.jdbc.Driver</datasource.driver>
+				<datasource.username>root</datasource.username>
+				<datasource.password>123456</datasource.password>
+
+			</properties>
+		</profile>
+		<profile>
+			<id>dev</id>
+			<properties>
+				<!-- log configuration -->
+				<logback.loglevel>INFO</logback.loglevel>
+				<!-- default Spring pr 	ofiles -->
+				<spring.profiles.active>dev</spring.profiles.active>
+				<!--<datasource.url>jdbc:mysql://172.16.5.96:3306/vodt_ggx?createDatabaseIfNotExist=true&amp;useUnicode=true&amp;characterEncoding=utf-8&amp;useSSL=true&amp;autoReconnect=true</datasource.url>-->
+				<datasource.url>jdbc:mysql://172.16.4.10:3306/webapp?createDatabaseIfNotExist=true&amp;useUnicode=true&amp;characterEncoding=utf-8&amp;useSSL=false&amp;autoReconnect=true</datasource.url>
+				<datasource.driver>com.mysql.jdbc.Driver</datasource.driver>
+				<datasource.username>root</datasource.username>
+				<datasource.password>123456</datasource.password>
+
+			</properties>
+		</profile>
+	</profiles>
+
+</project>

@@ -1,0 +1,16 @@
+{
+  "status": "success",
+  "data": [
+    {
+      "id": 1,
+      "title": "系统管理",
+      "enabled": true,
+      "href": "javascript:void(0);",
+      "className": "fa fa-cog",
+      "parentId": null,
+      "parentTitle": null,
+      "sortNum": 1,
+      "type": "site"
+    }
+  ]
+}

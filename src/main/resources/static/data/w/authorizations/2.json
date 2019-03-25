@@ -1,0 +1,9 @@
+{
+  "status": "success",
+  "data": {
+    "id": 1,
+    "menuIds": [
+      2
+    ]
+  }
+}

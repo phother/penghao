@@ -1,0 +1,76 @@
+{
+  "status": "success",
+  "data": [
+    {
+      "id_": 11,
+      "key": "11",
+      "value": null,
+      "text": "search1",
+      "parentKey": "1",
+      "order": 1,
+      "description": "province",
+      "children": []
+    },
+    {
+      "id_": 1101,
+      "key": "1101",
+      "value": null,
+      "text": "search2",
+      "parentKey": "11",
+      "order": 1,
+      "description": "city",
+      "children": []
+    },
+    {
+      "id_": 1102,
+      "key": "1102",
+      "value": null,
+      "text": "search3",
+      "parentKey": "11",
+      "order": 1,
+      "description": "city",
+      "children": []
+    },
+    {
+      "id_": 1102,
+      "key": "1102",
+      "value": null,
+      "text": "search4",
+      "parentKey": "11",
+      "order": 1,
+      "description": "city",
+      "children": [
+        {
+          "id_": 1111,
+          "key": "1111",
+          "value": null,
+          "text": "searchChildren",
+          "parentKey": "11",
+          "order": 1,
+          "description": "city",
+          "children": []
+        }
+      ]
+    },
+    {
+      "id_": 1102,
+      "key": "1102",
+      "value": null,
+      "text": "search5",
+      "parentKey": "11",
+      "order": 1,
+      "description": "city",
+      "children": []
+    },
+    {
+      "id_": 1102,
+      "key": "1102",
+      "value": null,
+      "text": "search6",
+      "parentKey": "11",
+      "order": 1,
+      "description": "city",
+      "children": []
+    }
+  ]
+}

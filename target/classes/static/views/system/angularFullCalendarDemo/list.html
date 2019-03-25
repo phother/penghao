@@ -1,0 +1,252 @@
+<div class="list-content">
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+            <div id="calendar" ng-model="eventSources" ui-calendar="uiConfig.calendar"></div>
+        </div>
+    </div>
+</div>
+
+<!--新建日程模态层开始-->
+<script type="text/ng-template" id="addFullCalendar.html">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" ng-click="btn_cancel()"><span
+                aria-hidden="true">&times;</span></button>
+        <h3 class="modal-title">新建事件</h3>
+    </div>
+    <div class="modal-body form">
+        <form name="form" class="form-horizontal" role="form" novalidate>
+            <div class="form-body">
+                <div class="row">
+                    <div class="col-md-10"
+                         ng-class="{ 'has-error' :(form.fullContent.$touched || form.$submitted ) && form.fullContent.$invalid}">
+                        <div class="form-group">
+                            <label class="control-label col-md-4">日程内容<span
+                                    class="text-danger">*</span></label>
+                            <div class="col-md-8">
+                                <input type="text" name="fullContent" class="form-control"
+                                       placeholder="请填写您将要记录的事件" autocomplete="off" required maxlength="18"
+                                       ng-model="model.fullContent" ng-maxlength="20"/>
+                                <div class="help-block"
+                                     ng-show="form.$submitted || form.fullContent.$touched"
+                                     ng-messages="form.fullContent.$error">
+                                    <p ng-message="required">日程内容不能为空</p>
+                                    <p ng-message="maxlength">日程内容不能超过20字符 </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-10"
+                         ng-class="{ 'has-error' :(form.fullStratTime.$touched || form.$submitted ) && form.fullStratTime.$invalid}">
+                        <div class="form-group">
+                            <label for="fullStratTime" class="control-label col-md-4">开始时间<span
+                                    class="text-danger">*</span></label>
+                            <div class="col-md-8">
+                                <div date-time-append class="input-group">
+                                    <input id="fullStratTime" name="fullStratTime"
+                                           class="form-control"
+                                           placeholder="开始时间"
+                                           ng-model="model.fullStratTime"
+                                           format="YYYY-MM-DD HH:mm"
+                                           date-time max-view="year" min-view="minutes" view="month"
+                                           required
+                                           auto-close="true"/>
+                                    <span class="input-group-btn">
+                                                    <button class="btn default" type="button">
+                                                        <i class="fa fa-calendar"></i>
+                                                    </button>
+                                                 </span>
+                                </div>
+                                <div class="help-block"
+                                     ng-show="(form.fullStratTime.$touched || form.$submitted ) && form.fullStratTime.$invalid"
+                                     ng-messages="form.fullStratTime.$error">
+                                    <p ng-message="required">开始时间不能为空</p>
+                                    <p ng-message="parse">开始时间格式不正确</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-10"
+                         ng-class="{ 'has-error' :(form.fullEndTime.$touched || form.$submitted ) && form.fullEndTime.$invalid}">
+                        <div class="form-group">
+                            <label for="fullEndTime" class="control-label col-md-4">结束时间<span
+                                    class="text-danger">*</span></label>
+                            <div class="col-md-8">
+                                <div date-time-append class="input-group">
+                                    <input id="fullEndTime" name="fullEndTime"
+                                           class="form-control"
+                                           placeholder="结束时间"
+                                           ng-model="model.fullEndTime"
+                                           format="YYYY-MM-DD HH:mm"
+                                           date-time max-view="year" min-view="minutes" view="month"
+                                           required
+                                           auto-close="true"/>
+                                    <span class="input-group-btn">
+                                                    <button class="btn default" type="button">
+                                                        <i class="fa fa-calendar"></i>
+                                                    </button>
+                                                 </span>
+                                </div>
+                                <div class="help-block"
+                                     ng-show="(form.fullEndTime.$touched || form.$submitted ) && form.fullEndTime.$invalid"
+                                     ng-messages="form.fullEndTime.$error">
+                                    <p ng-message="required">结束时间不能为空</p>
+                                    <p ng-message="parse">结束时间格式不正确</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-10">
+                        <label class="control-label col-md-4">
+                            <input type="checkbox" ng-model="model.allDay" ng-checked="true" name="allDay" id="allDay">
+                        </label>
+                        <label for="allDay" class="control-label col-md-2" style="text-align: left">
+                            全天
+                        </label>
+                    </div>
+                </div>
+
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-submit" data-dismiss="modal" ng-click="btn_ok(form)" aria-hidden="true">
+            <i class="fa fa-check" aria-hidden="true"></i>&nbsp;<span>确定 </span>
+        </button>
+        <button type="button" class="btn btn-cancel" data-dismiss="modal" ng-click="btn_cancel()" aria-hidden="true">
+            <i class="fa fa-close" aria-hidden="true"></i>&nbsp;<span>取消 </span>
+        </button>
+    </div>
+</script>
+<!--新建日程模态层结束-->
+
+<!--edit日程模态层开始-->
+<script type="text/ng-template" id="editFullCalendar.html">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" ng-click="btn_cancel()"><span
+                aria-hidden="true">&times;</span></button>
+        <h3 class="modal-title">编辑事件</h3>
+    </div>
+    <div class="modal-body form">
+        <form name="form" class="form-horizontal" role="form" novalidate>
+            <div class="form-body">
+                <div class="row">
+                    <div class="col-md-10"
+                         ng-class="{ 'has-error' :(form.fullContent.$touched || form.$submitted ) && form.fullContent.$invalid}">
+                        <div class="form-group">
+                            <label class="control-label col-md-4">日程内容<span
+                                    class="text-danger">*</span></label>
+                            <div class="col-md-8">
+                                <input type="text" name="fullContent" class="form-control"
+                                       placeholder="请填写您将要记录的事件" autocomplete="off" required maxlength="18"
+                                       ng-model="model.fullContent" ng-maxlength="20"/>
+                                <div class="help-block"
+                                     ng-show="form.$submitted || form.fullContent.$touched"
+                                     ng-messages="form.fullContent.$error">
+                                    <p ng-message="required">日程内容不能为空</p>
+                                    <p ng-message="maxlength">日程内容不能超过20字符 </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-10"
+                         ng-class="{ 'has-error' :(form.fullStratTime.$touched || form.$submitted ) && form.fullStratTime.$invalid}">
+                        <div class="form-group">
+                            <label for="fullStratTime" class="control-label col-md-4">开始时间<span
+                                    class="text-danger">*</span></label>
+                            <div class="col-md-8">
+                                <div date-time-append class="input-group">
+                                    <input id="fullStratTime" name="fullStratTime"
+                                           class="form-control"
+                                           placeholder="开始时间"
+                                           ng-model="model.fullStratTime"
+                                           format="YYYY-MM-DD HH:mm"
+                                           date-time max-view="year" min-view="minutes" view="month"
+                                           required
+                                           auto-close="true"/>
+                                    <span class="input-group-btn">
+                                                    <button class="btn default" type="button">
+                                                        <i class="fa fa-calendar"></i>
+                                                    </button>
+                                                 </span>
+                                </div>
+                                <div class="help-block"
+                                     ng-show="(form.fullStratTime.$touched || form.$submitted ) && form.fullStratTime.$invalid"
+                                     ng-messages="form.fullStratTime.$error">
+                                    <p ng-message="required">开始时间不能为空</p>
+                                    <p ng-message="parse">开始时间格式不正确</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-10"
+                         ng-class="{ 'has-error' :(form.fullEndTime.$touched || form.$submitted ) && form.fullEndTime.$invalid}">
+                        <div class="form-group">
+                            <label for="fullEndTime" class="control-label col-md-4">结束时间<span
+                                    class="text-danger">*</span></label>
+                            <div class="col-md-8">
+                                <div date-time-append class="input-group">
+                                    <input id="fullEndTime" name="fullEndTime"
+                                           class="form-control"
+                                           placeholder="结束时间"
+                                           ng-model="model.fullEndTime"
+                                           format="YYYY-MM-DD HH:mm"
+                                           date-time max-view="year" min-view="minutes" view="month"
+                                           required
+                                           auto-close="true"/>
+                                    <span class="input-group-btn">
+                                                    <button class="btn default" type="button">
+                                                        <i class="fa fa-calendar"></i>
+                                                    </button>
+                                                 </span>
+                                </div>
+                                <div class="help-block"
+                                     ng-show="(form.fullEndTime.$touched || form.$submitted ) && form.fullEndTime.$invalid"
+                                     ng-messages="form.fullEndTime.$error">
+                                    <p ng-message="required">结束时间不能为空</p>
+                                    <p ng-message="parse">结束时间格式不正确</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-10">
+                        <label class="control-label col-md-4">
+                            <input type="checkbox" ng-model="model.allDay" name="allDay" id="allDay">
+                        </label>
+                        <label for="allDay" class="control-label col-md-2" style="text-align: left">
+                            全天
+                        </label>
+                    </div>
+                </div>
+
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-delete" data-dismiss="modal" ng-click="btn_del(form)" aria-hidden="true">
+            <span>删除</span>
+        </button>
+        <button type="button" class="btn btn-submit" data-dismiss="modal" ng-click="btn_ok(form)" aria-hidden="true">
+            <i class="fa fa-check" aria-hidden="true"></i>&nbsp;<span>确定 </span>
+        </button>
+        <button type="button" class="btn btn-cancel" data-dismiss="modal" ng-click="btn_cancel()" aria-hidden="true">
+            <i class="fa fa-close" aria-hidden="true"></i>&nbsp;<span>取消 </span>
+        </button>
+    </div>
+</script>
+<!--edit日程模态层结束-->

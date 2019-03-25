@@ -1,0 +1,43 @@
+<div class="list-content">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="portlet box">
+                        <div class="portlet-title">
+                            <div class="caption">
+                                组织结构tree
+                            </div>
+                            <div class="tools">
+                                <a href="javascript:;" class="collapse" data-original-title="" title=""> </a>
+                                <a href="" class="fullscreen" data-original-title="" title=""> </a>
+                            </div>
+                        </div>
+                        <div class="portlet-body" ng-controller="treeCtrl">
+                            <div js-tree="treeConfig"
+                                 should-apply="applyModelChanges()"
+                                 ng-model="treeData"
+                                 tree="treeInstance"
+                                 tree-events="ready:readyCB;select_node:selectCB">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div class="row">
+                <div class="col-md-12">
+                    <ng-table
+                            columns="columns"
+                            sort="sort"
+                            order="order"
+                            pageable="pageable"
+                            rows="rows"
+                            notpageable="notpageable">
+                    </ng-table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

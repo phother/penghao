@@ -1,0 +1,51 @@
+<script type="text/ng-template" id="operation.html">
+    <a href="javascript:void(0)" class="btn btn-xs btn-edit" data-ng-if="!row.editable"
+       data-ng-click="onActionClick(row.id,'view')">查看 </a>
+    <a href="javascript:void(0)" class="btn btn-xs btn-edit" data-ng-if="!row.discarded && row.editable"
+       data-ng-click="onActionClick(row.id,'edit')">编辑 </a>
+    <a href="javascript:void(0)" class="btn btn-xs btn-common" data-ng-if="!row.discarded"
+       data-ng-click="onActionClick(row.id,'moveUp')">上移 </a>
+    <a href="javascript:void(0)" class="btn btn-xs btn-common" data-ng-if="!row.discarded"
+       data-ng-click="onActionClick(row.id,'moveDown')">下移 </a>
+    <a href="javascript:void(0)" class="btn btn-xs btn-delete" data-ng-if="!row.discarded"
+       data-ng-click="onActionClick(row,'discard')">废弃 </a>
+</script>
+<div class="list-content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="pull-left">
+                <button type="button" class="btn btn-back" ng-click="back()">
+                    <span> 返回上一级 </span>
+                </button>
+                <button type="button" class="btn btn-add" ng-click="create()">
+                    <span> 新增 </span>
+                </button>
+            </div>
+            <div class="pull-right">
+                <form class="form-inline" role="form">
+                    <div class="form-group">
+                        <select class="form-control form-control-inline" ng-model="condition.discarded" select2>
+                            <option value="">全部</option>
+                            <option value="false">使用中</option>
+                            <option value="true">已废弃</option>
+                        </select>
+                        <input type="text" class="form-control form-control-inline" placeholder="请输入代码值"
+                               ng-model="condition.key"/>
+                    </div>
+                    <a class="btn btn-query" ng-click="search()">查询</a>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <ng-table
+                    columns="columns"
+                    sort="sort"
+                    order="order"
+                    pageable="pageable"
+                    rows="rows">
+            </ng-table>
+        </div>
+    </div>
+</div>

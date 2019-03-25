@@ -1,0 +1,9 @@
+{
+  "status": "success",
+  "data":
+    {
+      "id": 1,
+      "name": "ROLE_ADMIN",
+      "description": "超级系统管理员"
+    }
+}

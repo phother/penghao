@@ -1,0 +1,191 @@
+<div class="form-content">
+    <div class="row">
+        <div class="col-md-12">
+            <button class="btn btn-back" ng-click="back()">返回</button>
+            <button class="btn btn-submit" ng-click="submit(form)">提交</button>
+            <button class="btn btn-reset" ng-click="reset()">重置</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="portlet box">
+                <div class="portlet-title">
+                    <div class="caption">
+                        平台用户基本信息
+                    </div>
+                    <div class="tools">
+                        <a href="javascript:;" class="collapse" data-original-title="" title=""> </a>
+                        <a href="" class="fullscreen" data-original-title="" title=""> </a>
+                    </div>
+                </div>
+                <div class="portlet-body form">
+                    <form name="form" class="form-horizontal" role="form" novalidate>
+                        <div class="form-body">
+                            <div class="row">
+                                <div class="col-md-6"
+                                     ng-class="{ 'has-error' :(form.userName.$touched || form.$submitted ) && form.userName.$invalid}">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4">用户名<span
+                                                class="text-danger">*</span></label>
+                                        <div class="col-md-8">
+                                            <input type="text" name="userName" class="form-control"
+                                                   placeholder="用户名" autocomplete="off" required maxlength="18"
+                                                   ng-model="model.userName" ng-maxlength="18"
+                                                   ng-pattern="/^[a-zA-z][a-zA-Z0-9_]{2,32}$/"/>
+                                            <div class="help-block"
+                                                 ng-show="form.$submitted || form.userName.$touched"
+                                                 ng-messages="form.userName.$error">
+                                                <p ng-message="required">用户名不能为空</p>
+                                                <p ng-message="maxlength">用户名不能超过18字符 </p>
+                                                <p ng-message="pattern">用户名格式不正确,用户名由 3-32位的字母下划线和数字组成，只能已字母开头。 </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6"
+                                     ng-class="{ 'has-error' :(form.nickName.$touched || form.$submitted ) && form.nickName.$invalid}">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4">姓名<span
+                                                class="text-danger">*</span></label>
+                                        <div class="col-md-8">
+                                            <input type="text" name="nickName" class="form-control" placeholder="姓名"
+                                                   autocomplete="off" required maxlength="50" ng-maxlength="50"
+                                                   ng-model="model.nickName"/>
+                                            <div class="help-block"
+                                                 ng-show="form.$submitted || form.nickName.$touched"
+                                                 ng-messages="form.nickName.$error">
+                                                <p ng-message="required">姓名不能为空</p>
+                                                <p ng-message="maxlength">姓名不能超过50字符 </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row" ng-if="!id">
+                                <div class="col-md-6"
+                                     ng-class="{ 'has-error' :(form.password.$touched || form.$submitted ) && form.password.$invalid}">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4">密码<span
+                                                class="text-danger">*</span></label>
+                                        <div class="col-md-8">
+                                            <input type="password" name="password" class="form-control"
+                                                   placeholder="密码"
+                                                   autocomplete="off" required minlength="6" maxlength="30"
+                                                   ng-minlength="6" ng-maxlength="30" ng-model="model.password"/>
+                                            <div class="help-block"
+                                                 ng-show="form.$submitted || form.password.$touched"
+                                                 ng-messages="form.password.$error">
+                                                <p ng-message="required">密码不能为空</p>
+                                                <p ng-message="minlength">密码不能小于6个字符</p>
+                                                <p ng-message="maxlength">密码不能大于30个字符</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6"
+                                     ng-class="{ 'has-error' :(form.confirmPassword.$touched || form.$submitted ) && form.confirmPassword.$invalid}">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4">确认密码<span
+                                                class="text-danger">*</span></label>
+                                        <div class="col-md-8">
+                                            <input type="password" name="confirmPassword" class="form-control"
+                                                   placeholder="确认密码"
+                                                   autocomplete="off" required minlength="6" maxlength="30"
+                                                   ng-minlength="6" ng-maxlength="30"
+                                                   ng-model="model.confirmPassword"
+                                                   ui-validate="'$value==model.password'"
+                                                   ui-validate-watch="'model.password'"/>
+                                            <div class="help-block"
+                                                 ng-show="form.$submitted || form.confirmPassword.$touched"
+                                                 ng-messages="form.confirmPassword.$error">
+                                                <p ng-message="required">确认密码不能为空</p>
+                                                <p ng-message="minlength">确认密码不能小于6个字符</p>
+                                                <p ng-message="maxlength">确认密码不能大于30个字符</p>
+                                                <p ng-message="validator">确认密码与密码不一致</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6"
+                                     ng-class="{ 'has-error' :(form.gender.$touched || form.$submitted ) && form.gender.$invalid}">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4">性别<span
+                                                class="text-danger">*</span></label>
+                                        <div class="col-md-8">
+                                            <select name="gender" class="form-control ng-touched" data-placeholder="性别"
+                                                    required
+                                                    ng-model="model.gender" select2>
+                                                <option ng-repeat="genderData in genderDatas" value="{{genderData.key}}"
+                                                        ng-bind="genderData.text"></option>
+                                            </select>
+                                            <div class="help-block"
+                                                 ng-show="form.$submitted || form.gender.$touched"
+                                                 ng-messages="form.gender.$error">
+                                                <p ng-message="required">性别不能为空</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6"
+                                     ng-class="{ 'has-error' :(form.createDate.$touched || form.$submitted ) && form.createDate.$invalid}">
+                                    <div class="form-group">
+                                        <label for="createDate" class="control-label col-md-4">创建时间<span
+                                                class="text-danger">*</span></label>
+                                        <div class="col-md-8">
+                                            <div date-time-append class="input-group">
+                                                <input id="createDate" name="createDate"
+                                                       class="form-control"
+                                                       placeholder="创建时间"
+                                                       ng-model="model.createDate"
+                                                       format="YYYY-MM-DD HH:mm:ss"
+                                                       date-time max-view="year" min-view="minutes" view="month"
+                                                       required
+                                                       auto-close="true"/>
+                                                <span class="input-group-btn">
+                                                    <button class="btn default" type="button">
+                                                        <i class="fa fa-calendar"></i>
+                                                    </button>
+                                                 </span>
+                                            </div>
+                                            <div class="help-block"
+                                                 ng-show="(form.createDate.$touched || form.$submitted ) && form.createDate.$invalid"
+                                                 ng-messages="form.createDate.$error">
+                                                <p ng-message="required">创建时间不能为空</p>
+                                                <p ng-message="parse">创建时间格式不正确</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6"
+                                     ng-class="{ 'has-error' :(form.age.$touched || form.$submitted ) && form.age.$invalid}">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4">年龄<span
+                                                class="text-danger">*</span></label>
+                                        <div class="col-md-8">
+                                            <input type="number" name="age" class="form-control" placeholder="年龄"
+                                                   required min="1" max="100" step="1" ng-pattern="/^[1-9]\d*$/"
+                                                   ng-model="model.age"/>
+                                            <div class="help-block"
+                                                 ng-show="form.$submitted || form.age.$touched"
+                                                 ng-messages="form.age.$error">
+                                                <p ng-message="required">年龄不能为空</p>
+                                                <p ng-message="min">年龄不能小于1</p>
+                                                <p ng-message="max">年龄不能大于100</p>
+                                                <p ng-message="pattern">年龄只能为正整数</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

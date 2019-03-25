@@ -1,0 +1,9 @@
+{
+  "status": "success",
+  "data": {
+    "id": 1,
+    "key": "MemberLevel",
+    "description": "会员级别",
+    "discarded": false
+  }
+}

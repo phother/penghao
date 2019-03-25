@@ -1,0 +1,72 @@
+<div style="padding-bottom: 20px;">
+    <div>
+        <table class="table table-bordered table-hover table-condensed ng-table">
+            <thead>
+            <tr>
+                <th data-ng-repeat="column in columns" data-ng-click="onHeaderClicked(column)" width="{{column.width}}"
+                    rowspan="{{column.parent?1:2}}"
+                    data-ng-if="undefined === column.parent || (undefined !== column.parent && undefined !== column.parent.col)"
+                    colspan="{{column.parent.col?column.parent.col:1}}"
+                    class="{{column.sortable?'sorting':''}}"
+                    data-ng-class="{sorting_asc: sort==column.name&&order=='asc'&&undefined===column.parent, sorting_desc: sort==column.name&&order=='desc'&&undefined===column.parent}">
+                    <input data-ng-if="typeOf(column) === 'checkbox' && column.label === 'checkbox'" type="checkbox"
+                           ng-checked="headChecked" data-ng-click="onHeadCheckboxClick($event)"/>
+                    <span data-ng-if="typeOf(column) !== 'checkbox' || column.label !== 'checkbox'"
+                          ng-bind="column.parent?column.parent.label:column.label"></span>
+                </th>
+            </tr>
+            <tr>
+                <th data-ng-repeat="column in columns" data-ng-if="undefined !== column.parent" width="{{column.width}}"
+                    data-ng-click="onHeaderClicked(column)"
+                    class="{{column.sortable?'sorting':''}}"
+                    data-ng-class="{sorting_asc: sort==column.name&&order=='asc', sorting_desc: sort==column.name&&order=='desc'}">
+                    {{column.label}}
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr data-ng-if="isEmpty(rows)">
+                <td colspan="{{columns.length}}">
+                    <div style="text-align: center;">
+                        <span>无数据</span>
+                    </div>
+                </td>
+            </tr>
+            <tr data-ng-if="!isEmpty(rows)" data-ng-repeat="row in rows" data-ng-class="{info:row.selected}"
+                data-ng-click="rowSelect($event,row)" ng-init="outerIndex = $index">
+                <td data-ng-repeat="column in columns" ng-class="{'text-center':typeOf(column) === 'checkbox'}">
+                    <span data-ng-if="typeOf(column) === 'seq'" ng-bind="pageable.number + outerIndex + 1"></span>
+                    <input data-ng-if="typeOf(column) === 'checkbox'" type="checkbox" ng-checked="row.selected"/>
+                    <div data-ng-if="typeOf(column) === 'template'" data-ng-include="column.templateUrl"></div>
+                    <div data-ng-if="column.filter && typeOf(column) !== 'complex'"
+                         data-ng-bind-html="row[column.name] | ngTableFilter: column.filter "></div>
+                    <div data-ng-if="typeOf(column) === 'complex'"
+                         data-ng-bind-html="row | ngTableFilter: column.filter "></div>
+                    <span data-ng-if="isOutput(column)"> {{row[column.name]}}</span>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div ng-if="!notpageable" class="row">
+        <div class="col-md-5" style="line-height: 36px;">
+            每页显示
+            <select data-ng-model="pageable.size" convert-to-number>
+                <option value="10" selected="selected">10</option>
+                <option value="20">20</option>
+                <option value="50">50</option>
+                <option value="100">100</option>
+            </select>
+            条记录，当前显示 {{pageable.fromNumber}} 到 {{pageable.toNumber}} 条，共 {{pageable.totalElements}} 条记录
+        </div>
+        <div class="col-md-7">
+            <uib-pagination
+                    total-items="pageable.totalElements"
+                    ng-model="pageable.number"
+                    items-per-page="pageable.size"
+                    max-size="5"
+                    class="pull-right table-pagination">
+            </uib-pagination>
+        </div>
+    </div>
+</div>

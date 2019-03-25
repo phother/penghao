@@ -1,0 +1,12 @@
+ID,CREATED_BY,CREATED_DATE,LAST_MODIFIED_BY,LAST_MODIFIED_DATE,VERSION,ACCOUNT_EXPIRED,ACCOUNT_LOCKED,CREDENTIALS_EXPIRED,EMAIL,ENABLED,LOGIN_ID,MOBILE,NO,PASSWORD,DETAILS_ID,ADDRESS,BIRTHDAY,CITY,COUNTRY,DISTRICT,GENDER,NAME,NICKNAME,PROVINCE
+1,"admin","2017-01-02","","",1,false,false,false,"",true,"admin","","U88C66S66R61","123456",1,"","1980-01-02","","","","male","管理员","管理员",""
+2,"admin","2017-01-02","","",2,false,false,false,"",true,"zhangsanfeng","","U88C66S66R62","123456",2,"","1910-01-02","","","","male","张三丰","张三丰",""
+3,"admin","2017-01-02","","",3,false,false,false,"",true,"xiexun","","U88C66S66R63","123456",3,"","1920-01-02","","","","male","谢逊","谢逊",""
+4,"admin","2017-01-02","","",4,false,false,false,"",true,"miejueshitai","","U88C66S66R64","123456",4,"","1924-01-02","","","","female","灭绝师太","灭绝师太",""
+5,"admin","2017-01-02","","",5,false,false,false,"",true,"songyuanqiao","","U88C66S66R65","123456",5,"","1940-01-02","","","","male","宋远桥","宋远桥",""
+6,"admin","2017-01-02","","",6,false,false,false,"",true,"yulianzhou","","U88C66S66R66","123456",6,"","1945-01-02","","","","male","俞莲舟","俞莲舟",""
+7,"admin","2017-01-02","","",7,false,false,false,"",true,"zhangcuishan","","U88C66S66R67","123456",7,"","1942-01-02","","","","male","张翠山","张翠山",""
+8,"admin","2017-01-02","","",8,false,false,false,"",true,"zhangwuji","","U88C66S66R68","123456",8,"","1959-01-02","","","","male","张无忌","张无忌",""
+9,"admin","2017-01-02","","",9,false,false,false,"",true,"zhouzhiruo","","U88C66S66R69","123456",9,"","1960-01-02","","","","female","周芷若","周芷若",""
+10,"admin","2017-01-02","","",10,false,false,false,"",true,"yangbuhui","","U88C66S66R70","123456",10,"","1980-68-02","","","","female","杨不悔","杨不悔",""
+
