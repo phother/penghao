@@ -93,4 +93,19 @@ public class TravelReimburse extends AbstractAuditModel {
      */
     private List<TrafficReimburse> trafficReimburse;
 
+    /**
+     * 单位负责人
+     */
+    private String headOfUnit;
+
+    /**
+     * 经办人
+     */
+    private String personInCharge;
+
+    /**
+     * 办公室负责人
+     */
+    private String headOfResearchLaboratory;
+
 }
