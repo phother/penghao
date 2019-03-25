@@ -9,7 +9,6 @@ import org.springframework.context.annotation.EnableLoadTimeWeaving;
 /**
  * Created by PH on 2019/3/25.
  */
-    @ApiModelProperty("Created by PH on 2019/3/25.")
 @Getter
 @Setter
 public class DepartmentDTO extends AbstractDTO {
