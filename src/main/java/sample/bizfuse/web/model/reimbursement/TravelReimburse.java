@@ -5,10 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.validator.constraints.NotBlank;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.*;
 import javax.validation.constraints.Size;
 import java.math.BigDecimal;
 import java.util.Date;
@@ -91,6 +88,7 @@ public class TravelReimburse extends AbstractAuditModel {
     /**
      * 交通报销
      */
+    @ElementCollection
     private List<TrafficReimburse> trafficReimburse;
 
     /**
