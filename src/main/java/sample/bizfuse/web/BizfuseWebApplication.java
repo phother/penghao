@@ -29,7 +29,7 @@ public class BizfuseWebApplication {
 
 		final Environment env = context.getEnvironment();
 		BizfuseWebApplication.log.info(
-				"\n----------------------------------------------------------\n\t"
+				"\n-----------------------------------------------------------\n\t"
 						+ "Application '{}' is running! Access URLs:\n\t" + "Local: \t\thttp://127.0.0.1:{}\n\t"
 						+ "External: \thttp://{}:{}\n----------------------------------------------------------",
 				env.getProperty("spring.application.name"), env.getProperty("server.port"),
