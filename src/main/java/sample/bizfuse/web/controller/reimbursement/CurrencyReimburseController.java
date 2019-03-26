@@ -1,11 +1,15 @@
 package sample.bizfuse.web.controller.reimbursement;
 
 import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 
+import com.leadingsoft.bizfuse.common.web.support.Searchable;
+import com.leadingsoft.bizfuse.common.web.view.DefaultListDataExcelView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,6 +20,7 @@ import com.codahale.metrics.annotation.Timed;
 import com.leadingsoft.bizfuse.common.web.dto.result.ResultDTO;
 import com.leadingsoft.bizfuse.common.web.dto.result.PageResultDTO;
 
+import org.springframework.web.servlet.ModelAndView;
 import sample.bizfuse.web.convertor.reimbursement.CurrencyReimburseConvertor;
 import sample.bizfuse.web.dto.reimbursement.CurrencyReimburseDTO;
 import sample.bizfuse.web.model.reimbursement.CurrencyReimburse;
@@ -25,6 +30,9 @@ import sample.bizfuse.web.repository.reimbursement.CurrencyReimburseRepository;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * CurrencyReimburse的管理接口
@@ -112,7 +120,7 @@ public class CurrencyReimburseController {
     /**
      * 删除操作
      *
-     * @param Id 资源ID
+     * @param id 资源ID
      * @return 操作结果
      */
     @Timed
@@ -124,5 +132,29 @@ public class CurrencyReimburseController {
             log.info("{} instance {} was deleted.", CurrencyReimburse.class.getSimpleName(), id);
         }
         return ResultDTO.success();
+    }
+
+    /**
+     * 文件导出<br/>
+     */
+    @RequestMapping(value = "/export/{id}", method = RequestMethod.GET)
+    public ModelAndView exportForService(@PathVariable final Long id) {
+
+        CurrencyReimburse model = currencyReimburseService.get(id);
+        CurrencyReimburseDTO results = this.currencyReimburseConvertor.toDTO(model);
+//        List<String> results = new ArrayList<>();
+        final ModelMap modelMap = new ModelMap();
+        modelMap.addAttribute(DefaultListDataExcelView.DATAS, results);
+        modelMap.addAttribute(DefaultListDataExcelView.FILENAME,  "通用报销报表 .xls");
+        // 定义数据列
+        //modelMap.addAttribute(DefaultListDataExcelView.HEADER_NAMES,
+        //        Arrays.asList("月份", "放映情况", "票房", "票房同比", "人次", "人次同比", "场次", "场次同比", "放映情况", "票房", "票房同比", "人次",
+        //                "人次同比", "场次", "场次同比"));
+        //modelMap.addAttribute(DefaultListDataExcelView.HEADERS,
+        //        Arrays.asList("monthStrCn", "payTypeStr0", "totalBoxOffice0", "boxOfficeRate0", "audiences0",
+        //                "audiencesRate0", "sessions0", "sessionsRate0", "payTypeStr2", "totalBoxOffice2",
+        //                "boxOfficeRate2", "audiences2", "audiencesRate2", "sessions2", "sessionsRate2"));
+
+        return new ModelAndView("currencyReimburseExcelView", modelMap);
     }
 }

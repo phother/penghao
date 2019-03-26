@@ -6,6 +6,7 @@ import lombok.Setter;
 import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.math.BigDecimal;
 import java.util.Date;
@@ -40,7 +41,9 @@ public class CurrencyReimburse extends AbstractAuditModel {
     private Date reimburseTime;
 
 
-    @ElementCollection
+    @NotNull
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "CurrencyReimburse_id")
     private List<ReimburseDetail> details;
 
     /**

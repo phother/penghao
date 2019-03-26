@@ -39,7 +39,7 @@ public class ReimburseDetail extends AbstractAuditModel {
 
     @JsonIgnore
     @ManyToOne(fetch = FetchType.EAGER,cascade= CascadeType.ALL)
-    @JoinColumn(name="CINEMA_ID")
+    @JoinColumn(name="CurrencyReimburse_id")
     private CurrencyReimburse currencyReimburse;
 
 }

@@ -13,15 +13,24 @@ import com.leadingsoft.bizfuse.base.authority.repository.menu.SystemMenuReposito
 import com.leadingsoft.bizfuse.base.authority.repository.role.RoleRepository;
 import com.leadingsoft.bizfuse.base.authority.service.authorization.SystemAuthorizationService;
 
+import sample.bizfuse.web.enums.Subject;
 import sample.bizfuse.web.enums.TeacherLevel;
 import sample.bizfuse.web.model.School;
 import sample.bizfuse.web.model.Student;
 import sample.bizfuse.web.model.Teacher;
 import sample.bizfuse.web.model.authentication.User;
+import sample.bizfuse.web.model.reimbursement.CurrencyReimburse;
+import sample.bizfuse.web.model.reimbursement.ReimburseDetail;
 import sample.bizfuse.web.repository.SchoolRepository;
 import sample.bizfuse.web.repository.StudentRepository;
 import sample.bizfuse.web.repository.TeacherRepository;
 import sample.bizfuse.web.repository.authentication.UserRepository;
+import sample.bizfuse.web.repository.reimbursement.CurrencyReimburseRepository;
+
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 @Profile("dev")
 @Component
@@ -40,6 +49,8 @@ public class DevFixtures implements ApplicationListener<ContextRefreshedEvent> {
     @Autowired
     private SystemMenuRepository systemMenuRepository;
     @Autowired
+	private CurrencyReimburseRepository currencyReimburseRepository;
+    @Autowired
 	private UserRepository userRepository;
     @Autowired
     private SystemAuthorizationService systemAuthorizationService;
@@ -52,6 +63,40 @@ public class DevFixtures implements ApplicationListener<ContextRefreshedEvent> {
 //		initAuthenticationData();
 //
 //		initTestData();
+
+		initTestData1();
+
+
+	}
+
+	private void initTestData1() {
+		CurrencyReimburse model =new CurrencyReimburse();
+		model.setDepId(1L);
+		model.setHeadOfResearchLaboratory("张三");
+		model.setHeadOfUnit("张三");
+		model.setInvoiceCount(12);
+		model.setMark("哈哈");
+		model.setName("李四");
+		model.setPersonInCharge("12121");
+		model.setReimburseTime(new Date());
+		model.setSumReimburse(BigDecimal.ONE);
+		ReimburseDetail detail =new ReimburseDetail();
+		detail.setRemark("12121");
+		detail.setRemiburseMoney(BigDecimal.valueOf(123));
+		detail.setSubId(Subject.chargeForWater);
+
+		ReimburseDetail detail1 =new ReimburseDetail();
+		detail1.setRemark("12121");
+		detail1.setRemiburseMoney(BigDecimal.valueOf(123));
+		detail1.setSubId(Subject.chargeForWater);
+
+		List<ReimburseDetail> details = new ArrayList<>();
+		details.add(detail);
+		details.add(detail1);
+
+		model.setDetails(details);
+
+		currencyReimburseRepository.save(model);
 	}
 
 	private void initAuthenticationData() {
