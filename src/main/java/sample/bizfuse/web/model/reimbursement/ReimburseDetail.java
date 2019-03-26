@@ -4,6 +4,7 @@ import com.leadingsoft.bizfuse.common.jpa.model.AbstractAuditModel;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.validator.constraints.NotBlank;
+import sample.bizfuse.web.enums.Subject;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -29,7 +30,7 @@ public class ReimburseDetail extends AbstractAuditModel {
     /**
      *科目
      */
-    private Long subId;
+    private Subject subId;
 
     /**
      * 报销金额

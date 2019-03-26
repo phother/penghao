@@ -152,9 +152,6 @@
 				<artifactId>maven-war-plugin</artifactId>
 				<configuration>
 					<packagingExcludes>WEB-INF/lib/tomcat-*.jar</packagingExcludes>
-					<delimiters>
-						<delimit>#</delimit>
-					</delimiters>
 				</configuration>
 			</plugin>
 		</plugins>

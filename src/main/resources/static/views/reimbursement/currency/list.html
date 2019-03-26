@@ -1,0 +1,38 @@
+<!-- BEGIN Portlet PORTLET-->
+<div class="portlet light">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="fa fa-calendar" style="margin-right:3px;"></i>
+            <span class="caption-subject bold uppercase">{{$state.current.data.pageTitle}}</span>
+        </div>
+        <div class="tools">
+            <button type="button" class="btn btn-circle btn-default" data-toggle="collapse" data-target="#search"
+                    aria-expanded="false" aria-controls="search">
+                <i class="fa fa-angle-down"></i>
+            </button>
+        </div>
+    </div>
+    <div class="portlet-body form">
+        <div id="search" class="form-horizontal collapse in" aria-expanded="true">
+        <iframe src="" id="file_download" style="display:none"></iframe>
+        </div>
+    </div>
+    <ng-table
+            columns="columns"
+            sort="sort"
+            order="order"
+            pageable="pageable"
+            rows="rows">
+    </ng-table>
+
+    <script type="text/ng-template" id="operation.html">
+        <div class="text-center">
+            <button class="btn green btn-xs" data-ng-click="onActionClick(row,'check')">查看</button>
+            <button class="btn green btn-xs" ng-click="onActionClick(row.cinemaApplicationId,'firstCheck')">初审
+            </button>
+            <button class="btn green btn-xs" ng-click="onActionClick(row,'lastCheck')">终审
+            </button>
+            <button class="btn green btn-xs" ng-click="onActionClick(row.cinemaApplicationId,'download')">下载</button>
+        </div>
+    </script>
+</div>

@@ -28,7 +28,7 @@ public class ReimburseDetailDTO extends AbstractDTO {
     /**
      *科目
      */
-    private Long subId;
+    private String subId;
 
     /**
      * 报销金额
