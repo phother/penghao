@@ -1,12 +1,12 @@
 package sample.bizfuse.web.model.reimbursement;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.leadingsoft.bizfuse.common.jpa.model.AbstractAuditModel;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.validator.constraints.NotBlank;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
+import javax.persistence.*;
 import javax.validation.constraints.Size;
 import java.math.BigDecimal;
 
@@ -35,5 +35,10 @@ public class ReimburseDetail extends AbstractAuditModel {
      * 报销金额
      */
     private BigDecimal remiburseMoney;
+
+    @JsonIgnore
+    @ManyToOne(fetch = FetchType.EAGER,cascade= CascadeType.ALL)
+    @JoinColumn(name="CINEMA_ID")
+    private CurrencyReimburse currencyReimburse;
 
 }
