@@ -8,9 +8,6 @@ angular.module("MetronicApp").controller('CinemaSignUpAuditController',
             });
 
             $scope.model = {};
-            $scope.cinemaChains = [];
-            $scope.provinces = [];
-
             //ng-table about
             $scope.columns = cinemaSignUpAuditService.getSchema();
             $scope.sort = cinemaSignUpAuditService.getSort();
@@ -23,25 +20,6 @@ angular.module("MetronicApp").controller('CinemaSignUpAuditController',
                     if ('success' == result.status) {
                         $scope.rows = result.data;
                         $scope.pageable = result.pageable;
-                        //转换省份、所属院线
-                        cinemaSignUpAuditService.getCinemaChain().$promise.then(function (result) {
-                            if ($scope.rows instanceof Array) {
-                                if ('success' == result.status) {
-                                    $scope.cinemaChains = result.data;
-                                    for (var i = 0; i < $scope.rows.length; i++) {
-                                        var cinemaChain = _.find($scope.cinemaChains, function (cinemaChain) {
-                                            return cinemaChain.id == $scope.rows[i].cinemaChainId;
-                                        });
-                                        if (cinemaChain) {
-                                            $scope.rows[i].cinemaChainId = cinemaChain.name;
-                                        }
-
-                                    }
-                                }
-                            } else {
-                                return;
-                            }
-                        });
                     } else {
                         if (result.errors.length >= 0) {
                             angular.forEach(result.errors, function (each) {
@@ -78,53 +56,11 @@ angular.module("MetronicApp").controller('CinemaSignUpAuditController',
                 $scope.searchForWatch();
             });
 
-            //fetch data when the size of page changed
-            $scope.$watch('pageable1.size', function (newVal, oldVal) {
-                if (newVal == oldVal) return;
-                cinemaSignUpAuditService.setSize(newVal);
-                cinemaSignUpAuditService.setStoredPage(0);
-                $scope.list1();
-            });
-            //fetch data when the number of pages changed
-            $scope.$watch('pageable1.number', function (newVal, oldVal) {
-                if (newVal == oldVal) return;
-                cinemaSignUpAuditService.setStoredPage(newVal);
-                $scope.list1();
-            });
-            //fetch data when the sort or order changed
-            $scope.$watch('sort1', function (newVal, oldVal) {
-                if (newVal == oldVal) return;
-                cinemaSignUpAuditService.setSort(newVal);
-                $scope.list1();
-            });
-            $scope.$watch('order1', function (newVal, oldVal) {
-                if (newVal == oldVal) return;
-                cinemaSignUpAuditService.setOrder(newVal);
-                $scope.list1();
-            });
-
-            $scope.changeRegionType = function () {
-                $scope.regionName = null;
-                $scope.model.regionCodeList = null;
-                $scope.model.provinceIdList = null;
-                $scope.model.cityCodeList = null;
-                $scope.model.countyCodeList = null;
-            };
-
             //search
             $scope.search = function () {
-                cinemaSignUpAuditService.setAndClearFunction();
-                cinemaSignUpAuditService.putSearchParams({
-                    cinemaCode: $scope.model.cinemaCode,
-                    shortName: $scope.model.shortName,
-                    regionCodeList: $scope.model.regionCodeList,
-                    webProvinceCode: $scope.model.provinceIdList,
-                    webCityCode: $scope.model.cityCodeList,
-                    webCountyCode: $scope.model.countyCodeList,
-                    cinemaChainId: $scope.model.cinemaChainId,
-                    applicationStatus: $scope.model.applicationStatus,
-                    havingTestData: $scope.model.havingTestData
-                });
+                // cinemaSignUpAuditService.setAndClearFunction();
+                // cinemaSignUpAuditService.putSearchParams({
+                // });
 
                 $scope.list();
             };
@@ -176,255 +112,22 @@ angular.module("MetronicApp").controller('CinemaSignUpAuditController',
                     }
                 })
             };
-            $scope.list1 = function () {
-                cinemaSignUpAuditService.list(function (result) {
-                    if ('success' == result.status) {
-                        $scope.rows1 = result.data;
-                        $scope.pageable1 = result.pageable;
-                        //转换省份、所属院线
-                        cinemaSignUpAuditService.getCinemaChain().$promise.then(function (result) {
-                            if ($scope.rows instanceof Array) {
-                                if ('success' == result.status) {
-                                    $scope.cinemaChains = result.data;
-                                    for (var i = 0; i < $scope.rows.length; i++) {
-                                        var cinemaChain = _.find($scope.cinemaChains, function (cinemaChain) {
-                                            return cinemaChain.id == $scope.rows[i].cinemaChainId;
-                                        });
-                                        if (cinemaChain) {
-                                            $scope.rows[i].cinemaChainId = cinemaChain.name;
-                                        }
-
-                                    }
-                                }
-                            } else {
-                                return;
-                            }
-                        });
-                    } else {
-                        if (result.errors.length >= 0) {
-                            angular.forEach(result.errors, function (each) {
-                                toastr.error("", each.errmsg);
-                            });
-                        } else {
-                            toastr.error("", "查询异常！");
-                        }
-                    }
-                });
-            };
-
-            //下载
-            $scope.download = function (code) {
-                cinemaSignUpAuditService.downloadTxt(code);
-            };
-            //发函
-            $scope.sendLetter = function (code) {
-                cinemaSignUpAuditService.downloadWord(code);
-            };
-            //打印
-            $scope.print = function (code) {
-                cinemaSignUpAuditService.downloadPrint(code);
-            };
 
             //删除
             $scope.delete = function (cinemaApplicationId) {
                 $scope.cinemaApplicationIdInfo = cinemaApplicationId;
             };
-            $scope.logOut = function () {
-                cinemaSignUpAuditService.getDelete($scope.cinemaApplicationIdInfo).$promise.then(function (res) {
-                    if ('success' == res.status) {
-                        toastr.success('', '成功删除该影院！');
-                    } else {
-                        if (res.errors.length >= 0) {
-                            angular.forEach(res.errors, function (each) {
-                                toastr.error("", each.errmsg);
-                            });
-                        } else {
-                            toastr.error("", "查询异常！");
-                        }
-                    }
-                })
-            };
 
-            //跳转查看页面并传递参数
-            $scope.check = function (row) {
-                $rootScope.storeSearchableAndPageable.searchable = $scope.model;
-                $rootScope.storeSearchableAndPageable.pageable = $scope.pageable;
-                $rootScope.storeSearchableAndPageable.otherData = $scope.cinemaChains;
-                $rootScope.storeSearchableAndPageable.otherParam = $scope.regionType;
-                $rootScope.storeSearchableAndPageable.regionName =$scope.regionName;
-                $location.path('/generalBusiness/cinemaManagement/cinemaSignUpAudit/check.html').search({
-                    id: row.cinemaApplicationId,
-                    status: row.status
+            $scope.view1 = function (row) {
+                $location.path('/reimbursement/currency/view.html').search({
+                    id: row.id,
                 });
             };
-            //跳转编辑页面并传递参数
-            $scope.editMessage = function (row) {
-                $rootScope.storeSearchableAndPageable.searchable = $scope.model;
-                $rootScope.storeSearchableAndPageable.pageable = $scope.pageable;
-                $rootScope.storeSearchableAndPageable.otherData = $scope.cinemaChains;
-                $rootScope.storeSearchableAndPageable.otherParam = $scope.regionType;
-                $rootScope.storeSearchableAndPageable.regionName =$scope.regionName;
-                $location.path('/generalBusiness/cinemaManagement/cinemaSignUpAudit/edit.html').search({
-                    id: row.cinemaApplicationId,
-                    status: row.status
+            $scope.edit1 = function (row) {
+                $location.path('/reimbursement/currency/create.html').search({
+                    id: row.id,
                 });
             };
-            //跳转编辑页面并传递参数
-            $scope.editMessageOther = function (row) {
-                $rootScope.storeSearchableAndPageable.searchable = $scope.model;
-                $rootScope.storeSearchableAndPageable.pageable = $scope.pageable;
-                $rootScope.storeSearchableAndPageable.otherData = $scope.cinemaChains;
-                $rootScope.storeSearchableAndPageable.otherParam = $scope.regionType;
-                $rootScope.storeSearchableAndPageable.regionName =$scope.regionName;
-                $location.path('/generalBusiness/cinemaManagement/cinemaSignUpAudit/editOther.html').search({
-                    id: row.cinemaApplicationId,
-                    status: row.status
-                });
-            };
-            //跳转初审页面并传递参数
-            $scope.firstCheck = function (cinemaApplicationId) {
-                $rootScope.storeSearchableAndPageable.searchable = $scope.model;
-                $rootScope.storeSearchableAndPageable.pageable = $scope.pageable;
-                $rootScope.storeSearchableAndPageable.otherData = $scope.cinemaChains;
-                $rootScope.storeSearchableAndPageable.otherParam = $scope.regionType;
-                $rootScope.storeSearchableAndPageable.regionName =$scope.regionName;
-                $location.path('/generalBusiness/cinemaManagement/cinemaSignUpAudit/preliminary.html').search({cinemaApplicationId: cinemaApplicationId});
-            };
-
-            $scope.lastCheck = function (row) {
-                $rootScope.storeSearchableAndPageable.searchable = $scope.model;
-                $rootScope.storeSearchableAndPageable.pageable = $scope.pageable;
-                $rootScope.storeSearchableAndPageable.otherData = $scope.cinemaChains;
-                $rootScope.storeSearchableAndPageable.otherParam = $scope.regionType;
-                $rootScope.storeSearchableAndPageable.regionName =$scope.regionName;
-                $location.path('/generalBusiness/cinemaManagement/cinemaSignUpAudit/lastInstance.html').search({cinemaApplicationId: row.cinemaApplicationId});
-            };
-
-            //树形选择框
-            $scope.treeConfig = {
-                core: {
-                    multiple: true,
-                    animation: true,
-                    error: function (error) {
-                        console.log('treeCtrl: error from js tree - ' + angular.toJson(error));
-                    },
-                    check_callback: true,
-                    worker: true
-                },
-                version: 1,
-                plugins: ['types', 'checkbox']
-            };
-            $scope.ac = function () {
-                return true;
-            };
-            $scope.readyCB = function () {
-                if ($scope.regionsType == $scope.regionType && ($scope.treeData != null || $scope.treeData != undefined)) {
-                    $scope.treeData = $scope.regionName;
-                } else {
-                    $scope.regionsType = $scope.regionType;
-                    var regions = DictService.getRegionLevelData($scope.regionsType);
-                    $scope.treeData = [];
-
-                    $timeout(function () {
-                        angular.forEach(regions, function (v) {
-                            if('region' == $scope.regionsType){
-                                if($scope.model.regionCodeList && $scope.model.regionCodeList.length >0 ){
-                                    for(var index in $scope.model.regionCodeList){
-                                        if ($scope.model.regionCodeList[index].indexOf(v.key) != -1) {
-                                            v.state = {'selected': true};
-                                        }
-                                    }
-                                }
-                            }
-                            angular.forEach(v.children, function (child) {
-                                if(child.description == $scope.regionsType){
-                                    if($scope.model.provinceIdList && $scope.model.provinceIdList.length >0 ){
-                                        for(var index in $scope.model.provinceIdList){
-                                            if ($scope.model.provinceIdList[index].indexOf(child.key) != -1) {
-                                                child.state = {'selected': true};
-                                            }
-                                        }
-                                    }
-                                }
-                                angular.forEach(child.children, function (o) {
-                                    if(o.description == $scope.regionsType){
-                                        if($scope.model.cityCodeList && $scope.model.cityCodeList.length >0 ){
-                                            for(var index in $scope.model.cityCodeList){
-                                                if ($scope.model.cityCodeList[index].indexOf(o.key) != -1) {
-                                                    o.state = {'selected': true};
-                                                }
-                                            }
-                                        }
-                                    }
-                                    angular.forEach(o.children, function (b) {
-                                        if(b.description == $scope.regionsType){
-                                            if($scope.model.countyCodeList && $scope.model.countyCodeList.length >0 ){
-                                                for(var index in $scope.model.countyCodeList){
-                                                    if ($scope.model.countyCodeList[index].indexOf(b.key) != -1) {
-                                                        b.state = {'selected': true};
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    });
-                                });
-                            });
-                            v.parent = '#';
-                            $scope.treeData.push(v);
-                            $scope.treeConfig.version++;
-                        });
-                    }, 500);
-                }
-            };
-
-            $scope.confirmTree = function () {
-                var nodes = $scope.treeInstance.jstree('get_selected', true);
-                var selectRegionTexts = [], selectRegionIds = [];
-                var list = [];
-                angular.forEach(nodes, function (v) {
-                    var countyMode = {};
-                    if ("province" == $scope.regionType) {
-                        if (!v.children || v.children.length === 0) {
-                            countyMode.code = v.original.key;
-                            countyMode.name = v.original.text;
-                            selectRegionTexts.push(v.original.text);
-                            selectRegionIds.push(v.original.key);
-                        }
-                    } else {
-                        if (!v.children || v.children.length === 0) {
-                            countyMode.code = v.original.key;
-                            countyMode.name = v.original.text;
-                            selectRegionTexts.push(v.original.text);
-                            selectRegionIds.push(v.original.key);
-                        }
-                    }
-                    list.push(countyMode);
-                });
-                $scope.regionName = selectRegionTexts.join(',');
-                if ("region" == $scope.regionType) {
-                    $scope.model.regionList = list;
-                    $scope.model.regionCodeList = selectRegionIds;
-                } else if ("province" == $scope.regionType) {
-                    $scope.model.provinceList = list;
-                    $scope.model.provinceIdList = selectRegionIds;
-                } else if ("city" == $scope.regionType) {
-                    $scope.model.cityList = list;
-                    $scope.model.cityCodeList = selectRegionIds;
-                } else if ("county" == $scope.regionType) {
-                    $scope.model.countyList = list;
-                    $scope.model.countyCodeList = selectRegionIds;
-                }
-            };
-
-            function preHandler(regions) {
-                angular.forEach(regions, function (v) {
-                    if (v.children && v.children.length > 0) {
-                        undefined === v.state ? (v.state = {disabled: true}) : (v.state.disabled = true);
-                        preHandler(v.children);
-                    }
-                });
-            }
-
             /**
              * 导出
              */
@@ -441,19 +144,7 @@ angular.module("MetronicApp").controller('CinemaSignUpAuditController',
                     havingTestData: $scope.model.havingTestData
                 }
 
-                //var searchable = angular.copy($scope.model);
-                // cinemaSignUpAuditService.putSearchParams(searchable);
                 cinemaSignUpAuditService.exportExcelfileInfo(searchable);
-            };
-
-            if ($location.search().storeParam) {
-                if (!$rootScope.storeSearchableAndPageable.searchable || !$rootScope.storeSearchableAndPageable.pageable) {
-                    return;
-                }
-                $scope.model = $rootScope.storeSearchableAndPageable.searchable;
-                $scope.pageable = $rootScope.storeSearchableAndPageable.pageable;
-                $scope.cinemaChains = $rootScope.storeSearchableAndPageable.otherData;
-                $scope.searchForWatch();
             };
 
         }])
@@ -467,6 +158,8 @@ angular.module("MetronicApp").controller('CinemaSignUpAuditController',
                 })
 
                 $scope.model = {};
+                //获取枚举类型数组
+                $scope.playUnitTypeOptions = EnumService.get("Subject");
                 // 厅编码
                 $scope.compareCode = function (value) {
                     var flag = true;
@@ -478,6 +171,15 @@ angular.module("MetronicApp").controller('CinemaSignUpAuditController',
                     }
                     return flag;
                 };
+                var id = $location.search().id;
+                if(id){
+                    cinemaSignUpAuditService.getForm(id).$promise.then(function (res) {
+                        $scope.model = res.data;
+                        angular.forEach(res.data.details, function (every) {
+                            $scope.seatSum += every.remiburseMoney;
+                        });
+                    });
+                }
 
 
                 $scope.hallNum = 0;
@@ -489,9 +191,6 @@ angular.module("MetronicApp").controller('CinemaSignUpAuditController',
                         $scope.seatSum = 0;
                     }
                 };
-
-                //获取枚举类型数组
-                $scope.playUnitTypeOptions = EnumService.get("Subject");
 
                 //提交处理，页面存在三个表单，提交时，需对三个表单同时校验
                 $scope.submit = function (cinemaForm, hallForm) {
@@ -1632,8 +1331,6 @@ angular.module("MetronicApp").controller('CinemaSignUpAuditController',
         ['$rootScope', '$scope', '$location', 'cinemaSignUpAuditService', 'DictService', '$timeout', 'EnumService', 'toastr',
             function ($rootScope, $scope, $location, cinemaSignUpAuditService, DictService, $timeout, EnumService, toastr) {
                 $scope.$on('$viewContentLoaded', function () {
-                    // initialize core components
-                    Metronic.initAjax();
                     $rootScope.settings.layout.pageBodySolid = true;
                     $rootScope.settings.layout.pageSidebarClosed = false;
                 });
@@ -1642,105 +1339,21 @@ angular.module("MetronicApp").controller('CinemaSignUpAuditController',
                 $scope.status = $location.search().status;
                 $scope.countryOptions = DictService.get("country");
 
-                $scope.downloadreportFile = function () {
-                    cinemaSignUpAuditService.downloadfile($scope.model.provinceApproval.reportFileId, $scope.reportFileId);
-                };
-                $scope.downloadlicenseFile = function () {
-                    cinemaSignUpAuditService.downloadfile($scope.model.provinceApproval.licenseFileId, $scope.licenseFileId);
-                };
-                $scope.downloadpermitFile = function () {
-                    cinemaSignUpAuditService.downloadfile($scope.model.provinceApproval.permitFileId, $scope.permitFileId);
-                };
-
-                //打印
-                $scope.print = function () {
-                    cinemaSignUpAuditService.downloadPrint(cinemaApplicationId);
-                };
-
                 $scope.hallNum = 0;
                 $scope.seatSum = 0;
                 $scope.cinemaCode = '';
                 //获取枚举类型
-                $scope.placeTypeOptions = EnumService.get("placeTypeDate");
-                $scope.companyTypeDateOptions = EnumService.get("companyTypeDate");
 
                 $scope.cinemaCheckDetailsModel = {};
                 cinemaSignUpAuditService.getForm(cinemaApplicationId).$promise.then(function (res) {
                     $scope.model = res.data;
-                    if ($scope.model.provinceApproval.reportFileId) {
-                        cinemaSignUpAuditService.download($scope.model.provinceApproval.reportFileId).$promise.then(function (result) {
-                            $scope.reportFileId = result.data.fileName;
-                        });
-                    }
-                    if ($scope.model.provinceApproval.licenseFileId) {
-                        cinemaSignUpAuditService.download($scope.model.provinceApproval.licenseFileId).$promise.then(function (result) {
-                            $scope.licenseFileId = result.data.fileName;
-                        });
-                    }
-                    if ($scope.model.provinceApproval.permitFileId) {
-                        cinemaSignUpAuditService.download($scope.model.provinceApproval.permitFileId).$promise.then(function (result) {
-                            $scope.permitFileId = result.data.fileName;
-                        });
-                    }
-                    if ($scope.model.nationApproval.reback) {
-                        $scope.model.nationApproval.reback = "true";
-                    } else {
-                        $scope.model.nationApproval.reback = "false";
-                    }
-                    if ($scope.model.nationApproval)
-                        $scope.cinemaCheckDetailsModel = angular.copy($scope.model.nationApproval);
-                    $scope.hallNum = res.data.screens.length;
-                    $scope.cinemaCode = res.data.code;
-                    angular.forEach(res.data.screens, function (every) {
-                        $scope.seatSum += every.seatCounts;
+                    angular.forEach(res.data.details, function (every) {
+                        $scope.seatSum += every.remiburseMoney;
                     });
-
-                    if ($scope.model.code) {
-                        $scope.model.seq = $scope.model.code.substring(4, 7) ? $scope.model.code.substring(4, 7) : '';
-                    }
                 });
 
-                $scope.signTypeOptions = EnumService.get("signType");
-                $scope.reset = function () {
-                    $scope.model.nationApproval = angular.copy($scope.cinemaCheckDetailsModel);
-                };
-                $scope.submit = function () {
-                    $scope.cinemaCheckDetailsModel.letterDate = translateDateToLong($scope.cinemaCheckDetailsModel.letterDate);
-                    $scope.cinemaCheckDetailsModel.replyDate = translateDateToLong($scope.cinemaCheckDetailsModel.replyDate);
-                    cinemaSignUpAuditService.update($scope.model.nationApproval).$promise.then(function (result) {
-                        if ('success' == result.status) {
-                            toastr.success("", "修改电影局回函信息成功！");
-                            $timeout(function () {
-                                $location.path('/generalBusiness/cinemaManagement/cinemaSignUpAudit/list.html').search({storeParam:true});
-                            }, 200)
-                        } else {
-                            if (result.errors.length >= 0) {
-                                angular.forEach(result.errors, function (each) {
-                                    toastr.error("", each.errmsg);
-                                });
-                            } else {
-                                toastr.error("", "修改回函信息失败！");
-                            }
-                        }
-                    });
-                };
-
                 $scope.return = function () {
-                    $location.path('/generalBusiness/cinemaManagement/cinemaSignUpAudit/list.html').search({storeParam:true});
-                };
-
-                //查看座位图
-                $scope.showSeat = function (screensCode) {
-                    if ($scope.cinemaCode) {
-                        $location.path('generalBusiness/cinemaManagement/cinemaSignUpAudit/showSeat.html').search({
-                            cinemaCode: $scope.cinemaCode,
-                            screenCode: screenCode,
-                            cinemaApplicationId: cinemaApplicationId,
-                            status: $scope.status
-                        });
-                    } else {
-                        toastr.error("", "未审批，不能查看座位图！");
-                    }
+                    $location.path('/reimbursement/currency/list.html').search({storeParam:true});
                 };
 
             }])

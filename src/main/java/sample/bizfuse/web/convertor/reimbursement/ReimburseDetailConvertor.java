@@ -33,7 +33,7 @@ public class ReimburseDetailConvertor extends AbstractConvertor<ReimburseDetail,
         final ReimburseDetailDTO dto = new ReimburseDetailDTO();
         dto.setId(model.getId());
         dto.setRemark(model.getRemark());
-        dto.setSubId(model.getSubId().getValue());
+        dto.setSubId(model.getSubId().name());
         dto.setRemiburseMoney(model.getRemiburseMoney());
 
         return dto;

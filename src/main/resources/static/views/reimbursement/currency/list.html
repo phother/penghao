@@ -14,6 +14,18 @@
     </div>
     <div class="portlet-body form">
         <div id="search" class="form-horizontal collapse in" aria-expanded="true">
+            <div class="row">
+                <div class="form-group">
+                    <div class="col-md-12 text-center">
+                        <a href="#/reimbursement/currency/create.html" class="btn green">
+                            <i class="fa fa-plus"></i>&nbsp;<span>新增 </span>
+                        </a>
+                        <button type="button" class="btn red" ng-click="search()">
+                            <i class="fa fa-search"></i>&nbsp;<span>查询 </span>
+                        </button>
+                    </div>
+                </div>
+            </div>
         <iframe src="" id="file_download" style="display:none"></iframe>
         </div>
     </div>
@@ -27,12 +39,10 @@
 
     <script type="text/ng-template" id="operation.html">
         <div class="text-center">
-            <button class="btn green btn-xs" data-ng-click="onActionClick(row,'check')">查看</button>
-            <button class="btn green btn-xs" ng-click="onActionClick(row.cinemaApplicationId,'firstCheck')">初审
-            </button>
-            <button class="btn green btn-xs" ng-click="onActionClick(row,'lastCheck')">终审
-            </button>
-            <button class="btn green btn-xs" ng-click="onActionClick(row.cinemaApplicationId,'download')">下载</button>
+            <button class="btn green btn-xs" data-ng-click="onActionClick(row,'view1')">查看</button>
+            <button class="btn green btn-xs" ng-click="onActionClick(row,'edit1')">编辑</button>
+            <button class="btn green btn-xs" ng-click="onActionClick(row,'delete')">删除</button>
+            <button class="btn green btn-xs" ng-click="onActionClick(row,'download')">导出</button>
         </div>
     </script>
 </div>
