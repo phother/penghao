@@ -971,4 +971,46 @@ angular.module("MetronicApp").config(['$stateProvider', '$urlRouterProvider', fu
             }
         })
 
+        .state('cinemaSignUpAudit', {
+            url: "/reimbursement/currency/list.html",
+            templateUrl: "/views/reimbursement/currency/list.html",
+            data: {pageTitle: "影院注册审核"},
+            controller: "CinemaSignUpAuditController",
+            resolve: {
+                deps: ['$ocLazyLoad', function ($ocLazyLoad) {
+                    return $ocLazyLoad.load({
+                        name: 'MetronicApp',
+                        insertBefore: '#ng_load_plugins_before',
+                        files: [
+                            'app/filters/common/filters.js',
+                            'app/directives/ngTable/directive.js',
+                            'app/controllers/reimbursement/currency/CinemaSignUpAuditController.js',
+                            'app/services/reimbursement/currency/CinemaSignUpAuditService.js'
+                        ]
+                    });
+                }]
+            }
+        })
+
+        .state('cinemaSignUpAuditCreate', {
+            url: "/reimbursement/currency/create.html",
+            templateUrl: "/views/reimbursement/currency/create.html",
+            data: {pageTitle: "影院注册审核-新增"},
+            controller: "CinemaSignUpAuditCreateController",
+            resolve: {
+                deps: ['$ocLazyLoad', function ($ocLazyLoad) {
+                    return $ocLazyLoad.load({
+                        name: 'MetronicApp',
+                        insertBefore: '#ng_load_plugins_before',
+                        files: [
+                            'app/filters/common/filters.js',
+                            'app/directives/ngTable/directive.js',
+                            'app/controllers/reimbursement/currency/CinemaSignUpAuditController.js',
+                            'app/services/reimbursement/currency/CinemaSignUpAuditService.js'
+                        ]
+                    });
+                }]
+            }
+        })
+
 }]);

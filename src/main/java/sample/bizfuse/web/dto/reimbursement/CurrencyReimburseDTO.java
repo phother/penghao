@@ -43,7 +43,7 @@ public class CurrencyReimburseDTO extends AbstractDTO {
     private Date reimburseTime;
 
 
-    private List<ReimburseDetail> details;
+    private List<ReimburseDetailDTO> details;
 
     /**
      * 报销金额总和

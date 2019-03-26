@@ -1,0 +1,217 @@
+<!-- BEGIN Portlet PORTLET-->
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h4 class="panel-title">
+            <div class="portlet-title">
+                <div class="caption">
+                    <i class="fa fa-calendar"></i>
+                    <span class="caption-subject bold uppercase">{{$state.current.data.pageTitle}}</span>
+                </div>
+            </div>
+        </h4>
+    </div>
+
+    <div class="panel-body">
+
+        <div class="portlet light bordered">
+            <div class="portlet-title">
+                <div class="caption ">
+                    <i class="fa fa-calendar"></i>
+                    <span class="caption-subject bold uppercase">通用报销单基本信息</span>
+                    <span class="caption-helper"></span>
+                </div>
+                <div class="tools">
+                    <button type="button" class="btn btn-circle btn-default" data-toggle="collapse" data-target="#search"
+                            aria-expanded="false" aria-controls="search">
+                        <i class="fa fa-angle-down"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="portlet-body">
+                <div id="search" class="form-horizontal collapse in" aria-expanded="true">
+                <form id="cinemaForm" name="cinemaForm" class="form-horizontal" novalidate>
+                    <div class="form-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group"
+                                     ng-class="{ 'has-error' : (cinemaForm.name.$touched || cinemaForm.$submitted ) && cinemaForm.name.$invalid}">
+                                    <label class="control-label col-md-4">姓名<span
+                                            class="text-danger">*</span></label>
+                                    <div class="col-md-8">
+                                        <input type="text" name="name" class="form-control"
+                                               placeholder="姓名" ng-model="model.name" required/>
+                                        <div class="help-block" ng-messages="cinemaForm.name.$error"
+                                             ng-show="cinemaForm.name.$touched || cinemaForm.$submitted ">
+                                            <p ng-message="required">姓名不能为空</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group"
+                                     ng-class="{ 'has-error' : (cinemaForm.depId.$touched || cinemaForm.$submitted ) && cinemaForm.depId.$invalid}">
+                                    <label class="control-label col-md-4">部门名称<span
+                                            class="text-danger">*</span></label>
+                                    <div class="col-md-8">
+                                        <input type="text" name="depId" class="form-control"
+                                               placeholder="部门名称" ng-model="model.depId"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6"
+                                 ng-class="{ 'has-error' :(cinemaForm.mark.$touched || cinemaForm.$submitted ) && cinemaForm.mark.$invalid}">
+                                <div class="form-group">
+                                    <label class="control-label col-md-4">备注<span
+                                            class="text-danger">*</span></label>
+                                    <div class="col-md-8">
+                                        <input type="text" name="mark" class="form-control" required
+                                               placeholder="备注" ng-model="model.mark"/>
+                                        <div class="help-block"
+                                             ng-show="cinemaForm.$submitted || cinemaForm.mark.$touched"
+                                             ng-messages="cinemaForm.mark.$error">
+                                            <p ng-message="required">备注为必填项</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6"
+                                 ng-class="{ 'has-error' :(cinemaForm.invoiceCount.$touched || cinemaForm.$submitted ) && cinemaForm.invoiceCount.$invalid}">
+                                <div class="form-group">
+                                    <label class="control-label col-md-4">发票张数<span
+                                            class="text-danger">*</span><span
+                                            class="text-danger"></span></label>
+                                    <div class="col-md-8">
+                                        <input type="text" name="invoiceCount" class="form-control" placeholder="邮件"
+                                               ng-model="model.invoiceCount" required
+                                               ng-pattern="/^[0-9]*$/" />
+                                        <div class="help-block"
+                                             ng-show="cinemaForm.$submitted || cinemaForm.invoiceCount.$touched"
+                                             ng-messages="cinemaForm.invoiceCount.$error">
+                                            <p ng-message="required">邮件格式为必填项</p>
+                                            <p ng-message="pattern">发票张数只能为数字</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="portlet light bordered">
+            <div class="portlet-title">
+                <div class="caption ">
+                    <i class="fa fa-calendar"></i>
+                    <span class="caption-subject bold uppercase">发票详情</span>
+                    <span class="caption-helper font-red-sunglo">（此为必填项）</span>
+                </div>
+                <div class="tools">
+                    <button type="button" class="btn btn-circle btn-default" data-toggle="collapse" data-target="#search_1"
+                            aria-expanded="false" aria-controls="search">
+                        <i class="fa fa-angle-down"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="portlet-body">
+                <div id="search_1" class="form-horizontal collapse in" aria-expanded="true">
+                <!-- BEGIN FORM-->
+                <form id="hallForm" name="hallForm" class="form-horizontal" novalidate>
+                    <div class="table-scrollable">
+                        <table class="table table-bordered table-hover ng-table">
+                            <thead>
+                            <tr>
+                                <th>摘要<span class="text-danger">*</span></th>
+                                <th>科目<span class="text-danger">*</span></th>
+                                <th>金额<span class="text-danger">*</span></th>
+                                <th>
+                                    <button class="btn green btn-xs" ng-click="addHallElement(hallForm)">添加</button>
+                                </th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr ng-repeat="hallModel in model.details track by $index"
+                                ng-class="{'deleting': !(hallModel.deleting !== true)}">
+                                <td ng-class="{ 'has-error' :(hallForm.remark.$touched || hallForm.$submitted ) && hallForm.remark.$invalid}">
+                                    <input type="text" class="form-control" name="remark" data-ng-if="hallModel.editing && flag"
+                                           placeholder="摘要" ui-validate="{compareCode:'compareCode($value)'}"
+                                           ng-model="hallModel.remark" maxlength="32" required/>
+                                    <span class="form-control-static" data-ng-if="!(hallModel.editing && flag)"
+                                          data-ng-bind="hallModel.remark"></span>
+                                    <div class="help-block"
+                                         ng-show="(hallForm.$submitted || hallForm.remark.$touched) && hallModel.editing"
+                                         ng-messages="hallForm.remark.$error">
+                                        <p ng-message="required">摘要不能为空</p>
+                                    </div>
+                                </td>
+                                <td ng-class="{ 'has-error' :(hallForm.subId.$touched || hallForm.$submitted ) && hallForm.subId.$invalid}">
+                                    <select class="form-control" name="subId" data-ng-if="hallModel.editing"
+                                            ng-model="hallModel.subId" required select2 data-placeholder="请选择">
+                                        <!--<option value="">请选择</option>-->
+                                        <option ng-repeat="projectorTypeDateOption in playUnitTypeOptions"
+                                                value="{{projectorTypeDateOption.key}}"
+                                                ng-bind="projectorTypeDateOption.text"></option>
+                                    </select>
+                                    <span class="form-control-static" data-ng-if="!hallModel.editing"
+                                          data-ng-bind="hallModel.subId  | projectorTypeDateTypeFilter"></span>
+                                    <div class="help-block"
+                                         ng-show="(hallForm.$submitted || hallForm.subId.$touched) && hallModel.editing"
+                                         ng-messages="hallForm.subId.$error">
+                                        <p ng-message="required">请选择科目类型</p>
+                                    </div>
+                                </td>
+                                <td ng-class="{ 'has-error' :(hallForm.remiburseMoney.$touched || hallForm.$submitted ) && hallForm.remiburseMoney.$invalid}">
+                                    <input type="text" class="form-control" name="remiburseMoney"
+                                           data-ng-if="hallModel.editing"
+                                           placeholder="金额"
+                                           ng-change="seatCountsChange()" ng-model="hallModel.remiburseMoney" required
+                                    ng-pattern="/^\d+(\.\d+)?$/"/>
+                                    <span class="form-control-static" data-ng-if="!hallModel.editing"
+                                          data-ng-bind="hallModel.remiburseMoney"></span>
+                                    <div class="help-block"
+                                         ng-show="(hallForm.$submitted || hallForm.remiburseMoney.$touched) && hallModel.editing"
+                                         ng-messages="hallForm.remiburseMoney.$error">
+                                        <p ng-message="required">金额不能为空</p>
+                                    </div>
+                                </td>
+                                <td class="text-center" style="width: 20%;">
+                                    <button class="btn green btn-xs" data-ng-if="hallModel.deleting !== true"
+                                            ng-click="editHallElement($index, hallModel, hallForm)">编辑
+                                    </button>
+                                    <button class="btn green btn-xs" data-ng-if="hallModel.deleting !== true"
+                                            ng-click="deleteHallElement($index, hallModel)">删除
+                                    </button>
+                                    <button class="btn green btn-xs" data-ng-if="!(hallModel.deleting !== true)"
+                                            ng-click="restoreHallElement($index, hallModel)">恢复
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>合计</th>
+                                <td colspan="3" ng-bind="seatSum"></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </form>
+                <!-- END FORM-->
+                    </div>
+            </div>
+        </div>
+		<div class="row">
+            <div class="col-md-12">
+                <a href="#/reimbursement/currency/list.html" class="btn blue">
+                    <i class="fa fa-mail-reply"></i>&nbsp;<span>返回 </span>
+                </a>
+                <button type="submit" class="btn green" ng-click="submit(cinemaForm,hallForm)">
+                    <i class="fa fa-check"></i>&nbsp;<span>提交 </span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- END Portlet PORTLET-->
+<!-- END Portlet PORTLET-->

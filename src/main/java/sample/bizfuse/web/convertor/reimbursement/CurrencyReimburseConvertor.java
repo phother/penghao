@@ -17,6 +17,8 @@ public class CurrencyReimburseConvertor extends AbstractConvertor<CurrencyReimbu
 
     @Autowired
     private CurrencyReimburseService currencyReimburseService;
+    @Autowired
+    private ReimburseDetailConvertor reimburseDetailConvertor;
     
     @Override
     public CurrencyReimburse toModel(@NonNull final CurrencyReimburseDTO dto) {
@@ -34,7 +36,7 @@ public class CurrencyReimburseConvertor extends AbstractConvertor<CurrencyReimbu
         dto.setDepId(model.getDepId());
         dto.setName(model.getName());
         dto.setReimburseTime(model.getReimburseTime());
-        dto.setDetails(model.getDetails());
+        dto.setDetails(reimburseDetailConvertor.toListDTO(model.getDetails()));
         dto.setSumReimburse(model.getSumReimburse());
         dto.setMark(model.getMark());
         dto.setInvoiceCount(model.getInvoiceCount());
@@ -51,7 +53,7 @@ public class CurrencyReimburseConvertor extends AbstractConvertor<CurrencyReimbu
         model.setDepId(dto.getDepId());
         model.setName(dto.getName());
         model.setReimburseTime(dto.getReimburseTime());
-        model.setDetails(dto.getDetails());
+        model.setDetails(reimburseDetailConvertor.toListModel(dto.getDetails()));
         model.setSumReimburse(dto.getSumReimburse());
         model.setMark(dto.getMark());
         model.setInvoiceCount(dto.getInvoiceCount());
@@ -68,7 +70,8 @@ public class CurrencyReimburseConvertor extends AbstractConvertor<CurrencyReimbu
         model.setDepId(dto.getDepId());
         model.setName(dto.getName());
         model.setReimburseTime(dto.getReimburseTime());
-        model.setDetails(dto.getDetails());
+        model.getDetails().clear();
+        model.setDetails(reimburseDetailConvertor.toListModel(dto.getDetails()));
         model.setSumReimburse(dto.getSumReimburse());
         model.setMark(dto.getMark());
         model.setInvoiceCount(dto.getInvoiceCount());

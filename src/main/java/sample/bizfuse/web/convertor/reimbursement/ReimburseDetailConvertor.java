@@ -5,6 +5,7 @@ import org.springframework.stereotype.Component;
 
 import com.leadingsoft.bizfuse.common.web.dto.AbstractConvertor;
 import sample.bizfuse.web.dto.reimbursement.ReimburseDetailDTO;
+import sample.bizfuse.web.enums.Subject;
 import sample.bizfuse.web.model.reimbursement.ReimburseDetail;
 import sample.bizfuse.web.service.reimbursement.ReimburseDetailService;
 import lombok.NonNull;
@@ -32,7 +33,7 @@ public class ReimburseDetailConvertor extends AbstractConvertor<ReimburseDetail,
         final ReimburseDetailDTO dto = new ReimburseDetailDTO();
         dto.setId(model.getId());
         dto.setRemark(model.getRemark());
-        dto.setSubId(model.getSubId());
+        dto.setSubId(model.getSubId().getValue());
         dto.setRemiburseMoney(model.getRemiburseMoney());
 
         return dto;
@@ -42,7 +43,7 @@ public class ReimburseDetailConvertor extends AbstractConvertor<ReimburseDetail,
     private ReimburseDetail constructModel(final ReimburseDetailDTO dto) {
         ReimburseDetail model = new ReimburseDetail();
         model.setRemark(dto.getRemark());
-        model.setSubId(dto.getSubId());
+        model.setSubId(Subject.valueOf(dto.getSubId()));
         model.setRemiburseMoney(dto.getRemiburseMoney());
 
         return model;
@@ -52,7 +53,7 @@ public class ReimburseDetailConvertor extends AbstractConvertor<ReimburseDetail,
     private ReimburseDetail updateModel(final ReimburseDetailDTO dto) {
         ReimburseDetail model = reimburseDetailService.get(dto.getId());
         model.setRemark(dto.getRemark());
-        model.setSubId(dto.getSubId());
+        model.setSubId(Subject.valueOf(dto.getSubId()));
         model.setRemiburseMoney(dto.getRemiburseMoney());
 
         return model;

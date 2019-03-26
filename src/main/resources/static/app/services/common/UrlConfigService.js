@@ -75,6 +75,10 @@ angular.module("MetronicApp").service("UrlConfigService", function () {
             D3Demo: {
                 url: Host + RootPath + "/w/sys/D3demo"
             }
+        },
+        currencyReimburses: {
+            listUrl: "/w/currencyReimburses/s",
+            saveUrl: "/w/currencyReimburses"
         }
     };
 });
