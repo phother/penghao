@@ -15,17 +15,22 @@ import com.leadingsoft.bizfuse.base.authority.service.authorization.SystemAuthor
 
 import sample.bizfuse.web.enums.Subject;
 import sample.bizfuse.web.enums.TeacherLevel;
+import sample.bizfuse.web.enums.TrafficLevel;
+import sample.bizfuse.web.enums.Vehicle;
 import sample.bizfuse.web.model.School;
 import sample.bizfuse.web.model.Student;
 import sample.bizfuse.web.model.Teacher;
 import sample.bizfuse.web.model.authentication.User;
 import sample.bizfuse.web.model.reimbursement.CurrencyReimburse;
 import sample.bizfuse.web.model.reimbursement.ReimburseDetail;
+import sample.bizfuse.web.model.reimbursement.TrafficReimburse;
+import sample.bizfuse.web.model.reimbursement.TravelReimburse;
 import sample.bizfuse.web.repository.SchoolRepository;
 import sample.bizfuse.web.repository.StudentRepository;
 import sample.bizfuse.web.repository.TeacherRepository;
 import sample.bizfuse.web.repository.authentication.UserRepository;
 import sample.bizfuse.web.repository.reimbursement.CurrencyReimburseRepository;
+import sample.bizfuse.web.repository.reimbursement.TravelReimburseRepository;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -55,6 +60,9 @@ public class DevFixtures implements ApplicationListener<ContextRefreshedEvent> {
     @Autowired
     private SystemAuthorizationService systemAuthorizationService;
 
+    @Autowired
+	private TravelReimburseRepository travelReimburseRepository;
+
 	@Override
 	public void onApplicationEvent(ContextRefreshedEvent event) {
 		// 初始化用户数据（excel导入）
@@ -66,7 +74,43 @@ public class DevFixtures implements ApplicationListener<ContextRefreshedEvent> {
 
 //		initTestData1();
 
+		initTestData2();
 
+
+	}
+
+	private void initTestData2() {
+		TravelReimburse travelReimburse = new TravelReimburse();
+
+		travelReimburse.setDepId(1L);
+		travelReimburse.setFoodAllowanceDays(12);
+		travelReimburse.setFoodAllowanceNum(12);
+		travelReimburse.setHeadOfResearchLaboratory("1212");
+		travelReimburse.setHeadOfUnit("zhangsan");
+		travelReimburse.setHotelExpense(new BigDecimal(12));
+		travelReimburse.setName("wangwu");
+		travelReimburse.setOtherFee(new BigDecimal(12));
+		travelReimburse.setPersonInCharge("12121");
+		travelReimburse.setProjectName("环境保护工程");
+		travelReimburse.setReason("出差");
+		travelReimburse.setReimburseTime(new Date());
+		travelReimburse.setTrafficSubsidyDays(12);
+		travelReimburse.setTrafficSubsidyNum(12);
+
+		TrafficReimburse trafficReimburse = new TrafficReimburse();
+		trafficReimburse.setDestination("一起去");
+		trafficReimburse.setLevel(TrafficLevel.business_class);
+		trafficReimburse.setSource("哈哈");
+		trafficReimburse.setTrafficeFee(new BigDecimal(12));
+		trafficReimburse.setVehicle(Vehicle.bus);
+
+		List<TrafficReimburse> lists = new ArrayList<>();
+
+		lists.add(trafficReimburse);
+
+		travelReimburse.setTrafficReimburse(lists);
+
+		travelReimburseRepository.save(travelReimburse);
 	}
 
 	private void initTestData1() {
