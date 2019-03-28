@@ -6,6 +6,7 @@ import lombok.Setter;
 import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.math.BigDecimal;
 import java.util.Date;
@@ -88,7 +89,9 @@ public class TravelReimburse extends AbstractAuditModel {
     /**
      * 交通报销
      */
-    @ElementCollection
+    @NotNull
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "TravelReimburse_id")
     private List<TrafficReimburse> trafficReimburse;
 
     /**

@@ -8,6 +8,7 @@ import org.apache.poi.ss.util.CellRangeAddress;
 import org.springframework.stereotype.Component;
 import sample.bizfuse.web.dto.reimbursement.CurrencyReimburseDTO;
 import sample.bizfuse.web.dto.reimbursement.ReimburseDetailDTO;
+import sample.bizfuse.web.enums.Subject;
 import sample.bizfuse.web.model.reimbursement.ReimburseDetail;
 import sample.bizfuse.web.utils.DateStyle;
 import sample.bizfuse.web.utils.DateUtils;
@@ -48,9 +49,8 @@ public class currencyReimburseExcelView extends BaseExcelView {
         Cell cell = null;
         cell = this.buildMergedRowCell(sheet, rowNumber,rowNumber, 0,1, defaultCellStyle);
         cell.setCellValue("部门:"+bean.getDepId());
-        System.out.println(rowNumber);
+
         rowNumber++;
-        System.out.println(rowNumber);
 
         cell = this.buildMergedRowCell(sheet, rowNumber,0, cellStyle);
         cell.setCellValue("姓名");
@@ -83,7 +83,7 @@ public class currencyReimburseExcelView extends BaseExcelView {
             cell.setCellValue(detail.getRemark()+"");
 
             cell = this.buildMergedRowCell(sheet, rowNumber, 3, defaultCellStyle);
-            cell.setCellValue(detail.getSubId()+"");
+            cell.setCellValue(Subject.valueOf(detail.getSubId())+"");
 
             cell = this.buildMergedRowCell(sheet, rowNumber, 4, defaultCellStyle);
             cell.setCellValue(detail.getRemiburseMoney() +"");
@@ -213,7 +213,6 @@ public class currencyReimburseExcelView extends BaseExcelView {
             row = sheet.createRow(rowStart);
         }
         row.setHeight((short)(20*23));
-
 
         Cell cell = row.createCell(colStart);
         cell.setCellStyle(cellStyle);

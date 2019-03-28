@@ -64,7 +64,7 @@ public class DevFixtures implements ApplicationListener<ContextRefreshedEvent> {
 //
 //		initTestData();
 
-		initTestData1();
+//		initTestData1();
 
 
 	}

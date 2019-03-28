@@ -100,7 +100,7 @@ public class TravelReimburseDTO extends AbstractDTO {
      * 交通报销
      */
     @ApiModelProperty("交通报销")
-    private List<TrafficReimburse> trafficReimburse;
+    private List<TrafficReimburseDTO> trafficReimburse;
 
     /**
      * 单位负责人

@@ -30,6 +30,7 @@ public class ReimburseDetail extends AbstractAuditModel {
     /**
      *科目
      */
+    @Enumerated(EnumType.STRING)
     private Subject subId;
 
     /**

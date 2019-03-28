@@ -1,5 +1,6 @@
 package sample.bizfuse.web.model.reimbursement;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.leadingsoft.bizfuse.common.jpa.model.AbstractAuditModel;
 import lombok.Getter;
 import lombok.Setter;
@@ -20,6 +21,11 @@ import java.util.Date;
 @Setter
 @Entity
 public class TrafficReimburse extends AbstractAuditModel {
+
+    @JsonIgnore
+    @ManyToOne(fetch = FetchType.EAGER,cascade= CascadeType.ALL)
+    @JoinColumn(name="TravelReimburse_id")
+    private TravelReimburse travelReimburse;
 
     /**
      * 日期
