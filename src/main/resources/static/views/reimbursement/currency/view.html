@@ -1,0 +1,150 @@
+<!-- BEGIN Portlet PORTLET-->
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h4 class="panel-title">
+            <div class="portlet-title">
+                <div class="caption">
+                    <i class="fa fa-calendar"></i>
+                    <span class="caption-subject bold uppercase">{{$state.current.data.pageTitle}}</span>
+                </div>
+            </div>
+        </h4>
+    </div>
+
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-12">
+                <button type="button" class="btn blue" ng-click="return()">
+                    <i class="fa fa-mail-reply"></i>&nbsp;<span>返回 </span>
+                </button>
+            </div>
+        </div>
+
+        <div class="portlet light bordered">
+            <div class="portlet-title">
+                <div class="caption ">
+                    <i class="fa fa-calendar"></i>
+                    <span class="caption-subject bold uppercase">影院基本信息</span>
+                    <span class="caption-helper"></span>
+                </div>
+                <div class="tools">
+                    <button type="button" class="btn btn-circle btn-default" data-toggle="collapse" data-target="#search"
+                            aria-expanded="false" aria-controls="search">
+                        <i class="fa fa-angle-down"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="portlet-body">
+                <div id="search" class="form-horizontal collapse in" aria-expanded="true">
+                <form id="cinemaForm" name="cinemaForm" class="form-horizontal"
+                      novalidate>
+                    <div class="form-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label col-md-4">姓名：<span
+                                            class="text-danger"></span></label>
+                                    <div class="col-md-8">
+                                        <p class="form-control-static"
+                                               ng-bind="model.name"></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label col-md-4">部门名称：<span
+                                            class="text-danger"></span></label>
+                                    <div class="col-md-8">
+                                        <p  class="form-control-static"
+                                               ng-bind="model.depId"></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label col-md-4">备注：<span
+                                            class="text-danger"></span></label>
+                                    <div class="col-md-8">
+                                        <p  class="form-control-static"
+                                               ng-bind="model.mark"></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label col-md-4">发票张数：<span
+                                            class="text-danger"></span></label>
+                                    <div class="col-md-8">
+                                        <p  class="form-control-static" ng-bind="model.invoiceCount"></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            </div>
+        </div>
+
+        <div class="portlet light bordered">
+            <div class="portlet-title">
+                <div class="caption ">
+                    <i class="fa fa-calendar"></i>
+                    <span class="caption-subject bold uppercase">影厅信息</span>
+                    <span class="caption-helper font-red-sunglo"></span>
+                </div>
+                <div class="tools">
+                    <button type="button" class="btn btn-circle btn-default" data-toggle="collapse" data-target="#searchScreens"
+                            aria-expanded="false" aria-controls="searchScreens">
+                        <i class="fa fa-angle-down"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="portlet-body">
+                <div id="searchScreens" class="form-horizontal collapse in" aria-expanded="true">
+                <!-- BEGIN FORM-->
+                <form id="hallForm" name="hallForm" class="form-horizontal"
+                      novalidate>
+                    <div class="table-scrollable">
+                        <table class="table table-bordered table-hover ng-table">
+                            <thead>
+                            <tr>
+                                <th>摘要<span class="text-danger"></span></th>
+                                <th>科目<span class="text-danger"></span></th>
+                                <th>金额<span class="text-danger"></span></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr ng-repeat="hallModel in model.details track by $index"
+                                ng-class="{'deleting': !(hallModel.deleting !== true)}">
+                                <td>
+                                    <span data-ng-if="!hallModel.editing"
+                                          data-ng-bind="hallModel.remark"></span>
+                                </td>
+                                <td>
+                                    <span data-ng-if="!hallModel.editing"
+                                          data-ng-bind="hallModel.subId"></span>
+                                </td>
+                                <td>
+                                    <span data-ng-if="!hallModel.editing"
+                                          data-ng-bind="hallModel.remiburseMoney"></span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>合计</th>
+                                <td colspan="3" ng-bind="seatSum"></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </form>
+                    </div>
+                <!-- END FORM-->
+            </div>
+        </div>
+    </div>
+</div>
+<!-- END Portlet PORTLET-->
