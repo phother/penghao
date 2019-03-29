@@ -974,8 +974,8 @@ angular.module("MetronicApp").config(['$stateProvider', '$urlRouterProvider', fu
         .state('cinemaSignUpAudit', {
             url: "/reimbursement/currency/list.html",
             templateUrl: "/views/reimbursement/currency/list.html",
-            data: {pageTitle: "影院注册审核"},
-            controller: "CinemaSignUpAuditController",
+            data: {pageTitle: "通用报销列表"},
+            controller: "CurrencyReimbursementController",
             resolve: {
                 deps: ['$ocLazyLoad', function ($ocLazyLoad) {
                     return $ocLazyLoad.load({
@@ -984,8 +984,8 @@ angular.module("MetronicApp").config(['$stateProvider', '$urlRouterProvider', fu
                         files: [
                             'app/filters/common/filters.js',
                             'app/directives/ngTable/directive.js',
-                            'app/controllers/reimbursement/currency/CinemaSignUpAuditController.js',
-                            'app/services/reimbursement/currency/CinemaSignUpAuditService.js'
+                            'app/controllers/reimbursement/currency/CurrencyReimbursementController.js',
+                            'app/services/reimbursement/currency/CurrencyReimbursementService.js'
                         ]
                     });
                 }]
@@ -995,7 +995,7 @@ angular.module("MetronicApp").config(['$stateProvider', '$urlRouterProvider', fu
         .state('cinemaSignUpAuditCreate', {
             url: "/reimbursement/currency/create.html",
             templateUrl: "/views/reimbursement/currency/create.html",
-            data: {pageTitle: "影院注册审核-新增"},
+            data: {pageTitle: "通用报销"},
             controller: "CinemaSignUpAuditCreateController",
             resolve: {
                 deps: ['$ocLazyLoad', function ($ocLazyLoad) {
@@ -1005,8 +1005,8 @@ angular.module("MetronicApp").config(['$stateProvider', '$urlRouterProvider', fu
                         files: [
                             'app/filters/common/filters.js',
                             'app/directives/ngTable/directive.js',
-                            'app/controllers/reimbursement/currency/CinemaSignUpAuditController.js',
-                            'app/services/reimbursement/currency/CinemaSignUpAuditService.js'
+                            'app/controllers/reimbursement/currency/CurrencyReimbursementController.js',
+                            'app/services/reimbursement/currency/CurrencyReimbursementService.js'
                         ]
                     });
                 }]
@@ -1016,7 +1016,7 @@ angular.module("MetronicApp").config(['$stateProvider', '$urlRouterProvider', fu
         .state('cinemaSignUpAuditCheck', {
             url: "/reimbursement/currency/view.html",
             templateUrl: "/views/reimbursement/currency/view.html",
-            data: {pageTitle: "影院注册审核-查看"},
+            data: {pageTitle: "通用报销"},
             controller: "CinemaSignUpAuditCheckController",
             resolve: {
                 deps: ['$ocLazyLoad', function ($ocLazyLoad) {
@@ -1026,8 +1026,8 @@ angular.module("MetronicApp").config(['$stateProvider', '$urlRouterProvider', fu
                         files: [
                             'app/filters/common/filters.js',
                             'app/directives/ngTable/directive.js',
-                            'app/controllers/reimbursement/currency/CinemaSignUpAuditController.js',
-                            'app/services/reimbursement/currency/CinemaSignUpAuditService.js'
+                            'app/controllers/reimbursement/currency/CurrencyReimbursementController.js',
+                            'app/services/reimbursement/currency/CurrencyReimbursementService.js'
                         ]
                     });
                 }]

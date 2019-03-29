@@ -24,7 +24,7 @@
             <div class="portlet-title">
                 <div class="caption ">
                     <i class="fa fa-calendar"></i>
-                    <span class="caption-subject bold uppercase">影院基本信息</span>
+                    <span class="caption-subject bold uppercase">通用报销单基本信息</span>
                     <span class="caption-helper"></span>
                 </div>
                 <div class="tools">
@@ -93,7 +93,7 @@
             <div class="portlet-title">
                 <div class="caption ">
                     <i class="fa fa-calendar"></i>
-                    <span class="caption-subject bold uppercase">影厅信息</span>
+                    <span class="caption-subject bold uppercase">发票详情</span>
                     <span class="caption-helper font-red-sunglo"></span>
                 </div>
                 <div class="tools">
@@ -126,7 +126,7 @@
                                 </td>
                                 <td>
                                     <span data-ng-if="!hallModel.editing"
-                                          data-ng-bind="hallModel.subId"></span>
+                                          data-ng-bind="hallModel.subId | projectorTypeDateTypeFilter"></span>
                                 </td>
                                 <td>
                                     <span data-ng-if="!hallModel.editing"

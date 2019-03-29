@@ -79,7 +79,8 @@ angular.module("MetronicApp").service("UrlConfigService", function () {
         currencyReimburses: {
             listUrl: Host + RootPath + "/w/currencyReimburses/s",
             saveUrl: Host + RootPath + "/w/currencyReimburses",
-            formUrl: Host + RootPath + "/w/currencyReimburses/:id"
+            formUrl: Host + RootPath + "/w/currencyReimburses/:id",
+            deleteUrl: Host + RootPath + "/w/currencyReimburses/:id",
         }
     };
 });

@@ -68,11 +68,11 @@ public class DevFixtures implements ApplicationListener<ContextRefreshedEvent> {
 		// 初始化用户数据（excel导入）
 		userFixtures.initTestData();
 //		// 初始化权限数据，包括菜单、角色
-		initAuthenticationData();
+//		initAuthenticationData();
 //
-		initTestData();
+//		initTestData();
 
-		initTestData1();
+//		initTestData1();
 
 //		initTestData2();
 

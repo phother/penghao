@@ -41,8 +41,28 @@
         <div class="text-center">
             <button class="btn green btn-xs" data-ng-click="onActionClick(row,'view1')">查看</button>
             <button class="btn green btn-xs" ng-click="onActionClick(row,'edit1')">编辑</button>
-            <button class="btn green btn-xs" ng-click="onActionClick(row,'delete')">删除</button>
+            <a href="/#warring_cancel" class="btn green btn-xs" data-toggle="modal" ng-click="onActionClick(row.id,'delete')">删除</a>
             <button class="btn green btn-xs" ng-click="onActionClick(row,'download')">导出</button>
         </div>
     </script>
+
+    <div id="warring_cancel" class="modal fade form" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="text-center">系统提示</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group text-center">
+                        <span class="text-center">确定删除该报销单？</span>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn blue btn-primary" data-dismiss="modal" ng-click="logOut()">确定</button>
+                    <button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>
