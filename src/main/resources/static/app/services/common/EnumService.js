@@ -27,8 +27,41 @@ angular.module("MetronicApp").service("EnumService", function () {
             {"key": "electricityFees", "text": "electricityFees"},
             {"key": "propertyManagementFee", "text": "物业管理费"},
             {"key": "other", "text": "其他支出"}
-        ]
+        ],
+        "vehicle":[
+            {"key":"plane","text":"飞机"},
+            {"key":"train","text":"火车"},
+            {"key":"car","text":"长途汽车"},
+            {"key":"taxi","text":"出租车"},
+            {"key":"bus","text":"环科院公车"},
+            {"key":"other","text":"其它交通工具"}
+        ],
+        "vehicleTrain":[
+            {"key":"business_seat","text":"商务座"},
+            {"key":"first_seat","text":"一等座"},
+            {"key":"second_seat","text":"二等座"},
+            {"key":"other","text":"其它"}
+        ],
+        "vehiclePlane":[
+            {"key":"business_class","text":"公务舱"},
+            {"key":"economy_class","text":"经济舱"},
+            {"key":"other","text":"其它"}
+        ],
+        "vehicleCar":[
+            {"key":"unknown","text":"无"}
+        ],
+        "vehicleTaxi":[
+            {"key":"unknown","text":"无"}
+        ],
+        "vehicleBus":[
+            {"key":"unknown","text":"无"}
+        ],
+        "vehicleOther":[
+            {"key":"unknown","text":"无"}
+        ],
+
     };
+
     this.get = function (key) {
         return this._data[key];
     }

@@ -1034,4 +1034,26 @@ angular.module("MetronicApp").config(['$stateProvider', '$urlRouterProvider', fu
             }
         })
 
+        .state('travelExpense', {
+            url: "/reimbursement/travelExpense/create.html",
+            templateUrl: "/views/reimbursement/travelExpense/create.html",
+            data: {pageTitle: "差旅费报销单-新增"},
+            controller: "TravelExpenseCreateController",
+            resolve: {
+                deps: ['$ocLazyLoad', function ($ocLazyLoad) {
+                    return $ocLazyLoad.load({
+                        name: 'MetronicApp',
+                        insertBefore: '#ng_load_plugins_before',
+                        files: [
+                            'app/filters/common/filters.js',
+                            'app/directives/ngTable/directive.js',
+                            'app/controllers/reimbursement/travelExpense/TravelExpenseController.js',
+                            'app/services/reimbursement/travelExpense/TravelExpenseService.js'
+                        ]
+                    });
+                }]
+            }
+        })
+
+
 }]);
