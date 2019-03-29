@@ -7,10 +7,10 @@ package sample.bizfuse.web.enums;
 public enum Vehicle {
 	plane("飞机"), //飞机
 	train("火车"),//火车
-	car("长途汽车"), //客车
-	taxi("出租车"), //营业
-	bus("环科院公车"), //停业
-	other("其他"),//其他
+	car("长途汽车"), //长途汽车
+	taxi("出租车"), //出租车
+	bus("环科院公车"), //环科院公车
+	other("其它"),//其它
 	unknown("");
 
 	private String value;
