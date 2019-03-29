@@ -223,31 +223,7 @@ public class currencyReimburseExcelView extends BaseExcelView {
 
         return cell;
     }
-    @Override
-    protected Cell buildCell(Sheet sheet, int rowNumber, int colNumber, CellStyle cellStyle) {
-        Row row = sheet.getRow(rowNumber);
-        if(row == null) {
-            row = sheet.createRow(rowNumber);
-        }
-        row.setHeight((short)(20*23));
 
-        Cell cell = row.createCell(colNumber);
-        cell.setCellStyle(cellStyle);
-        return cell;
-    }
-
-    private static void setRegionStyle(Sheet sheet, CellRangeAddress region,
-                                       CellStyle cs) {
-        for (int i = region.getFirstRow(); i <= region.getLastRow(); i++) {
-            Row row = sheet.getRow(i);
-            Cell cell = null;
-            //循环设置单元格样式
-            for (int j = region.getFirstColumn(); j <= region.getLastColumn(); j++) {
-                cell = row.getCell(j);
-                cell.setCellStyle(cs);
-            }
-        }
-    }
     protected CellStyle buildCellStyle(Workbook workbook) {
         CellStyle defaultCellStyle = workbook.createCellStyle();
         defaultCellStyle.setWrapText(true);

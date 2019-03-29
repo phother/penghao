@@ -4,10 +4,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.leadingsoft.bizfuse.common.web.dto.AbstractConvertor;
+import sample.bizfuse.web.dto.reimbursement.TrafficReimburseDTO;
 import sample.bizfuse.web.dto.reimbursement.TravelReimburseDTO;
+import sample.bizfuse.web.model.reimbursement.TrafficReimburse;
 import sample.bizfuse.web.model.reimbursement.TravelReimburse;
 import sample.bizfuse.web.service.reimbursement.TravelReimburseService;
 import lombok.NonNull;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * TravelReimburseConvertor
@@ -17,7 +22,10 @@ public class TravelReimburseConvertor extends AbstractConvertor<TravelReimburse,
 
     @Autowired
     private TravelReimburseService travelReimburseService;
-    
+
+    @Autowired
+    private TrafficReimburseConvertor trafficReimburseConvertor;
+
     @Override
     public TravelReimburse toModel(@NonNull final TravelReimburseDTO dto) {
         if (dto.isNew()) {//新增
@@ -42,7 +50,7 @@ public class TravelReimburseConvertor extends AbstractConvertor<TravelReimburse,
         dto.setFoodAllowanceDays(model.getFoodAllowanceDays());
         dto.setFoodAllowanceNum(model.getFoodAllowanceNum());
         dto.setOtherFee(model.getOtherFee());
-        dto.setTrafficReimburse(model.getTrafficReimburse());
+        dto.setTrafficReimburse(trafficReimburseConvertor.toListDTO(model.getTrafficReimburse()));
         dto.setHeadOfUnit(model.getHeadOfUnit());
         dto.setPersonInCharge(model.getPersonInCharge());
         dto.setHeadOfResearchLaboratory(model.getHeadOfResearchLaboratory());
@@ -64,7 +72,10 @@ public class TravelReimburseConvertor extends AbstractConvertor<TravelReimburse,
         model.setFoodAllowanceDays(dto.getFoodAllowanceDays());
         model.setFoodAllowanceNum(dto.getFoodAllowanceNum());
         model.setOtherFee(dto.getOtherFee());
-        model.setTrafficReimburse(dto.getTrafficReimburse());
+        List<TrafficReimburseDTO> dtos =  dto.getTrafficReimburse();
+        List<TrafficReimburse> models= new ArrayList<>();
+        dtos.forEach(p->models.add(trafficReimburseConvertor.toModel(p)));
+        model.setTrafficReimburse(models);
         model.setHeadOfUnit(dto.getHeadOfUnit());
         model.setPersonInCharge(dto.getPersonInCharge());
         model.setHeadOfResearchLaboratory(dto.getHeadOfResearchLaboratory());
@@ -86,7 +97,10 @@ public class TravelReimburseConvertor extends AbstractConvertor<TravelReimburse,
         model.setFoodAllowanceDays(dto.getFoodAllowanceDays());
         model.setFoodAllowanceNum(dto.getFoodAllowanceNum());
         model.setOtherFee(dto.getOtherFee());
-        model.setTrafficReimburse(dto.getTrafficReimburse());
+        List<TrafficReimburseDTO> dtos =  dto.getTrafficReimburse();
+        List<TrafficReimburse> models= new ArrayList<>();
+        dtos.forEach(p->models.add(trafficReimburseConvertor.toModel(p)));
+        model.setTrafficReimburse(models);
         model.setHeadOfUnit(dto.getHeadOfUnit());
         model.setPersonInCharge(dto.getPersonInCharge());
         model.setHeadOfResearchLaboratory(dto.getHeadOfResearchLaboratory());

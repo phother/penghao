@@ -8,6 +8,8 @@ import org.hibernate.validator.constraints.NotBlank;
 import sample.bizfuse.web.enums.TrafficLevel;
 import sample.bizfuse.web.enums.Vehicle;
 
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.math.BigDecimal;
@@ -31,33 +33,25 @@ public class TrafficReimburseDTO extends AbstractDTO {
      * 出发地
      */
     @ApiModelProperty("出发地")
-    @NotBlank
-    @Size(min = 1, max = 100)
-
     private String source;
     /**
      * 目的地
      */
     @ApiModelProperty("目的地")
-    @NotBlank
-    @Size(min = 1, max = 100)
-
     private String Destination;
 
     /**
      * 交通工具
      */
+    @Enumerated(EnumType.STRING)
     @ApiModelProperty("交通工具")
-    @NotNull
-
     private Vehicle vehicle;
 
     /**
      * 座位等级选择
      */
     @ApiModelProperty("座位等级选择")
-    @NotNull
-
+    @Enumerated(EnumType.STRING)
     private TrafficLevel level;
 
     /**

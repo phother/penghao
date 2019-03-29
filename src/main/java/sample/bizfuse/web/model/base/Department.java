@@ -3,8 +3,10 @@ package sample.bizfuse.web.model.base;
 import com.leadingsoft.bizfuse.common.jpa.model.AbstractAuditModel;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.context.annotation.EnableLoadTimeWeaving;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 
 /**
@@ -14,9 +16,11 @@ import javax.persistence.Entity;
 @Setter
 @Entity
 public class Department extends AbstractAuditModel {
-
-    /**
-     * 部门名称
-     */
-    private String name;
+        @NotBlank
+        @Column(
+                unique = true
+        )
+        private String name;
+        @Column
+        private String description;
 }
