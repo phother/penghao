@@ -5,17 +5,20 @@ import com.leadingsoft.bizfuse.common.web.view.DefaultListDataExcelView;
 import org.apache.poi.hssf.usermodel.HSSFFont;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.ss.util.CellRangeAddress;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import sample.bizfuse.web.dto.reimbursement.CurrencyReimburseDTO;
 import sample.bizfuse.web.dto.reimbursement.ReimburseDetailDTO;
 import sample.bizfuse.web.enums.Subject;
 import sample.bizfuse.web.model.reimbursement.ReimburseDetail;
+import sample.bizfuse.web.repository.base.DepartmentRepository;
 import sample.bizfuse.web.utils.DateStyle;
 import sample.bizfuse.web.utils.DateUtils;
 import sample.bizfuse.web.utils.UpperChineseUtils;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.constraints.AssertFalse;
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.util.List;
@@ -26,6 +29,9 @@ import java.util.Map;
  */
 @Component
 public class currencyReimburseExcelView extends BaseExcelView {
+
+    @Autowired
+    private DepartmentRepository departmentRepository;
 
     public currencyReimburseExcelView() {
         super.setUrl("/excel/CurrencyReimburseExcelView.xls");
@@ -48,7 +54,7 @@ public class currencyReimburseExcelView extends BaseExcelView {
 
         Cell cell = null;
         cell = this.buildMergedRowCell(sheet, rowNumber,rowNumber, 0,1, defaultCellStyle);
-        cell.setCellValue("部门:"+bean.getDepId());
+        cell.setCellValue("部门:"+departmentRepository.findOne(bean.getDepId()).getName());
 
         rowNumber++;
 

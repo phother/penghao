@@ -5,11 +5,13 @@ import com.leadingsoft.bizfuse.common.web.view.DefaultListDataExcelView;
 import org.apache.poi.hssf.usermodel.HSSFFont;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.ss.util.CellRangeAddress;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import sample.bizfuse.web.dto.reimbursement.TrafficReimburseDTO;
 import sample.bizfuse.web.dto.reimbursement.TravelReimburseDTO;
 import sample.bizfuse.web.enums.TrafficLevel;
 import sample.bizfuse.web.enums.Vehicle;
+import sample.bizfuse.web.repository.base.DepartmentRepository;
 import sample.bizfuse.web.utils.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -24,6 +26,9 @@ import java.util.Map;
  */
 @Component
 public class travelReimburseExcelView extends BaseExcelView {
+
+    @Autowired
+    private DepartmentRepository departmentRepository;
 
     public travelReimburseExcelView() {
         super.setUrl("/excel/travelReimburseExcelView.xls");
@@ -47,7 +52,7 @@ public class travelReimburseExcelView extends BaseExcelView {
 
         Cell cell = null;
         cell = this.buildMergedRowCell(sheet, rowNumber, rowNumber, 0, 1, defaultCellStyle);
-        cell.setCellValue("部门:" + bean.getDepId());
+        cell.setCellValue( "部门:"+departmentRepository.findOne(bean.getDepId()).getName());
 
         rowNumber++;
 

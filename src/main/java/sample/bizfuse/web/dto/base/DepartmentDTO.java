@@ -4,6 +4,7 @@ import com.leadingsoft.bizfuse.common.web.dto.AbstractDTO;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.context.annotation.EnableLoadTimeWeaving;
 
 /**
@@ -12,10 +13,6 @@ import org.springframework.context.annotation.EnableLoadTimeWeaving;
 @Getter
 @Setter
 public class DepartmentDTO extends AbstractDTO {
-
-    /**
-     * 部门名称
-     */
-    @ApiModelProperty("部门名称")
-    private String name;
+        private String name;
+        private String description;
 }

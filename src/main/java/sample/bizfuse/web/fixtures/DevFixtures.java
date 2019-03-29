@@ -66,7 +66,7 @@ public class DevFixtures implements ApplicationListener<ContextRefreshedEvent> {
 	@Override
 	public void onApplicationEvent(ContextRefreshedEvent event) {
 		// 初始化用户数据（excel导入）
-		userFixtures.initTestData();
+//		userFixtures.initTestData();
 //		// 初始化权限数据，包括菜单、角色
 //		initAuthenticationData();
 //
@@ -163,14 +163,15 @@ public class DevFixtures implements ApplicationListener<ContextRefreshedEvent> {
 			{MenuType.site, "菜单管理", "menuList", "#/system/menu/list.html", 1},
 			{MenuType.site, "用户管理", "platformUserList", "#/system/platformUser/list.html", 2},
 			{MenuType.site, "角色管理", "roleList", "#/system/role/list.html", 3},
-			{MenuType.site, "码表管理", "dictionaryCategorys", "#/system/dictionary/category/list.html", 4},
-			{MenuType.site, "Tree示例", "jsTreeDemo", "#/system/jsTreeDemo/list.html", 5},
-			{MenuType.site, "图表示例", "echartsDemo", "#/system/echartsDemo/list.html", 6},
-			{MenuType.site, "Ueditor示例", "ueditorDemo", "#/system/ueditorDemo/list.html", 7},
-			{MenuType.site, "Map示例", "mapDemo", "#/system/mapDemo/list.html", 8},
-			{MenuType.site, "日期日程示例", "angularFullCalendar", "#/system/angularFullCalendarDemo/list.html", 9},
-			{MenuType.site, "流程图示例", "jsPlumbDemo", "#/system/jsPlumbDemo/list.html", 10},
-			{MenuType.site, "D3示例", "D3Demo", "#/system/D3Demo/list.html", 11},
+			{MenuType.site, "部门管理", "departmentList", "#/system/department/list.html", 4},
+//			{MenuType.site, "码表管理", "dictionaryCategorys", "#/system/dictionary/category/list.html", 4},
+//			{MenuType.site, "Tree示例", "jsTreeDemo", "#/system/jsTreeDemo/list.html", 5},
+//			{MenuType.site, "图表示例", "echartsDemo", "#/system/echartsDemo/list.html", 6},
+//			{MenuType.site, "Ueditor示例", "ueditorDemo", "#/system/ueditorDemo/list.html", 7},
+//			{MenuType.site, "Map示例", "mapDemo", "#/system/mapDemo/list.html", 8},
+//			{MenuType.site, "日期日程示例", "angularFullCalendar", "#/system/angularFullCalendarDemo/list.html", 9},
+//			{MenuType.site, "流程图示例", "jsPlumbDemo", "#/system/jsPlumbDemo/list.html", 10},
+//			{MenuType.site, "D3示例", "D3Demo", "#/system/D3Demo/list.html", 11},
 		};
 		for(Object[] menuDefine : menus) {
 			SystemMenu menu = new SystemMenu();
