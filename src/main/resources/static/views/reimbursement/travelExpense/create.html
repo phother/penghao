@@ -1,0 +1,397 @@
+
+<!-- BEGIN Portlet PORTLET-->
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h4 class="panel-title">
+            <div class="portlet-title">
+                <div class="caption">
+                    <i class="fa fa-calendar"></i>
+                    <span class="caption-subject bold uppercase">{{$state.current.data.pageTitle}}</span>
+                </div>
+            </div>
+        </h4>
+    </div>
+
+    <div class="panel-body">
+
+        <div class="portlet light bordered">
+            <div class="portlet-title">
+                <div class="caption ">
+                    <i class="fa fa-calendar"></i>
+                    <span class="caption-subject bold uppercase">单位：{{$model.department.name}}</span>
+                    <span class="caption-helper"></span>
+                </div>
+            </div>
+
+            <div class="portlet-body">
+                <form id="baseForm" name="baseForm" class="form-horizontal" novalidate>
+                    <div class="form-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group"
+                                     ng-class="{ 'has-error' : (baseForm.name.$touched || baseForm.$submitted ) && baseForm.name.$invalid}">
+                                    <label class="control-label col-md-4">姓名<span
+                                            class="text-danger">*</span></label>
+                                    <div class="col-md-8">
+                                        <input type="text" name="name" class="form-control"
+                                               placeholder="姓名" ng-model="model.name" required/>
+                                        <div class="help-block" ng-messages="baseForm.name.$error"
+                                             ng-show="baseForm.name.$touched || baseForm.$submitted ">
+                                            <p ng-message="required">姓名不能为空</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group"
+                                     ng-class="{ 'has-error' : (baseForm.ReimburseTime.$touched || baseForm.$submitted ) && baseForm.ReimburseTime.$invalid}">
+                                    <label class="control-label col-md-4" for="ReimburseTime">日期<span
+                                            class="text-danger">*</span></label>
+                                    <div class="col-md-8">
+                                        <div date-time-append class="input-group">
+                                            <input id="ReimburseTime"
+                                                   class="form-control"
+                                                   placeholder="日期"
+                                                   ng-model="model.ReimburseTime"
+                                                   format="YYYY-MM-DD"
+                                                   date-time max-view="year" min-view="date" view="month"
+                                                   required
+                                                   auto-close="true"/>
+                                            <span class="input-group-btn">
+                                                <button class="btn default" type="button">
+                                                    <i class="fa fa-calendar"></i>
+                                                </button>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6"
+                                 ng-class="{ 'has-error' :(baseForm.reason.$touched || baseForm.$submitted ) && baseForm.reason.$invalid}">
+                                <div class="form-group">
+                                    <label class="control-label col-md-4">出差事由<span
+                                            class="text-danger">*</span></label>
+                                    <div class="col-md-8">
+                                        <input type="text" name="reason" class="form-control" required
+                                               placeholder="出差事由" ng-model="model.reason"/>
+                                        <div class="help-block"
+                                             ng-show="baseForm.$submitted || baseForm.reason.$touched"
+                                             ng-messages="baseForm.reason.$error">
+                                            <p ng-message="required">出差事由为必填项</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6"
+                                 ng-class="{ 'has-error' :(baseForm.projectName.$touched || baseForm.$submitted ) && baseForm.projectName.$invalid}">
+                                <div class="form-group">
+                                    <label class="control-label col-md-4">项目名称<span
+                                            class="text-danger">*</span><span
+                                            class="text-danger"></span></label>
+                                    <div class="col-md-8">
+                                        <input type="text" name="projectName" class="form-control" placeholder="项目名称"
+                                               ng-model="model.projectName" required />
+                                        <div class="help-block"
+                                             ng-show="baseForm.$submitted || baseForm.projectName.$touched"
+                                             ng-messages="baseForm.projectName.$error">
+                                            <p ng-message="required">项目名称为必填项</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+
+            <div class="portlet-title ">
+                <div class="caption ">
+                    <i class="fa fa-calendar"></i>
+                    <span class="caption-subject bold uppercase">费用明细</span>
+                    <span class="caption-helper"></span>
+                </div>
+            </div>
+
+            <div class="portlet-body">
+                <form id="costForm" name="costForm" class="form-horizontal" novalidate>
+                    <div class="form-body">
+
+                        <div class="row">
+                            <div class="col-md-6"
+                                 ng-class="{ 'has-error' :(costForm.hotelExpense.$touched || costForm.$submitted ) && costForm.hotelExpense.$invalid}">
+                                <div class="form-group">
+                                    <label class="control-label col-md-4">住宿费<span
+                                            class="text-danger">*</span></label>
+                                    <div class="col-md-8">
+                                        <input type="text" name="hotelExpense" class="form-control" required ng-pattern="/^\d+(\.\d+)?$/"
+                                               placeholder="住宿费(填本次报销所有房费合计数)" ng-model="model.hotelExpense"/>
+                                        <div class="help-block"
+                                             ng-show="costForm.$submitted || costForm.hotelExpense.$touched"
+                                             ng-messages="costForm.hotelExpense.$error">
+                                            <p ng-message="required">住宿费为必填项</p>
+                                            <p ng-message="pattern">住宿费只能为数字</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6"
+                                 ng-class="{ 'has-error' :(costForm.otherFee.$touched || costForm.$submitted ) && costForm.otherFee.$invalid}">
+                                <div class="form-group">
+                                    <label class="control-label col-md-4">其他费用<span
+                                            class="text-danger">*</span><span
+                                            class="text-danger"></span></label>
+                                    <div class="col-md-8">
+                                        <input type="text" name="otherFee" class="form-control" placeholder="其他费用(订票服务费、退票改签费)"
+                                               ng-model="model.otherFee" required
+                                               ng-pattern="/^\d+(\.\d+)?$/" />
+                                        <div class="help-block"
+                                             ng-show="costForm.$submitted || costForm.otherFee.$touched"
+                                             ng-messages="costForm.otherFee.$error">
+                                            <p ng-message="required">其他费用为必填项</p>
+                                            <p ng-message="pattern">其他费用只能为数字</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label col-md-4">交通补助（{{trafficSubsidyMoney}}元/天）<span
+                                            class="text-danger">*</span></label>
+                                    <div class="col-md-4" ng-class="{ 'has-error' :(costForm.trafficSubsidyDays.$touched || costForm.$submitted ) && costForm.trafficSubsidyDays.$invalid}">
+                                        <input type="text" name="trafficSubsidyDays" class="form-control" required ng-pattern="/^[0-9]*$/"
+                                               placeholder="天数" ng-model="model.trafficSubsidyDays"/>
+                                        <div class="help-block"
+                                             ng-show="costForm.$submitted || costForm.trafficSubsidyDays.$touched"
+                                             ng-messages="costForm.trafficSubsidyDays.$error">
+                                            <p ng-message="required">交通补助天数为必填项</p>
+                                            <p ng-message="pattern">交通补助天数只能为数字</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4" ng-class="{ 'has-error' :(costForm.trafficSubsidyNum.$touched || costForm.$submitted ) && costForm.trafficSubsidyNum.$invalid}">
+                                        <input type="text" name="trafficSubsidyNum" class="form-control" required ng-pattern="/^[0-9]*$/"
+                                               placeholder="人数" ng-model="model.trafficSubsidyNum"/>
+                                        <div class="help-block"
+                                             ng-show="costForm.$submitted || costForm.trafficSubsidyNum.$touched"
+                                             ng-messages="costForm.trafficSubsidyNum.$error">
+                                            <p ng-message="required">交通补助人数为必填项</p>
+                                            <p ng-message="pattern">交通补助人数只能为数字</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label col-md-4">伙食补助（{{foodAllowanceMoney}}元/天）<span
+                                            class="text-danger">*</span><span
+                                            class="text-danger"></span></label>
+                                    <div class="col-md-4" ng-class="{ 'has-error' :(costForm.foodAllowanceDays.$touched || costForm.$submitted ) && costForm.foodAllowanceDays.$invalid}">
+                                        <input type="text" name="foodAllowanceDays" class="form-control" placeholder="天数"
+                                               ng-model="model.foodAllowanceDays" required
+                                               ng-pattern="/^[0-9]*$/" />
+                                        <div class="help-block"
+                                             ng-show="costForm.$submitted || costForm.foodAllowanceDays.$touched"
+                                             ng-messages="costForm.foodAllowanceDays.$error">
+                                            <p ng-message="required">伙食补助天数为必填项</p>
+                                            <p ng-message="pattern">伙食补助天数只能为数字</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4" ng-class="{ 'has-error' :(costForm.foodAllowanceNum.$touched || costForm.$submitted ) && costForm.foodAllowanceNum.$invalid}">
+                                        <input type="text" name="foodAllowanceNum" class="form-control" placeholder="人数"
+                                               ng-model="model.foodAllowanceNum" required
+                                               ng-pattern="/^[0-9]*$/" />
+                                        <div class="help-block"
+                                             ng-show="costForm.$submitted || costForm.foodAllowanceNum.$touched"
+                                             ng-messages="costForm.foodAllowanceNum.$error">
+                                            <p ng-message="required">伙食补助人数为必填项</p>
+                                            <p ng-message="pattern">伙食补助人数只能为数字</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6"></div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label col-md-4">小计</label>
+                                    <div class="col-md-8">
+                                        <label class="control-label" data-ng-bind="(+model.hotelExpense)+(+model.otherFee)+(+model.trafficSubsidyDays*+model.trafficSubsidyNum*trafficSubsidyMoney)+(+model.foodAllowanceDays*+model.foodAllowanceNum*foodAllowanceMoney)"></label>元
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <div class="portlet-title">
+                <div class="caption ">
+                    <i class="fa fa-calendar"></i>
+                    <span class="caption-subject bold uppercase">交通工具</span>
+                </div>
+            </div>
+
+            <div class="portlet-body">
+                <!-- BEGIN FORM-->
+                <form id="hallForm" name="hallForm" class="form-horizontal" novalidate>
+                    <div class="table-scrollable">
+                        <table class="table table-bordered table-hover ng-table">
+                            <thead>
+                            <tr>
+                                <th>年月日<span class="text-danger">*</span></th>
+                                <th>起程地点<span class="text-danger">*</span></th>
+                                <th>到达地点<span class="text-danger">*</span></th>
+                                <th>交通工具<span class="text-danger">*</span></th>
+                                <th>座位等级<span class="text-danger">*</span></th>
+                                <th>金额(元)<span class="text-danger">*</span></th>
+                                <th>
+                                    <button class="btn green btn-xs" ng-click="addHallElement(hallForm)">添加</button>
+                                </th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr ng-repeat="hallModel in model.details track by $index"
+                                ng-class="{'deleting': !(hallModel.deleting !== true)}">
+                                <td ng-class="{ 'has-error' :(hallForm.remark.$touched || hallForm.$submitted ) && hallForm.remark.$invalid}">
+                                    <div date-time-append class="input-group" data-ng-if="hallModel.editing ">
+                                        <input class="form-control"
+                                               placeholder="年月日"
+                                               ng-model="hallModel.trafficTime"
+                                               format="YYYY-MM-DD"
+                                               date-time max-view="year" min-view="date" view="month"
+                                               required
+                                               auto-close="true"/>
+                                        <span class="input-group-btn">
+                                                <button class="btn default" type="button">
+                                                    <i class="fa fa-calendar"></i>
+                                                </button>
+                                            </span>
+                                    </div>
+                                    <span class="form-control-static" data-ng-if="!(hallModel.editing )"
+                                          data-ng-bind="hallModel.trafficTime"></span>
+                                    <div class="help-block"
+                                         ng-show="(hallForm.$submitted || hallForm.trafficTime.$touched) && hallModel.editing"
+                                         ng-messages="hallForm.trafficTime.$error">
+                                        <p ng-message="required">年月日不能为空</p>
+                                    </div>
+
+
+                                </td>
+                                <td ng-class="{ 'has-error' :(hallForm.remark.$touched || hallForm.$submitted ) && hallForm.source.$invalid}">
+                                    <input type="text" class="form-control" name="source" data-ng-if="hallModel.editing "
+                                           placeholder="启程地点"
+                                           ng-model="hallModel.source"  required/>
+                                    <span class="form-control-static" data-ng-if="!(hallModel.editing )"
+                                          data-ng-bind="hallModel.source"></span>
+                                    <div class="help-block"
+                                         ng-show="(hallForm.$submitted || hallForm.source.$touched) && hallModel.editing"
+                                         ng-messages="hallForm.source.$error">
+                                        <p ng-message="required">启程地点不能为空</p>
+                                    </div>
+                                </td>
+                                <td ng-class="{ 'has-error' :(hallForm.Destination.$touched || hallForm.$submitted ) && hallForm.Destination.$invalid}">
+                                    <input type="text" class="form-control" name="Destination" data-ng-if="hallModel.editing "
+                                           placeholder="到达地点"
+                                           ng-model="hallModel.Destination"  required/>
+                                    <span class="form-control-static" data-ng-if="!(hallModel.editing )"
+                                          data-ng-bind="hallModel.Destination"></span>
+                                    <div class="help-block"
+                                         ng-show="(hallForm.$submitted || hallForm.Destination.$touched) && hallModel.editing"
+                                         ng-messages="hallForm.Destination.$error">
+                                        <p ng-message="required">到达地点不能为空</p>
+                                    </div>
+                                </td>
+                                <td style="width: 10%" ng-class="{ 'has-error' :(hallForm.vehicle.$touched || hallForm.$submitted ) && hallForm.vehicle.$invalid}">
+                                    <select class="form-control" name="vehicle" data-ng-if="hallModel.editing"
+                                            ng-model="hallModel.vehicle" required select2 data-placeholder="请选择" data-ng-change="vehicleChange(hallModel.vehicle)">
+                                        <option ng-repeat="vehicleOption in vehicleType"
+                                                value="{{vehicleOption.key}}"
+                                                ng-bind="vehicleOption.text"></option>
+                                    </select>
+                                    <span class="form-control-static" data-ng-if="!hallModel.editing"
+                                          data-ng-bind="hallModel.vehicle"></span>
+                                    <div class="help-block"
+                                         ng-show="(hallForm.$submitted || hallForm.subId.$touched) && hallModel.editing"
+                                         ng-messages="hallForm.vehicle.$error">
+                                        <p ng-message="required">请选择交通工具</p>
+                                    </div>
+                                </td>
+                                <td ng-class="{ 'has-error' :(hallForm.remark.$touched || hallForm.$submitted ) && hallForm.remark.$invalid}">
+                                    <select class="form-control" name="level" data-ng-if="hallModel.editing"
+                                            ng-model="hallModel.level" required select2 data-placeholder="请选择">
+                                        <option ng-repeat="vehicleLevelOption in vehicleLevelType"
+                                                value="{{vehicleLevelOption.key}}"
+                                                ng-bind="vehicleLevelOption.text"></option>
+                                    </select>
+                                    <span class="form-control-static" data-ng-if="!hallModel.editing"
+                                          data-ng-bind="hallModel.level"></span>
+                                    <div class="help-block"
+                                         ng-show="(hallForm.$submitted || hallForm.level.$touched) && hallModel.editing"
+                                         ng-messages="hallForm.level.$error">
+                                        <p ng-message="required">请选择座位等级</p>
+                                    </div>
+                                </td>
+                                <td ng-class="{ 'has-error' :(hallForm.trafficeFee.$touched || hallForm.$submitted ) && hallForm.trafficeFee.$invalid}">
+                                    <input type="text" class="form-control" name="trafficeFee"
+                                           data-ng-if="hallModel.editing"
+                                           placeholder="金额"
+                                           ng-model="hallModel.trafficeFee" ng-change="trafficeFeeChange()" required
+                                           ng-pattern="/^\d+(\.\d+)?$/"/>
+                                    <span class="form-control-static" data-ng-if="!hallModel.editing"
+                                          data-ng-bind="hallModel.trafficeFee"></span>
+                                    <div class="help-block"
+                                         ng-show="(hallForm.$submitted || hallForm.trafficeFee.$touched) && hallModel.editing"
+                                         ng-messages="hallForm.trafficeFee.$error">
+                                        <p ng-message="required">金额不能为空</p>
+                                    </div>
+                                </td>
+                                <td class="text-center" style="width: 10%;">
+                                    <button class="btn green btn-xs" data-ng-if="hallModel.deleting !== true"
+                                            ng-click="editHallElement($index, hallModel, hallForm)">编辑
+                                    </button>
+                                    <button class="btn green btn-xs" data-ng-if="hallModel.deleting !== true"
+                                            ng-click="deleteHallElement($index, hallModel)">删除
+                                    </button>
+                                    <button class="btn green btn-xs" data-ng-if="!(hallModel.deleting !== true)"
+                                            ng-click="restoreHallElement($index, hallModel)">恢复
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>小计</th>
+                                <td colspan="6">
+                                    <label data-ng-bind="hallTrafficeFee"></label>元
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </form>
+                <!-- END FORM-->
+            </div>
+        </div>
+
+        <div class="portlet light bordered">
+            合计(大写)
+        </div>
+		<div class="row">
+            <div class="col-md-12">
+                <a href="#/reimbursement/currency/list.html" class="btn blue">
+                    <i class="fa fa-mail-reply"></i>&nbsp;<span>返回 </span>
+                </a>
+                <button type="submit" class="btn green" ng-click="submit(baseForm,hallForm)">
+                    <i class="fa fa-check"></i>&nbsp;<span>提交 </span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- END Portlet PORTLET-->
+<!-- END Portlet PORTLET-->
