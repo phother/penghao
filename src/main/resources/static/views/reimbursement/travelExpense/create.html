@@ -140,18 +140,18 @@
                             <div class="col-md-6"
                                  ng-class="{ 'has-error' :(costForm.otherFee.$touched || costForm.$submitted ) && costForm.otherFee.$invalid}">
                                 <div class="form-group">
-                                    <label class="control-label col-md-4">其他费用<span
+                                    <label class="control-label col-md-4">其它费用<span
                                             class="text-danger">*</span><span
                                             class="text-danger"></span></label>
                                     <div class="col-md-8">
-                                        <input type="text" name="otherFee" class="form-control" placeholder="其他费用(订票服务费、退票改签费)"
+                                        <input type="text" name="otherFee" class="form-control" placeholder="其它费用(订票服务费、退票改签费)"
                                                ng-model="model.otherFee" required
                                                ng-pattern="/^\d+(\.\d+)?$/" />
                                         <div class="help-block"
                                              ng-show="costForm.$submitted || costForm.otherFee.$touched"
                                              ng-messages="costForm.otherFee.$error">
-                                            <p ng-message="required">其他费用为必填项</p>
-                                            <p ng-message="pattern">其他费用只能为数字</p>
+                                            <p ng-message="required">其它费用为必填项</p>
+                                            <p ng-message="pattern">其它费用只能为数字</p>
                                         </div>
                                     </div>
                                 </div>
@@ -275,7 +275,7 @@
                                             </span>
                                     </div>
                                     <span class="form-control-static" data-ng-if="!(hallModel.editing )"
-                                          data-ng-bind="hallModel.trafficTime"></span>
+                                          data-ng-bind="hallModel.trafficTime|timestampToDateExt"></span>
                                     <div class="help-block"
                                          ng-show="(hallForm.$submitted || hallForm.trafficTime.$touched) && hallModel.editing"
                                          ng-messages="hallForm.trafficTime.$error">
@@ -316,7 +316,7 @@
                                                 ng-bind="vehicleOption.text"></option>
                                     </select>
                                     <span class="form-control-static" data-ng-if="!hallModel.editing"
-                                          data-ng-bind="hallModel.vehicle"></span>
+                                          data-ng-bind="hallModel.vehicle|vehicleTypeFilter"></span>
                                     <div class="help-block"
                                          ng-show="(hallForm.$submitted || hallForm.subId.$touched) && hallModel.editing"
                                          ng-messages="hallForm.vehicle.$error">
@@ -331,7 +331,7 @@
                                                 ng-bind="vehicleLevelOption.text"></option>
                                     </select>
                                     <span class="form-control-static" data-ng-if="!hallModel.editing"
-                                          data-ng-bind="hallModel.level"></span>
+                                          data-ng-bind="hallModel.level|vehicleLevelTypeFilter"></span>
                                     <div class="help-block"
                                          ng-show="(hallForm.$submitted || hallForm.level.$touched) && hallModel.editing"
                                          ng-messages="hallForm.level.$error">
@@ -379,7 +379,16 @@
         </div>
 
         <div class="portlet light bordered">
-            合计(大写)
+            <div class="row">
+                <div class="col-md-6">
+                    <lable class="col-md-4 control-label">合计(大写)</lable>
+                    <lable class="col-md-4 control-label" data-ng-bind="totalMoneyStr"></lable>
+                </div>
+                <div class="col-md-6">
+                    <lable class="col-md-4 control-label">合计(小写)</lable>
+                    <lable class="col-md-4 control-label">￥<label data-ng-bind="totalMoney"></label></lable>
+                </div>
+            </div>
         </div>
 		<div class="row">
             <div class="col-md-12">

@@ -162,8 +162,7 @@ angular.module("MetronicApp").controller('TravelExpenseController',
                 $scope.vehicleType = EnumService.get("vehicle");
 
                 $scope.vehicleChange=function (value) {
-                    let vechicleType=value.toLowerCase().replace(/^[a-z]/g, (L) => L.toUpperCase());
-                    $scope.vehicleLevelType=EnumService.get("vehicle"+vechicleType);
+                    $scope.vehicleLevelType=EnumService.get("vehicle"+value);
                 }
 
                 $scope.trafficeFeeChange = function () {
@@ -171,6 +170,12 @@ angular.module("MetronicApp").controller('TravelExpenseController',
                     if (!$scope.hallTrafficeFee) {
                         $scope.hallTrafficeFee = 0;
                     }
+
+                    $scope.totalMoney=parseFloat($scope.model.hotelExpense)+parseFloat($scope.model.otherFee)
+                        +($scope.model.trafficSubsidyDays*$scope.model.trafficSubsidyNum*$scope.trafficSubsidyMoney)
+                        +($scope.model.foodAllowanceDays*$scope.model.foodAllowanceNum*$scope.foodAllowanceMoney)
+                        +parseFloat($scope.hallTrafficeFee);
+                    $scope.totalMoneyStr="人民币 "+digitUppercase($scope.totalMoney);
                 };
 
                 var id = $location.search().id;
@@ -195,8 +200,6 @@ angular.module("MetronicApp").controller('TravelExpenseController',
                     baseForm.$submitted = true;
                     costForm.$submitted = true;
                     // hallForm.$submitted = true;
-
-                    console.log($scope.model)
 
                     //如果三个表单都校验通过，则发送请求
                     if (baseForm.$valid && costForm.$valid && hallForm.$valid) {
@@ -272,6 +275,8 @@ angular.module("MetronicApp").controller('TravelExpenseController',
                     angular.forEach($scope.model.details, function (value, key) {
                         if (index != key) {
                             value.editing = false;
+                        }else{
+                            $scope.vehicleLevelType=EnumService.get("vehicle"+$scope.model.details[index].vehicle);
                         }
                     });
                     hallModel.editing = true;
@@ -2020,6 +2025,35 @@ angular.module("MetronicApp").controller('TravelExpenseController',
                 }
             );
             return res ? res.text : "";
+        }
+    }])
+    .filter("vehicleTypeFilter",["EnumService",function(EnumService){
+        return function (value) {
+            var vehicleResult = EnumService.get("vehicle");
+            var vehicleResultType = _.find(vehicleResult, function (status) {
+                    return status.key == value;
+                }
+            );
+            return vehicleResultType ? vehicleResultType.text : "";
+        };
+    }])
+    .filter("vehicleLevelTypeFilter",["EnumService",function(EnumService){
+        return function (value) {
+            var vehicleLevelResult = EnumService.get("vehicleAllSeat");
+            var vehicleLevelResultType = _.find(vehicleLevelResult, function (status) {
+                    return status.key == value;
+                }
+            );
+            return vehicleLevelResultType ? vehicleLevelResultType.text : "";
+        };
+    }])
+    .filter("timestampToDateExt",["$filter",function ($filter) {
+        return function (value) {
+            if (value._i != undefined) {
+                value=value._i;
+            }
+            const filter = $filter("date");
+            return filter(value, "yyyy-MM-dd");
         }
     }])
 ;

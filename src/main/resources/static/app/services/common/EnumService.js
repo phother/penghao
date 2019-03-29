@@ -36,29 +36,39 @@ angular.module("MetronicApp").service("EnumService", function () {
             {"key":"bus","text":"环科院公车"},
             {"key":"other","text":"其它交通工具"}
         ],
-        "vehicleTrain":[
+        //为了级联效果
+        "vehicletrain":[
             {"key":"business_seat","text":"商务座"},
             {"key":"first_seat","text":"一等座"},
             {"key":"second_seat","text":"二等座"},
             {"key":"other","text":"其它"}
         ],
-        "vehiclePlane":[
+        "vehicleplane":[
             {"key":"business_class","text":"公务舱"},
             {"key":"economy_class","text":"经济舱"},
             {"key":"other","text":"其它"}
         ],
-        "vehicleCar":[
+        "vehiclecar":[
             {"key":"unknown","text":"无"}
         ],
-        "vehicleTaxi":[
+        "vehicletaxi":[
             {"key":"unknown","text":"无"}
         ],
-        "vehicleBus":[
+        "vehiclebus":[
             {"key":"unknown","text":"无"}
         ],
-        "vehicleOther":[
+        "vehicleother":[
             {"key":"unknown","text":"无"}
         ],
+        //列出所有座位类型,方便使用过滤器
+        "vehicleAllSeat":[
+            {"key":"business_seat","text":"商务座"},
+            {"key":"first_seat","text":"一等座"},
+            {"key":"second_seat","text":"二等座"},
+            {"key":"business_class","text":"公务舱"},
+            {"key":"economy_class","text":"经济舱"},
+            {"key":"other","text":"其它"}
+        ]
 
     };
 
