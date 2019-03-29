@@ -170,7 +170,7 @@ angular.module("MetronicApp").controller('TravelExpenseController',
                     if (!$scope.hallTrafficeFee) {
                         $scope.hallTrafficeFee = 0;
                     }
-
+                    //对页面产生的费用进行合计
                     $scope.totalMoney=parseFloat($scope.model.hotelExpense)+parseFloat($scope.model.otherFee)
                         +($scope.model.trafficSubsidyDays*$scope.model.trafficSubsidyNum*$scope.trafficSubsidyMoney)
                         +($scope.model.foodAllowanceDays*$scope.model.foodAllowanceNum*$scope.foodAllowanceMoney)
