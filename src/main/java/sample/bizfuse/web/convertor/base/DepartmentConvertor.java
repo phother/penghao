@@ -32,6 +32,7 @@ public class DepartmentConvertor extends AbstractConvertor<Department, Departmen
         final DepartmentDTO dto = new DepartmentDTO();
         dto.setId(model.getId());
         dto.setName(model.getName());
+        dto.setDescription(model.getDescription());
 
         return dto;
     }
@@ -40,6 +41,7 @@ public class DepartmentConvertor extends AbstractConvertor<Department, Departmen
     private Department constructModel(final DepartmentDTO dto) {
         Department model = new Department();
         model.setName(dto.getName());
+        model.setDescription(dto.getDescription());
 
         return model;
     }
@@ -48,6 +50,7 @@ public class DepartmentConvertor extends AbstractConvertor<Department, Departmen
     private Department updateModel(final DepartmentDTO dto) {
         Department model = departmentService.get(dto.getId());
         model.setName(dto.getName());
+        model.setDescription(dto.getDescription());
 
         return model;
     }

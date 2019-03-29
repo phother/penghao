@@ -15,6 +15,7 @@ import com.leadingsoft.bizfuse.common.web.dto.AbstractConvertor;
 import sample.bizfuse.web.dto.authentication.UserDTO;
 import sample.bizfuse.web.model.authentication.User;
 import sample.bizfuse.web.repository.authentication.UserRepository;
+import sample.bizfuse.web.repository.base.DepartmentRepository;
 
 @Component
 public class UserConvertor extends AbstractConvertor<User, UserDTO> {
@@ -24,6 +25,9 @@ public class UserConvertor extends AbstractConvertor<User, UserDTO> {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private DepartmentRepository departmentRepository;
     
     @Autowired
     private SystemAuthorizationService systemAuthorizationService;
@@ -48,6 +52,7 @@ public class UserConvertor extends AbstractConvertor<User, UserDTO> {
         model.getDetails().setCity(dto.getCity());
         model.getDetails().setDistrict(dto.getDistrict());
         model.getDetails().setAddress(dto.getAddress());
+        model.setDepartment(this.departmentRepository.findOne(dto.getDepId()));
         model.setEnabled(dto.isEnabled());
 
         return model;
@@ -69,6 +74,7 @@ public class UserConvertor extends AbstractConvertor<User, UserDTO> {
         model.getDetails().setDistrict(dto.getDistrict());
         model.getDetails().setAddress(dto.getAddress());
         model.setEnabled(dto.isEnabled());
+        model.setDepartment(this.departmentRepository.findOne(dto.getDepId()));
         return model;
     }
 
@@ -95,7 +101,9 @@ public class UserConvertor extends AbstractConvertor<User, UserDTO> {
         dto.setAccountLocked(model.isAccountLocked());
         dto.setAccountExpired(model.isAccountExpired());
         dto.setCredentialsExpired(model.isCredentialsExpired());
-        
+        if(model.getDepartment() != null) {
+            dto.setDepId(model.getDepartment().getId());
+        }
         List<Role> roles = systemAuthorizationService.getUserRoles(model.getNo());
         roles.stream().forEach(role -> {
         	dto.getRoleIdsList().add(role.getId());
