@@ -164,8 +164,8 @@
                                     <label class="control-label col-md-4">交通补助（{{trafficSubsidyMoney}}元/天）<span
                                             class="text-danger">*</span></label>
                                     <div class="col-md-4" ng-class="{ 'has-error' :(costForm.trafficSubsidyDays.$touched || costForm.$submitted ) && costForm.trafficSubsidyDays.$invalid}">
-                                        <input type="text" name="trafficSubsidyDays" class="form-control" required ng-pattern="/^[0-9]*$/"
-                                               placeholder="天数" ng-model="model.trafficSubsidyDays"/>
+                                        <input type="text" style="width: 85%;float:left;margin-right: 10px" name="trafficSubsidyDays" class="form-control" required ng-pattern="/^[0-9]*$/"
+                                               placeholder="天数" ng-model="model.trafficSubsidyDays"/><label class="control-label">天</label>
                                         <div class="help-block"
                                              ng-show="costForm.$submitted || costForm.trafficSubsidyDays.$touched"
                                              ng-messages="costForm.trafficSubsidyDays.$error">
@@ -174,8 +174,8 @@
                                         </div>
                                     </div>
                                     <div class="col-md-4" ng-class="{ 'has-error' :(costForm.trafficSubsidyNum.$touched || costForm.$submitted ) && costForm.trafficSubsidyNum.$invalid}">
-                                        <input type="text" name="trafficSubsidyNum" class="form-control" required ng-pattern="/^[0-9]*$/"
-                                               placeholder="人数" ng-model="model.trafficSubsidyNum"/>
+                                        <input type="text" style="width: 85%;float:left;margin-right: 10px" name="trafficSubsidyNum" class="form-control" required ng-pattern="/^[0-9]*$/"
+                                               placeholder="人数" ng-model="model.trafficSubsidyNum"/><label class="control-label">人</label>
                                         <div class="help-block"
                                              ng-show="costForm.$submitted || costForm.trafficSubsidyNum.$touched"
                                              ng-messages="costForm.trafficSubsidyNum.$error">
@@ -191,9 +191,9 @@
                                             class="text-danger">*</span><span
                                             class="text-danger"></span></label>
                                     <div class="col-md-4" ng-class="{ 'has-error' :(costForm.foodAllowanceDays.$touched || costForm.$submitted ) && costForm.foodAllowanceDays.$invalid}">
-                                        <input type="text" name="foodAllowanceDays" class="form-control" placeholder="天数"
+                                        <input type="text" style="width: 85%;float:left;margin-right: 10px" name="foodAllowanceDays" class="form-control" placeholder="天数"
                                                ng-model="model.foodAllowanceDays" required
-                                               ng-pattern="/^[0-9]*$/" />
+                                               ng-pattern="/^[0-9]*$/" /> <label class="control-label">天</label>
                                         <div class="help-block"
                                              ng-show="costForm.$submitted || costForm.foodAllowanceDays.$touched"
                                              ng-messages="costForm.foodAllowanceDays.$error">
@@ -202,9 +202,9 @@
                                         </div>
                                     </div>
                                     <div class="col-md-4" ng-class="{ 'has-error' :(costForm.foodAllowanceNum.$touched || costForm.$submitted ) && costForm.foodAllowanceNum.$invalid}">
-                                        <input type="text" name="foodAllowanceNum" class="form-control" placeholder="人数"
+                                        <input type="text" style="width: 85%;float:left;margin-right: 10px" name="foodAllowanceNum" class="form-control" placeholder="人数"
                                                ng-model="model.foodAllowanceNum" required
-                                               ng-pattern="/^[0-9]*$/" />
+                                               ng-pattern="/^[0-9]*$/" /><label class="control-label">人</label>
                                         <div class="help-block"
                                              ng-show="costForm.$submitted || costForm.foodAllowanceNum.$touched"
                                              ng-messages="costForm.foodAllowanceNum.$error">
@@ -222,7 +222,7 @@
                                 <div class="form-group">
                                     <label class="control-label col-md-4">小计</label>
                                     <div class="col-md-8">
-                                        <label class="control-label" data-ng-bind="(+model.hotelExpense)+(+model.otherFee)+(+model.trafficSubsidyDays*+model.trafficSubsidyNum*trafficSubsidyMoney)+(+model.foodAllowanceDays*+model.foodAllowanceNum*foodAllowanceMoney)"></label>元
+                                        <label class="control-label bold" data-ng-bind="(+model.hotelExpense)+(+model.otherFee)+(+model.trafficSubsidyDays*+model.trafficSubsidyNum*trafficSubsidyMoney)+(+model.foodAllowanceDays*+model.foodAllowanceNum*foodAllowanceMoney)"></label>元
                                     </div>
                                 </div>
                             </div>
@@ -382,11 +382,11 @@
             <div class="row">
                 <div class="col-md-6">
                     <lable class="col-md-2 control-label">合计(大写)</lable>
-                    <lable class="col-md-6 control-label" data-ng-bind="totalMoneyStr"></lable>
+                    <lable class="col-md-6 control-label bold" data-ng-bind="totalMoneyStr"></lable>
                 </div>
                 <div class="col-md-6">
                     <lable class="col-md-2 control-label">合计(小写)</lable>
-                    <lable class="col-md-6 control-label">￥<label data-ng-bind="totalMoney"></label></lable>
+                    <lable class="col-md-6 control-label bold">￥<label class="bold" data-ng-bind="totalMoney"></label></lable>
                 </div>
             </div>
         </div>
@@ -395,7 +395,7 @@
                 <a href="#/reimbursement/currency/list.html" class="btn blue">
                     <i class="fa fa-mail-reply"></i>&nbsp;<span>返回 </span>
                 </a>
-                <button type="submit" class="btn green" ng-click="submit(baseForm,hallForm)">
+                <button type="submit" class="btn green" ng-click="submit(baseForm,costForm,hallForm)">
                     <i class="fa fa-check"></i>&nbsp;<span>提交 </span>
                 </button>
             </div>

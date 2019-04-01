@@ -67,7 +67,8 @@ angular.module("MetronicApp").service("EnumService", function () {
             {"key":"second_seat","text":"二等座"},
             {"key":"business_class","text":"公务舱"},
             {"key":"economy_class","text":"经济舱"},
-            {"key":"other","text":"其它"}
+            {"key":"other","text":"其它"},
+            {"key":"unknown","text":"无"}
         ]
 
     };

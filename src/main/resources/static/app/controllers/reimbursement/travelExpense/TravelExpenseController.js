@@ -199,13 +199,10 @@ angular.module("MetronicApp").controller('TravelExpenseController',
                 $scope.submit = function (baseForm,costForm, hallForm) {
                     baseForm.$submitted = true;
                     costForm.$submitted = true;
-                    // hallForm.$submitted = true;
+                    hallForm.$submitted = true;
 
                     //如果三个表单都校验通过，则发送请求
                     if (baseForm.$valid && costForm.$valid && hallForm.$valid) {
-                        angular.forEach($scope.model.details, function (every) {
-                            every.seatCounts = parseFloat(every.seatCounts);
-                        });
 
                         TravelExpenseService.save($scope.model).$promise.then(function (result) {
                             if ('success' == result.status) {
