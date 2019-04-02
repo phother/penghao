@@ -973,10 +973,10 @@ angular.module("MetronicApp").config(['$stateProvider', '$urlRouterProvider', fu
             }
         })
 
-        .state('cinemaSignUpAudit', {
+        .state('currencyReimbursementList', {
             url: "/reimbursement/currency/list.html",
             templateUrl: "/views/reimbursement/currency/list.html",
-            data: {pageTitle: "通用报销列表"},
+            data: {pageTitle: "通用报销-列表"},
             controller: "CurrencyReimbursementController",
             resolve: {
                 deps: ['$ocLazyLoad', function ($ocLazyLoad) {
@@ -994,11 +994,11 @@ angular.module("MetronicApp").config(['$stateProvider', '$urlRouterProvider', fu
             }
         })
 
-        .state('cinemaSignUpAuditCreate', {
+        .state('currencyReimbursementCreate', {
             url: "/reimbursement/currency/create.html",
             templateUrl: "/views/reimbursement/currency/create.html",
-            data: {pageTitle: "通用报销"},
-            controller: "CinemaSignUpAuditCreateController",
+            data: {pageTitle: "通用报销-新建"},
+            controller: "CurrencyReimbursementCreateController",
             resolve: {
                 deps: ['$ocLazyLoad', function ($ocLazyLoad) {
                     return $ocLazyLoad.load({
@@ -1015,11 +1015,11 @@ angular.module("MetronicApp").config(['$stateProvider', '$urlRouterProvider', fu
             }
         })
 
-        .state('cinemaSignUpAuditCheck', {
+        .state('currencyReimbursementView', {
             url: "/reimbursement/currency/view.html",
             templateUrl: "/views/reimbursement/currency/view.html",
-            data: {pageTitle: "通用报销"},
-            controller: "CinemaSignUpAuditCheckController",
+            data: {pageTitle: "通用报销-查看"},
+            controller: "CurrencyReimbursementViewController",
             resolve: {
                 deps: ['$ocLazyLoad', function ($ocLazyLoad) {
                     return $ocLazyLoad.load({
@@ -1035,11 +1035,50 @@ angular.module("MetronicApp").config(['$stateProvider', '$urlRouterProvider', fu
                 }]
             }
         })
-
-        .state('travelExpense', {
+        .state('travelExpenseList', {
+            url: "/reimbursement/travelExpense/list.html",
+            templateUrl: "/views/reimbursement/travelExpense/list.html",
+            data: {pageTitle: "差旅费报销单-列表"},
+            controller: "TravelExpenseController",
+            resolve: {
+                deps: ['$ocLazyLoad', function ($ocLazyLoad) {
+                    return $ocLazyLoad.load({
+                        name: 'MetronicApp',
+                        insertBefore: '#ng_load_plugins_before',
+                        files: [
+                            'app/filters/common/filters.js',
+                            'app/directives/ngTable/directive.js',
+                            'app/controllers/reimbursement/travelExpense/TravelExpenseController.js',
+                            'app/services/reimbursement/travelExpense/TravelExpenseService.js'
+                        ]
+                    });
+                }]
+            }
+        })
+        .state('travelExpenseCreate', {
             url: "/reimbursement/travelExpense/create.html",
             templateUrl: "/views/reimbursement/travelExpense/create.html",
             data: {pageTitle: "差旅费报销单-新增"},
+            controller: "TravelExpenseCreateController",
+            resolve: {
+                deps: ['$ocLazyLoad', function ($ocLazyLoad) {
+                    return $ocLazyLoad.load({
+                        name: 'MetronicApp',
+                        insertBefore: '#ng_load_plugins_before',
+                        files: [
+                            'app/filters/common/filters.js',
+                            'app/directives/ngTable/directive.js',
+                            'app/controllers/reimbursement/travelExpense/TravelExpenseController.js',
+                            'app/services/reimbursement/travelExpense/TravelExpenseService.js'
+                        ]
+                    });
+                }]
+            }
+        })
+        .state('travelExpenseView', {
+            url: "/reimbursement/travelExpense/view.html",
+            templateUrl: "/views/reimbursement/travelExpense/view.html",
+            data: {pageTitle: "差旅费报销单-查看"},
             controller: "TravelExpenseCreateController",
             resolve: {
                 deps: ['$ocLazyLoad', function ($ocLazyLoad) {

@@ -1,0 +1,215 @@
+<div class="row">
+    <div class="col-md-12">
+        <a href="#/reimbursement/travelExpense/list.html" class="btn blue">
+            <i class="fa fa-mail-reply"></i>&nbsp;<span>返回 </span>
+        </a>
+    </div>
+</div>
+<!-- BEGIN Portlet PORTLET-->
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h4 class="panel-title">
+            <div class="portlet-title">
+                <div class="caption">
+                    <i class="fa fa-calendar"></i>
+                    <span class="caption-subject bold uppercase">{{$state.current.data.pageTitle}}</span>
+                </div>
+            </div>
+        </h4>
+    </div>
+    <div class="panel-body">
+
+        <div class="portlet light bordered">
+            <div class="portlet-title">
+                <div class="caption ">
+                    <span class="caption-subject bold uppercase" >单位：{{userDept.data.name}}</span>
+                    <span class="caption-helper"></span>
+                </div>
+            </div>
+
+            <div class="portlet-body">
+                <div class="form-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label col-md-4">姓名</label>
+                                <div class="col-md-8">
+                                    <label class="control-label" data-ng-bind="model.name"></label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label col-md-4">日期</label>
+                                <div class="col-md-8">
+                                    <label data-ng-bind="model.reimburseTime|timestampToDate" class="control-label"></label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label col-md-4">项目名称</label>
+                                <div class="col-md-8">
+                                    <label class="control-label" data-ng-bind="model.projectName"></label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label col-md-4">出差事由</label>
+                                <div class="col-md-8">
+                                    <label class="control-label" data-ng-bind="model.reason"></label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="portlet-title ">
+                <div class="caption ">
+                    <span class="caption-subject bold uppercase">费用明细</span>
+                    <span class="caption-helper"></span>
+                </div>
+            </div>
+
+            <div class="portlet-body">
+                <div class="form-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label col-md-4">住宿费</label>
+                                <div class="col-md-8">
+                                    <label class="control-label" data-ng-bind="model.hotelExpense"></label><label class="control-label">元</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label col-md-4">其它费用</label>
+                                <div class="col-md-8">
+                                    <label class="control-label" data-ng-bind="model.otherFee"></label><label class="control-label">元</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label col-md-4">交通补助（{{trafficSubsidyMoney}}元/天）</label>
+                                <div class="col-md-4">
+                                    <label class="control-label" data-ng-bind="model.trafficSubsidyDays"></label><label class="control-label">天</label>
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="control-label" data-ng-bind="model.trafficSubsidyNum"></label><label class="control-label">人</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label col-md-4">伙食补助（{{foodAllowanceMoney}}元/天）</label>
+                                <div class="col-md-4">
+                                    <label class="control-label" data-ng-bind="model.foodAllowanceDays"></label><label class="control-label">天</label>
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="control-label" data-ng-bind="model.foodAllowanceNum"></label><label class="control-label">人</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6"></div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label col-md-4">小计</label>
+                                <div class="col-md-8">
+                                    <!--防止计算出现NAN 属性前面使用“+”号 -->
+                                    <label class="control-label bold" data-ng-bind="(+model.hotelExpense)+(+model.otherFee)+(+model.trafficSubsidyDays*+model.trafficSubsidyNum*trafficSubsidyMoney)+(+model.foodAllowanceDays*+model.foodAllowanceNum*foodAllowanceMoney)"></label>元
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="portlet-title">
+                <div class="caption ">
+                    <span class="caption-subject bold uppercase">交通工具</span>
+                </div>
+            </div>
+
+            <div class="portlet-body">
+                <!-- BEGIN FORM-->
+                <div class="table-scrollable">
+                    <table class="table table-bordered table-hover ng-table">
+                        <thead>
+                        <tr>
+                            <th>年月日</th>
+                            <th>起程地点</th>
+                            <th>到达地点</th>
+                            <th>交通工具</th>
+                            <th>座位等级</th>
+                            <th>金额(元)</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="hallModel in model.trafficReimburse track by $index">
+                            <td>
+                                <span class="form-control-static" data-ng-bind="hallModel.trafficTime|timestampToDateExt"></span>
+                            </td>
+                            <td>
+                                <span class="form-control-static" data-ng-bind="hallModel.source"></span>
+                            </td>
+                            <td>
+                                <span class="form-control-static" data-ng-bind="hallModel.destination"></span>
+                            </td>
+                            <td style="width: 10%">
+                                <span class="form-control-static" data-ng-bind="hallModel.vehicle|vehicleTypeFilter"></span>
+                            </td>
+                            <td>
+                                <span class="form-control-static" data-ng-bind="hallModel.level|vehicleLevelTypeFilter"></span>
+                            </td>
+                            <td>
+                                <span class="form-control-static" data-ng-bind="hallModel.trafficeFee"></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>小计</th>
+                            <td colspan="6">
+                                <label data-ng-bind="hallTrafficeFee"></label>元
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <!-- END FORM-->
+            </div>
+        </div>
+
+        <div class="portlet light bordered">
+            <div class="row">
+                <div class="col-md-6">
+                    <lable class="col-md-2 control-label">合计(大写)</lable>
+                    <lable class="col-md-6 control-label bold" data-ng-bind="totalMoneyStr"></lable>
+                </div>
+                <div class="col-md-6">
+                    <lable class="col-md-2 control-label">合计(小写)</lable>
+                    <lable class="col-md-6 control-label bold">￥<label class="bold" data-ng-bind="totalMoney"></label></lable>
+                </div>
+            </div>
+        </div>
+		<div class="row">
+            <div class="col-md-12">
+                <a href="#/reimbursement/travelExpense/list.html" class="btn blue">
+                    <i class="fa fa-mail-reply"></i>&nbsp;<span>返回 </span>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- END Portlet PORTLET-->
+<!-- END Portlet PORTLET-->

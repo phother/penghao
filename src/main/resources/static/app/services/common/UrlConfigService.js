@@ -64,7 +64,9 @@ angular.module("MetronicApp").service("UrlConfigService", function () {
                 url: Host + RootPath + "/w/platformUser/:id",
                 enable: Host + RootPath + "/w/platformUser/:id/enable",
                 disable: Host + RootPath + "/w/platformUser/:id/disable",
-                changePasswordUrl: Host + RootPath + "/w/platformUser/:id/changePassword"
+                changePasswordUrl: Host + RootPath + "/w/platformUser/:id/changePassword",
+                getDeptByUserIdUrl: Host + RootPath + "/w/platformUser/getDept/:id",
+                getUserDeptUrl: Host + RootPath + "/w/platformUser/getDept"
             },
             echartsDemo: {
                 echartsLineUrl: Host + RootPath + "/w/sys/echarts/echartsLine",
@@ -85,6 +87,11 @@ angular.module("MetronicApp").service("UrlConfigService", function () {
             saveUrl: Host + RootPath + "/w/currencyReimburses",
             formUrl: Host + RootPath + "/w/currencyReimburses/:id",
             deleteUrl: Host + RootPath + "/w/currencyReimburses/:id",
+        },
+        travelExpense:{
+            listUrl: Host + RootPath + "/w/travelReimburses/s",
+            saveUrl: Host + RootPath + "/w/travelReimburses",
+            url: Host + RootPath + "/w/travelReimburses/:id",
         }
     };
 });
