@@ -2,6 +2,7 @@ package sample.bizfuse.web.controller.authentication;
 
 import javax.validation.Valid;
 
+import com.leadingsoft.bizfuse.common.webauth.annotation.CurrentUser;
 import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -23,10 +24,15 @@ import io.swagger.annotations.ApiOperation;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import sample.bizfuse.web.convertor.authentication.UserConvertor;
+import sample.bizfuse.web.convertor.base.DepartmentConvertor;
 import sample.bizfuse.web.dto.authentication.UserDTO;
+import sample.bizfuse.web.dto.base.DepartmentDTO;
 import sample.bizfuse.web.model.authentication.User;
 import sample.bizfuse.web.repository.authentication.UserRepository;
 import sample.bizfuse.web.service.authentication.UserService;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Web端的用户管理功能接口
@@ -45,6 +51,8 @@ public class UserController {
 	private UserRepository userRepository;
     @Autowired
     private SystemAuthorizationService systemAuthorizationService;
+	@Autowired
+	private DepartmentConvertor departmentConvertor;
 	
 	/**
 	 * 用户的分页数据
@@ -161,7 +169,18 @@ public class UserController {
 		final ResultDTO<UserDTO> resultDTO = this.userConvertor.toResultDTO(userRepository.findOne(id));
 		return resultDTO;
 	}
-	
+
+	@RequestMapping(value = "/getDept/{id}",method = RequestMethod.GET)
+	public ResultDTO<DepartmentDTO> getUserDepartment(@PathVariable("id") final  long id){
+		User user = userRepository.findOne(id);
+		return departmentConvertor.toResultDTO(user.getDepartment());
+	}
+
+	@RequestMapping(value = "/getDept", method = RequestMethod.GET)
+	public ResultDTO<DepartmentDTO> getUserDepartment(@CurrentUser User user){
+		return departmentConvertor.toResultDTO(user.getDepartment());
+	}
+
 	@Getter
 	private final static class ChangeLoginIdDTO {
 		@NotBlank
