@@ -4,6 +4,7 @@ import com.leadingsoft.bizfuse.common.web.dto.AbstractDTO;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
+import net.minidev.json.annotate.JsonIgnore;
 import org.hibernate.validator.constraints.NotBlank;
 import sample.bizfuse.web.model.reimbursement.TrafficReimburse;
 
@@ -26,6 +27,8 @@ public class TravelReimburseDTO extends AbstractDTO {
     @ApiModelProperty("部门")
     private Long depId;
 
+    @JsonIgnore
+    private String depName;
     /**
      * 姓名
      */

@@ -8,6 +8,7 @@ import sample.bizfuse.web.dto.reimbursement.TrafficReimburseDTO;
 import sample.bizfuse.web.dto.reimbursement.TravelReimburseDTO;
 import sample.bizfuse.web.model.reimbursement.TrafficReimburse;
 import sample.bizfuse.web.model.reimbursement.TravelReimburse;
+import sample.bizfuse.web.service.base.DepartmentService;
 import sample.bizfuse.web.service.reimbursement.TravelReimburseService;
 import lombok.NonNull;
 
@@ -25,6 +26,9 @@ public class TravelReimburseConvertor extends AbstractConvertor<TravelReimburse,
 
     @Autowired
     private TrafficReimburseConvertor trafficReimburseConvertor;
+
+    @Autowired
+    private DepartmentService departmentService;
 
     @Override
     public TravelReimburse toModel(@NonNull final TravelReimburseDTO dto) {
@@ -54,6 +58,9 @@ public class TravelReimburseConvertor extends AbstractConvertor<TravelReimburse,
         dto.setHeadOfUnit(model.getHeadOfUnit());
         dto.setPersonInCharge(model.getPersonInCharge());
         dto.setHeadOfResearchLaboratory(model.getHeadOfResearchLaboratory());
+        if (model.getDepId() != null) {
+            dto.setDepName(departmentService.get(model.getDepId()).getName());
+        }
 
         return dto;
     }
