@@ -1,0 +1,28 @@
+<script type="text/ng-template" id="operation.html">
+    <a href="javascript:void(0)" class="btn btn-xs btn-edit" data-ng-click="onActionClick(row.id,'view')">查看 </a>
+    <a href="javascript:void(0)" class="btn btn-xs btn-edit" data-ng-click="onActionClick(row.id,'edit')">编辑 </a>
+    <a href="javascript:void(0)" class="btn btn-xs btn-delete" data-ng-click="onActionClick(row.id,'delete')">删除 </a>
+</script>
+<div class="list-content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="pull-left">
+                <button type="button" class="btn btn-add" ng-click="create()">
+                    <span> 新增 </span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <ng-table
+                    columns="columns"
+                    sort="sort"
+                    order="order"
+                    pageable="pageable"
+                    rows="rows"
+                    notpageable="notpageable">
+            </ng-table>
+        </div>
+    </div>
+</div>

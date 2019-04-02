@@ -488,7 +488,8 @@ angular.module("MetronicApp").config(['$stateProvider', '$urlRouterProvider', fu
                         insertBefore: '#ng_load_plugins_before', // load the above css files before a LINK element with this ID. Dynamic CSS files must be loaded between core and theme css files
                         files: [
                             'app/controllers/system/platformUser/PlatformUserController.js',
-                            'app/services/system/platformUser/PlatformUserService.js'
+                            'app/services/system/platformUser/PlatformUserService.js',
+                            'app/services/system/department/departmentService.js'
                         ]
                     });
                 }]
@@ -513,7 +514,8 @@ angular.module("MetronicApp").config(['$stateProvider', '$urlRouterProvider', fu
                         insertBefore: '#ng_load_plugins_before', // load the above css files before a LINK element with this ID. Dynamic CSS files must be loaded between core and theme css files
                         files: [
                             'app/controllers/system/platformUser/PlatformUserController.js',
-                            'app/services/system/platformUser/PlatformUserService.js'
+                            'app/services/system/platformUser/PlatformUserService.js',
+                            'app/services/system/department/departmentService.js'
                         ]
                     });
                 }]
@@ -1055,5 +1057,109 @@ angular.module("MetronicApp").config(['$stateProvider', '$urlRouterProvider', fu
             }
         })
 
+
+        .state('departmentList', {
+            url: "/system/department/list.html",
+            templateUrl: "views/system/department/list.html",
+            data: {
+                pageTitle: "部门信息列表",
+                pageBar: [
+                    {href: "", class: "fa fa-cog", title: "系统管理"},
+                    {href: "", class: "", title: "部门管理"}
+                ]
+            },
+            controller: "departmentListController",
+            resolve: {
+                deps: ['$ocLazyLoad', function ($ocLazyLoad) {
+                    return $ocLazyLoad.load({
+                        name: 'MetronicApp',
+                        insertBefore: '#ng_load_plugins_before', // load the above css files before a LINK element with this ID. Dynamic CSS files must be loaded between core and theme css files
+                        files: [
+                            'app/directives/ngTable/directive.js',
+                            'app/controllers/system/department/department.js',
+                            'app/services/system/department/departmentService.js'
+                        ]
+                    });
+                }]
+            }
+        })
+
+        .state('departmentCreate', {
+            url: "/system/department/create.html",
+            templateUrl: "views/system/department/edit.html",
+            data: {
+                pageTitle: "创建部门信息",
+                pageBar: [
+                    {href: "", class: "fa fa-cog", title: "系统管理"},
+                    {href: "#/system/department/list.html", class: "", title: "部门管理"},
+                    {href: "", class: "", title: "创建部门信息"}
+                ]
+            },
+            controller: "departmentEditController",
+            resolve: {
+                deps: ['$ocLazyLoad', function ($ocLazyLoad) {
+                    return $ocLazyLoad.load({
+                        name: 'MetronicApp',
+                        insertBefore: '#ng_load_plugins_before', // load the above css files before a LINK element with this ID. Dynamic CSS files must be loaded between core and theme css files
+                        files: [
+                            'app/controllers/system/department/department.js',
+                            'app/services/system/department/departmentService.js'
+                        ]
+                    });
+                }]
+            }
+        })
+
+        .state('departmentEdit', {
+            url: "/system/department/edit.html",
+            templateUrl: "views/system/department/edit.html",
+            data: {
+                pageTitle: "编辑部门信息",
+                pageBar: [
+                    {href: "", class: "fa fa-cog", title: "系统管理"},
+                    {href: "#/system/department/list.html", class: "", title: "部门管理"},
+                    {href: "", class: "", title: "编辑部门信息"}
+                ]
+            },
+            controller: "departmentEditController",
+            resolve: {
+                deps: ['$ocLazyLoad', function ($ocLazyLoad) {
+                    return $ocLazyLoad.load({
+                        name: 'MetronicApp',
+                        insertBefore: '#ng_load_plugins_before', // load the above css files before a LINK element with this ID. Dynamic CSS files must be loaded between core and theme css files
+                        files: [
+                            'app/controllers/system/department/department.js',
+                            'app/services/system/department/departmentService.js'
+                        ]
+                    });
+                }]
+            }
+        })
+
+        .state('departmentView', {
+            url: "/system/department/view.html",
+            templateUrl: "views/system/department/view.html",
+            data: {
+                pageTitle: "查看部门信息",
+                pageBar: [
+                    {href: "", class: "fa fa-cog", title: "系统管理"},
+                    {href: "#/system/department/list.html", class: "", title: "部门管理"},
+                    {href: "", class: "", title: "查看部门信息"}
+                ]
+            },
+            controller: "departmentEditController",
+            resolve: {
+                deps: ['$ocLazyLoad', function ($ocLazyLoad) {
+                    return $ocLazyLoad.load({
+                        name: 'MetronicApp',
+                        insertBefore: '#ng_load_plugins_before', // load the above css files before a LINK element with this ID. Dynamic CSS files must be loaded between core and theme css files
+                        files: [
+                            'app/controllers/system/department/department.js',
+                            'app/services/system/department/departmentService.js'
+                        ]
+                    });
+                }]
+            }
+        })
 
 }]);

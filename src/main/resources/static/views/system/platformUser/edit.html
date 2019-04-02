@@ -189,6 +189,27 @@
                                           </div>
                                     </div>
                                 </div>
+
+                                <div class="col-md-6"
+                                     ng-class="{ 'has-error' :(form.departmentdetail.$touched || form.$submitted ) && form.departmentdetail.$invalid}">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4">所属部门<span
+                                                class="text-danger">*</span></label>
+                                        <div class="col-md-8">
+                                            <select name="departmentdetail" class="form-control ng-touched" data-placeholder="所属部门"
+                                                    required
+                                                    ng-model="model.depId" select2>
+                                                <option ng-repeat="department in departments" value="{{department.id}}"
+                                                        ng-bind="department.name"></option>
+                                            </select>
+                                            <div class="help-block"
+                                                 ng-show="form.$submitted || form.departmentdetail.$touched"
+                                                 ng-messages="form.departmentdetail.$error">
+                                                <p ng-message="required">所属部门不能为空</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </form>

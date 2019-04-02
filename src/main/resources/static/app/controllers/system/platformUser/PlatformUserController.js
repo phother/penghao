@@ -159,12 +159,18 @@ angular.module("MetronicApp").controller('PlatformUserController',
         }
     ]
 ).controller('PlatformUserEditController',
-    ['$rootScope', '$scope', '$location', 'EnumService', 'PlatformUserService','toastr',
-        function ($rootScope, $scope, $location, EnumService, PlatformUserService,toastr) {
+    ['$rootScope', '$scope', '$location', 'EnumService', 'PlatformUserService','departmentService','toastr',
+        function ($rootScope, $scope, $location, EnumService, PlatformUserService,departmentService,toastr) {
             $scope.$on('$viewContentLoaded', function () {
                 App.initAjax();
                 $rootScope.settings.layout.pageBodySolid = true;
                 $rootScope.settings.layout.pageSidebarClosed = false;
+            });
+            $scope.departments = [];
+            departmentService.list().$promise.then(function (result) {
+                if ('success' == result.status) {
+                    $scope.departments = result.data;
+                }
             });
             $scope.id = $location.search().id;
             $scope.genderDatas = EnumService.get("genderType");
