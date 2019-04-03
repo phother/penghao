@@ -1,0 +1,226 @@
+# Created by .ignore support plugin (hsz.mobi)
+### Tags template
+# Ignore tags created by etags, ctags, gtags (GNU global) and cscope
+TAGS
+.TAGS
+!TAGS/
+tags
+.tags
+!tags/
+gtags.files
+GTAGS
+GRTAGS
+GPATH
+GSYMS
+cscope.files
+cscope.out
+cscope.in.out
+cscope.po.out
+
+### SVN template
+.svn/
+### Maven template
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+buildNumber.properties
+.mvn/timing.properties
+
+# Avoid ignoring Maven wrapper jar file (.jar files are usually ignored)
+!/.mvn/wrapper/maven-wrapper.jar
+### Eclipse template
+
+.metadata
+bin/
+tmp/
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
+.settings/
+.loadpath
+.recommenders
+
+# External tool builders
+.externalToolBuilders/
+
+# Locally stored "Eclipse launch configurations"
+*.launch
+
+# PyDev specific (Python IDE for Eclipse)
+*.pydevproject
+
+# CDT-specific (C/C++ Development Tooling)
+.cproject
+
+# CDT- autotools
+.autotools
+
+# Java annotation processor (APT)
+.factorypath
+
+# PDT-specific (PHP Development Tools)
+.buildpath
+
+# sbteclipse plugin
+.target
+
+# Tern plugin
+.tern-project
+
+# TeXlipse plugin
+.texlipse
+
+# STS (Spring Tool Suite)
+.springBeans
+
+# Code Recommenders
+.recommenders/
+
+# Scala IDE specific (Scala & Java development for Eclipse)
+.cache-main
+.scala_dependencies
+.worksheet
+### Java template
+# Compiled class file
+*.class
+
+# Log file
+*.log
+
+# BlueJ files
+*.ctxt
+
+# Mobile Tools for Java (J2ME)
+.mtj.tmp/
+
+# Package Files #
+*.jar
+*.war
+*.nar
+*.ear
+*.zip
+*.tar.gz
+*.rar
+
+# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
+hs_err_pid*
+### JetBrains template
+# Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm, CLion, Android Studio and WebStorm
+# Reference: https://intellij-support.jetbrains.com/hc/en-us/articles/206544839
+
+# User-specific stuff
+.idea/**/workspace.xml
+.idea/**/tasks.xml
+.idea/**/dictionaries
+.idea/**/shelf
+
+# Sensitive or high-churn files
+.idea/**/dataSources/
+.idea/**/dataSources.ids
+.idea/**/dataSources.local.xml
+.idea/**/sqlDataSources.xml
+.idea/**/dynamic.xml
+.idea/**/uiDesigner.xml
+.idea/**/dbnavigator.xml
+
+# Gradle
+.idea/**/gradle.xml
+.idea/**/libraries
+
+# CMake
+cmake-build-debug/
+cmake-build-release/
+
+# Mongo Explorer plugin
+.idea/**/mongoSettings.xml
+
+# File-based project format
+*.iws
+
+# IntelliJ
+out/
+
+# mpeltonen/sbt-idea plugin
+.idea_modules/
+
+# JIRA plugin
+atlassian-ide-plugin.xml
+
+# Cursive Clojure plugin
+.idea/replstate.xml
+
+# Crashlytics plugin (for Android Studio and IntelliJ)
+com_crashlytics_export_strings.xml
+crashlytics.properties
+crashlytics-build.properties
+fabric.properties
+
+# Editor-based Rest Client
+.idea/httpRequests
+
+.gitignore
+.idea/libraries/Maven__com_github_virtuald_curvesapi_1_03.xml
+.idea/libraries/Maven__com_jayway_jsonpath_json_path_2_2_0.xml
+.idea/libraries/Maven__com_leadingsoft_bizfuse_bizfuse_source_generator_3_0_0_0_RELEASE.xml
+.idea/libraries/Maven__junit_junit_4_12.xml
+.idea/libraries/Maven__net_minidev_accessors_smart_1_1.xml
+.idea/libraries/Maven__net_minidev_json_smart_2_2_1.xml
+.idea/libraries/Maven__org_apache_poi_poi_ooxml_3_14.xml
+.idea/libraries/Maven__org_apache_poi_poi_ooxml_schemas_3_14.xml
+.idea/libraries/Maven__org_apache_xmlbeans_xmlbeans_2_6_0.xml
+.idea/libraries/Maven__org_assertj_assertj_core_2_5_0.xml
+.idea/libraries/Maven__org_hamcrest_hamcrest_core_1_3.xml
+.idea/libraries/Maven__org_hamcrest_hamcrest_library_1_3.xml
+.idea/libraries/Maven__org_json_json_20140107.xml
+.idea/libraries/Maven__org_mockito_mockito_core_1_10_19.xml
+.idea/libraries/Maven__org_objenesis_objenesis_2_1.xml
+.idea/libraries/Maven__org_ow2_asm_asm_5_0_3.xml
+.idea/libraries/Maven__org_skyscreamer_jsonassert_1_3_0.xml
+.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_test_1_4_0_RELEASE.xml
+.idea/libraries/Maven__org_springframework_boot_spring_boot_test_1_4_0_RELEASE.xml
+.idea/libraries/Maven__org_springframework_boot_spring_boot_test_autoconfigure_1_4_0_RELEASE.xml
+.idea/libraries/Maven__org_springframework_spring_test_4_3_2_RELEASE.xml
+.idea/libraries/Maven__stax_stax_api_1_0_1.xml
+.idea/vcs.xml
+logs/
+src/main/resources/static/.idea/
+target/classes/excel/CurrencyReimburseExcelView.xls
+target/classes/excel/travelReimburseExcelView.xls
+target/classes/sample/bizfuse/web/SourceGenerator$Output.class
+target/classes/sample/bizfuse/web/SourceGenerator.class
+target/classes/sample/bizfuse/web/controller/base/
+target/classes/sample/bizfuse/web/controller/reimbursement/
+target/classes/sample/bizfuse/web/convertor/base/
+target/classes/sample/bizfuse/web/convertor/reimbursement/
+target/classes/sample/bizfuse/web/dto/base/
+target/classes/sample/bizfuse/web/dto/reimbursement/
+target/classes/sample/bizfuse/web/enums/Subject.class
+target/classes/sample/bizfuse/web/enums/TrafficLevel.class
+target/classes/sample/bizfuse/web/enums/Vehicle.class
+target/classes/sample/bizfuse/web/excel/
+target/classes/sample/bizfuse/web/model/base/
+target/classes/sample/bizfuse/web/model/reimbursement/
+target/classes/sample/bizfuse/web/repository/base/
+target/classes/sample/bizfuse/web/repository/reimbursement/
+target/classes/sample/bizfuse/web/service/base/
+target/classes/sample/bizfuse/web/service/reimbursement/
+target/classes/sample/bizfuse/web/utils/
+target/classes/static/.idea/
+target/classes/static/app/controllers/reimbursement/
+target/classes/static/app/controllers/system/department/
+target/classes/static/app/digitUppercase.js
+target/classes/static/app/services/reimbursement/
+target/classes/static/app/services/system/department/
+target/classes/static/views/reimbursement/
+target/classes/static/views/system/department/
+target/generated-sources/annotations/
+target/generated-test-sources/
+target/test-classes/webapp/Test1$Output.class
+target/test-classes/webapp/Test1.class
+/.idea/
