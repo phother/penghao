@@ -11,6 +11,7 @@
         BaseListService.call(this, UrlConfigService.urlConfig.currencyReimburses.listUrl, UrlConfigService.urlConfig.currencyReimburses.saveUrl, $resource, $q, $http, _schema);
         this._formUrl = UrlConfigService.urlConfig.currencyReimburses.formUrl;
         this._getDelete = UrlConfigService.urlConfig.currencyReimburses.deleteUrl;
+        this.downloadUrl = UrlConfigService.urlConfig.currencyReimburses.downloadUrl;
         this._schema = _schema;
 
         this.getSeatSum = function (hallModelList) {
@@ -28,10 +29,14 @@
             }).update();
         };
 
-        this.getForm = function (id) {
-            return $resource(this._formUrl,{id:id}).get();
+        this.download = function (id) {
+            return $resource(this.downloadUrl,{id:id}).get();
         };
-    }
+
+
+    }this.getForm = function (id) {
+        return $resource(this._formUrl,{id:id}).get();
+    };
 
     CurrencyReimbursementService.prototype = Object.create(BaseListService.prototype);
     CurrencyReimbursementService.$inject = ['$resource', '$q', '$http', 'UrlConfigService','FileStorageService'];

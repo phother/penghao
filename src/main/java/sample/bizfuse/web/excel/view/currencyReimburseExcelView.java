@@ -89,7 +89,7 @@ public class currencyReimburseExcelView extends BaseExcelView {
             cell.setCellValue(detail.getRemark()+"");
 
             cell = this.buildMergedRowCell(sheet, rowNumber, 3, defaultCellStyle);
-            cell.setCellValue(Subject.valueOf(detail.getSubId())+"");
+            cell.setCellValue(detail.getSubId().getValue());
 
             cell = this.buildMergedRowCell(sheet, rowNumber, 4, defaultCellStyle);
             cell.setCellValue(detail.getRemiburseMoney() +"");

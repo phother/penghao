@@ -33,7 +33,7 @@ public class ReimburseDetailConvertor extends AbstractConvertor<ReimburseDetail,
         final ReimburseDetailDTO dto = new ReimburseDetailDTO();
         dto.setId(model.getId());
         dto.setRemark(model.getRemark());
-        dto.setSubId(model.getSubId().name());
+        dto.setSubId(model.getSubId());
         dto.setRemiburseMoney(model.getRemiburseMoney());
 
         return dto;
@@ -43,7 +43,7 @@ public class ReimburseDetailConvertor extends AbstractConvertor<ReimburseDetail,
     private ReimburseDetail constructModel(final ReimburseDetailDTO dto) {
         ReimburseDetail model = new ReimburseDetail();
         model.setRemark(dto.getRemark());
-        model.setSubId(Subject.valueOf(dto.getSubId()));
+        model.setSubId(dto.getSubId());
         model.setRemiburseMoney(dto.getRemiburseMoney());
 
         return model;
@@ -53,7 +53,7 @@ public class ReimburseDetailConvertor extends AbstractConvertor<ReimburseDetail,
     private ReimburseDetail updateModel(final ReimburseDetailDTO dto) {
         ReimburseDetail model = reimburseDetailService.get(dto.getId());
         model.setRemark(dto.getRemark());
-        model.setSubId(Subject.valueOf(dto.getSubId()));
+        model.setSubId(dto.getSubId());
         model.setRemiburseMoney(dto.getRemiburseMoney());
 
         return model;

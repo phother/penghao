@@ -1,6 +1,6 @@
 angular.module("MetronicApp").controller('CurrencyReimbursementController',
-    ['$rootScope', '$scope', '$location', '$timeout', 'EnumService', 'CurrencyReimbursementService', '$window', 'DictService', 'toastr',
-        function ($rootScope, $scope, $location, $timeout, EnumService, CurrencyReimbursementService, $window, DictService, toastr) {
+    ['$rootScope', '$scope', '$location', '$timeout', 'EnumService', 'CurrencyReimbursementService', '$window', 'DictService','FileStorageService', 'toastr',
+        function ($rootScope, $scope, $location, $timeout, EnumService, CurrencyReimbursementService, $window, DictService,FileStorageService, toastr) {
             $scope.$on('$viewContentLoaded', function () {
                 // initialize core components
                 $rootScope.settings.layout.pageBodySolid = true;
@@ -112,6 +112,14 @@ angular.module("MetronicApp").controller('CurrencyReimbursementController',
              */
             $scope.exportExcel = function () {
                 CurrencyReimbursementService.exportExcelfileInfo(searchable);
+            };
+
+            /**
+             * 导出
+             */
+            $scope.download = function (row) {
+                var searchable = [];
+                FileStorageService.exportExcelfile('/w/currencyReimburses/export/'+row.id, searchable, '通用报销单.xls');
             };
 
         }])

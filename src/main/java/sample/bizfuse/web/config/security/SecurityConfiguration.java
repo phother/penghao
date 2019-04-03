@@ -86,7 +86,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
             .and()
             .authorizeRequests()
             .antMatchers("/upload/**").permitAll()//文件上传
-            .antMatchers("/**").permitAll()//文件上传
+//            .antMatchers("/**").permitAll()//文件上传
             .antMatchers("/download/**").permitAll()//文件下载
             .antMatchers("/w/checkLogin").permitAll()//校验用户是否登录
             .antMatchers("/api/**").authenticated()

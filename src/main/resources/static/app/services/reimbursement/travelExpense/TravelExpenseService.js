@@ -12,6 +12,7 @@
 
         this._url = UrlConfigService.urlConfig.travelExpense.url;
         this._searchListUrl = UrlConfigService.urlConfig.travelExpense.listUrl;
+        this.downloadUrl = UrlConfigService.urlConfig.travelExpense.downloadUrl;
         this._userDeptUrl = UrlConfigService.urlConfig.system.platformUser.getUserDeptUrl;
         this._schema = _schema;
 
@@ -38,6 +39,9 @@
         }
         this.getForm = function (id) {
             return $resource(this._url,{id:id}).get();
+        };
+        this.download = function (id) {
+            return $resource(this.downloadUrl,{id:id}).get();
         };
     }
 

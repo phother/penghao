@@ -5,7 +5,10 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.validator.constraints.NotBlank;
+import sample.bizfuse.web.enums.Subject;
 
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.validation.constraints.Size;
 import java.math.BigDecimal;
 
@@ -28,7 +31,9 @@ public class ReimburseDetailDTO extends AbstractDTO {
     /**
      *科目
      */
-    private String subId;
+    @Enumerated(EnumType.STRING)
+    @ApiModelProperty("科目")
+    private Subject subId;
 
     /**
      * 报销金额

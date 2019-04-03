@@ -4,8 +4,8 @@
  * Updated by wangwj on 2016/9/9.
  */
 angular.module("MetronicApp").service('FileStorageService',
-    ['$resource', 'toastr', 'UrlConfigService',
-        function ($resource, toastr, UrlConfigService) {
+    ['$resource','$http', 'toastr', 'UrlConfigService',
+        function ($resource,$http, toastr, UrlConfigService) {
             this._uploadUrl = UrlConfigService.urlConfig.fileStorage.uploadUrl;
             this._downLoadUrl = UrlConfigService.urlConfig.fileStorage.downloadUrl;
 
@@ -83,6 +83,124 @@ angular.module("MetronicApp").service('FileStorageService',
                     }
                 }
                 return true;
+            };
+
+            this.exportExcelfile = function (url, param, name) {
+                var queryMap = {};
+                if (param) {
+                    for (var k in param) {
+                        if (param.hasOwnProperty(k) && param[k] != undefined && param[k] !== "") {
+                            queryMap['s_' + k] = param[k];
+                        }
+                    }
+                }
+                var urlParamEncodeStr = this._urlParamEncode(queryMap);
+
+                if (urlParamEncodeStr) {
+                    if(param.sort){
+                        url = url + "?sort="+param.sort+",desc"+"&" + this._urlParamEncode(queryMap);
+                    }else{
+                        url = url + "?" + this._urlParamEncode(queryMap);
+                    }
+                }
+                $http.get(url, {responseType: 'arraybuffer'})
+                    .success(function (data, status, headers) {
+                        var octetStreamMime = 'application/octet-stream';
+                        var success = false;
+                        headers = headers();
+                        var filename = headers['x-filename'] || name;
+                        var contentType = headers['content-type'] || octetStreamMime;
+                        try {
+                            console.log("Trying saveBlob method ...");
+                            var blob = new Blob([data], {type: contentType});
+                            if (navigator.msSaveBlob)
+                                navigator.msSaveBlob(blob, filename);
+                            else {
+                                var saveBlob = navigator.webkitSaveBlob || navigator.mozSaveBlob || navigator.saveBlob;
+                                if (saveBlob === undefined) throw "Not supported";
+                                saveBlob(blob, filename);
+                            }
+                            console.log("saveBlob succeeded");
+                            success = true;
+                        } catch (ex) {
+                            console.log("saveBlob method failed with the following exception:");
+                            console.log(ex);
+                        }
+                        if (!success) {
+                            var urlCreator = window.URL || window.webkitURL || window.mozURL || window.msURL;
+                            if (urlCreator) {
+                                var link = document.createElement('a');
+                                if ('download' in link) {
+                                    try {
+                                        console.log("Trying download link method with simulated click ...");
+                                        var blob = new Blob([data], {type: contentType});
+                                        var url = urlCreator.createObjectURL(blob);
+                                        link.setAttribute('href', url);
+
+                                        link.setAttribute("download", filename);
+
+                                        var event = document.createEvent('MouseEvents');
+                                        event.initMouseEvent('click', true, true, window, 1, 0, 0, 0, 0, false, false, false, false, 0, null);
+                                        link.dispatchEvent(event);
+                                        console.log("Download link method with simulated click succeeded");
+                                        success = true;
+                                    } catch (ex) {
+                                        console.log("Download link method with simulated click failed with the following exception:");
+                                        console.log(ex);
+                                    }
+                                }
+                                if (!success) {
+                                    try {
+                                        console.log("Trying download link method with window.location ...");
+                                        var blob = new Blob([data], {type: octetStreamMime});
+                                        var url = urlCreator.createObjectURL(blob);
+                                        window.location = url;
+                                        console.log("Download link method with window.location succeeded");
+                                        success = true;
+                                    } catch (ex) {
+                                        console.log("Download link method with window.location failed with the following exception:");
+                                        console.log(ex);
+                                    }
+                                }
+                            }
+                        }
+                        if (!success) {
+                            console.log("No methods worked for saving the arraybuffer, using last resort window.open");
+                            window.open(httpPath, '_blank', '');
+                        }
+                    })
+                    .error(function (data, status) {
+                        console.log("Request failed with status: " + status);
+                        // $scope.errorDetails = "Request failed with status: " + status;
+                    });
+            };
+
+            this._encodeUrl = function (key, value) {
+                if (key && value != undefined && value !== "") {
+                    return key + '=' + encodeURIComponent(value === null ? '' : String(value)).replace(/%40/gi, '@').replace(/%3A/gi, ':').replace(/%24/g, '$').replace(/%2C/gi, ',').replace(/%20/g, '+');
+                } else {
+                    return "";
+                }
+            };
+
+            this._urlParamEncode = function (param) {
+                var service = this;
+                var urlParam = [];
+                for (var key in param) {
+                    key = encodeURIComponent(key);
+                    var values = param[key];
+                    if (values != undefined && values.constructor == Array) {//数组
+                        var queryValues = [];
+                        for (var i = 0, len = values.length, value; i < len; i++) {
+                            value = values[i];
+                            queryValues.push(service._encodeUrl(key, value));
+                        }
+                        urlParam = urlParam.concat(queryValues);
+                    } else { //字符串
+                        urlParam.push(service._encodeUrl(key, values));
+                    }
+                }
+                return urlParam.join('&');
             };
         }
     ]

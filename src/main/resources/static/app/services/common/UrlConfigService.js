@@ -87,11 +87,13 @@ angular.module("MetronicApp").service("UrlConfigService", function () {
             saveUrl: Host + RootPath + "/w/currencyReimburses",
             formUrl: Host + RootPath + "/w/currencyReimburses/:id",
             deleteUrl: Host + RootPath + "/w/currencyReimburses/:id",
+            downloadUrl: Host + RootPath + "/w/currencyReimburses/export/:id",
         },
         travelExpense:{
             listUrl: Host + RootPath + "/w/travelReimburses/s",
             saveUrl: Host + RootPath + "/w/travelReimburses",
             url: Host + RootPath + "/w/travelReimburses/:id",
+            downloadUrl: Host + RootPath + "/w/travelReimburses/export/:id",
         }
     };
 });

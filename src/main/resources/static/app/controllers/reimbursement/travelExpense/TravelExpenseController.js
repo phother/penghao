@@ -1,6 +1,6 @@
 angular.module("MetronicApp").controller('TravelExpenseController',
-    ['$rootScope', '$scope', '$location', '$timeout', 'EnumService', 'TravelExpenseService', '$window', 'DictService', 'toastr',
-        function ($rootScope, $scope, $location, $timeout, EnumService,  TravelExpenseService, $window, DictService, toastr) {
+    ['$rootScope', '$scope', '$location', '$timeout', 'EnumService', 'TravelExpenseService', '$window', 'DictService','FileStorageService', 'toastr',
+        function ($rootScope, $scope, $location, $timeout, EnumService,  TravelExpenseService, $window, DictService,FileStorageService, toastr) {
             $scope.$on('$viewContentLoaded', function () {
                 // initialize core components
                 $rootScope.settings.layout.pageBodySolid = true;
@@ -58,6 +58,11 @@ angular.module("MetronicApp").controller('TravelExpenseController',
             //search
             $scope.search = function () {
                 $scope.list();
+            };
+
+            $scope.download = function (row) {
+                var searchable = [];
+                FileStorageService.exportExcelfile('/w/travelReimburses/export/'+row.id, searchable, '差旅费报销单.xls');
             };
             //search
             $scope.searchForWatch = function () {
@@ -158,6 +163,8 @@ angular.module("MetronicApp").controller('TravelExpenseController',
 
                 TravelExpenseService.exportExcelfileInfo(searchable);
             };
+
+
 
         }])
     .controller('TravelExpenseCreateController',

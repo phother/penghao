@@ -67,13 +67,13 @@ public class DevFixtures implements ApplicationListener<ContextRefreshedEvent> {
 	public void onApplicationEvent(ContextRefreshedEvent event) {
 		// 初始化用户数据（excel导入）
 //		userFixtures.initTestData();
-//		// 初始化权限数据，包括菜单、角色
+////		// 初始化权限数据，包括菜单、角色
 //		initAuthenticationData();
-//
+////
 //		initTestData();
-
+//
 //		initTestData1();
-
+//
 //		initTestData2();
 
 
@@ -160,10 +160,12 @@ public class DevFixtures implements ApplicationListener<ContextRefreshedEvent> {
 		
 		// 菜单
 		Object[][] menus = new Object[][]{
-			{MenuType.site, "菜单管理", "menuList", "#/system/menu/list.html", 1},
-			{MenuType.site, "用户管理", "platformUserList", "#/system/platformUser/list.html", 2},
-			{MenuType.site, "角色管理", "roleList", "#/system/role/list.html", 3},
-			{MenuType.site, "部门管理", "departmentList", "#/system/department/list.html", 4},
+			{MenuType.site, "通用报销", "reimbursementList", "#/reimbursement/currency/list.html", 1},
+			{MenuType.site, "通用报销", "travelExpenseList", "#/reimbursement/travelExpense/list.html", 2},
+			{MenuType.site, "菜单管理", "menuList", "#/system/menu/list.html", 3},
+			{MenuType.site, "用户管理", "platformUserList", "#/system/platformUser/list.html", 4},
+			{MenuType.site, "角色管理", "roleList", "#/system/role/list.html", 5},
+			{MenuType.site, "部门管理", "departmentList", "#/system/department/list.html", 6},
 //			{MenuType.site, "码表管理", "dictionaryCategorys", "#/system/dictionary/category/list.html", 4},
 //			{MenuType.site, "Tree示例", "jsTreeDemo", "#/system/jsTreeDemo/list.html", 5},
 //			{MenuType.site, "图表示例", "echartsDemo", "#/system/echartsDemo/list.html", 6},
