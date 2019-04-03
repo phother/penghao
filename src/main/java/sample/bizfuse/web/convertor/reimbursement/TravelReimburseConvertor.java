@@ -59,7 +59,11 @@ public class TravelReimburseConvertor extends AbstractConvertor<TravelReimburse,
         dto.setPersonInCharge(model.getPersonInCharge());
         dto.setHeadOfResearchLaboratory(model.getHeadOfResearchLaboratory());
         if (model.getDepId() != null) {
-            dto.setDepName(departmentService.get(model.getDepId()).getName());
+            try {
+                dto.setDepName(departmentService.get(model.getDepId()).getName());
+            } catch (Exception e) {
+                dto.setDepName("");
+            }
         }
 
         return dto;
